@@ -5,6 +5,7 @@ extends AudioStreamPlayer2D
 @export var dictionary: String
 
 #https://forum.godotengine.org/t/how-to-import-and-read-text/21936
+#https://github.com/dwyl/english-words/blob/master/words.txt
 @onready var bobbyDictionary = "res://BobbyAssets/words.txt"
 
 var file = FileAccess.open("res://BobbyAssets/words.txt", FileAccess.READ)
@@ -17,17 +18,18 @@ var inDictionary: bool = true
 var dictionaryArray = [" "]
 var answerArray = [" "]
 var csvFile: String = ""
+var anger: int = 0
+var happiness: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_loadFile()
-	#_askQuestion()
+	_processQuestion()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#_askQuestion()
 	pass
 
 func _loadFile() -> void: #it is redundant to call this file if 
@@ -42,19 +44,27 @@ func _loadFile() -> void: #it is redundant to call this file if
 	
 	while !file.eof_reached():
 		var csv_data := file.get_csv_line()
-		# process csv data - for example just print it
-		#print("CSV data is %s" % ", ".join(csv_data))
-		#add csv data to our array
-		#csv_data.erase(0, 2)
 		dictionaryArray.resize(dictionaryArray.size() + 1)
 		dictionaryArray[dictionaryArray.size()-1] = csv_data[0]
-		#dictionaryArray[dictionaryArray.size()-1].erase(0,2)
-		#print(dictionaryArray[dictionaryArray.size()-1])
-
 	
 	print("done processing csv data")
-	print(dictionaryArray)
+	#print(dictionaryArray)
 
+func _processQuestion():
+	print("question process")
+	#check if angriness is enough to lose
+	if(anger >= 5):
+		print("you lose!")
+		
+	#check if happiness is enough to win
+	elif(happiness >= 5):
+		print("you win!")
+	
+	#ask question
+	_askQuestion()
+
+func _processAnswer():
+	print("process answer")
 
 func _input(event):
 
@@ -117,16 +127,18 @@ func _input(event):
 				if isTalking:
 					print("don't interrupt me")
 				else:
-					_sayText(answerText)
+					_processAnswer()
+					#_sayText(answerText)
 			"Backspace":
-				answerText[answerText.length()-1] = ""
+				if(answerText.length() > 0):
+					answerText[answerText.length()-1] = ""
 			"Space":
 				answerText += " "
 		print(answerText)
 		playerText.text = answerText
 
 func _askQuestion():
-	var questionPick := randi_range(0, 5)
+	var questionPick := randi_range(0, 15) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
 		bobbyText.text = ("what is your name? ")
@@ -135,16 +147,50 @@ func _askQuestion():
 		bobbyText.text = "what is your quest?"
 		_sayText(bobbyText.text)
 	elif(questionPick == 2):
-		bobbyText.text = ("sd ")
+		bobbyText.text = ("what is your favorite color?")
 	elif(questionPick == 3):
-		bobbyText.text = ("doing question 3 ")
+		bobbyText.text = ("how was your day?")
 		_sayText(bobbyText.text)
 	elif(questionPick == 4):
-		bobbyText.text = ("aaaaadaaaaaaaaaaaaaaaaaaaaaaaaaaa ")
+		bobbyText.text = ("what is your social security number?")
 		_sayText(bobbyText.text)
 	elif(questionPick == 5):
-		bobbyText.text = ("doing question 5 ")
+		bobbyText.text = ("what is your favorite food?")
 		_sayText(bobbyText.text)
+		
+	elif(questionPick == 6):
+		bobbyText.text = "what is Ian's middle name?"
+		_sayText(bobbyText.text)
+	elif(questionPick == 7):
+		bobbyText.text = ("what color are the curtains behind me?")
+	elif(questionPick == 8):
+		bobbyText.text = ("what is the square root of pi")
+		_sayText(bobbyText.text)
+	elif(questionPick == 9):
+		bobbyText.text = ("are you funny?")
+		_sayText(bobbyText.text)
+	elif(questionPick == 10):
+		bobbyText.text = ("tell me a story")
+		_sayText(bobbyText.text)
+	elif(questionPick == 11):
+		bobbyText.text = "knock knock" #the player should say 'who is there', 'whos' makes me angry
+		_sayText(bobbyText.text)
+	elif(questionPick == 12):
+		bobbyText.text = ("Rene Descarte famously stated 'I think therefore I am' in order to assert cognizance 
+		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that 
+		there is no truth behind the assertion that the reality we observe is real at all. What are your
+		thoughts on this issue? Also what is 4/7?")
+	elif(questionPick == 13):
+		bobbyText.text = ("sdrawkcab 'reflection' tou epyt")
+		_sayText(bobbyText.text)
+	elif(questionPick == 14):
+		bobbyText.text = ("what is the name of prometheus' brother?") #epimetheus or brometheus
+		_sayText(bobbyText.text)
+	elif(questionPick == 15):
+		bobbyText.text = ("what is your favorite food?")
+		_sayText(bobbyText.text)
+		
+	#_questionProcess()
 
 #https://godotforums.org/d/24845-how-to-change-the-stream-of-an-audiostreamplayer-via-gdscript
 #this shows how to change the sound this plays
