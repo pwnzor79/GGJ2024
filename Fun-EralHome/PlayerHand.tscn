@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://mehdik8vweg"]
+
+[ext_resource type="Script" path="res://Fun-EralHome/ClownHand.gd" id="1_kn8dq"]
+
+[node name="PlayerHand" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_kn8dq")
