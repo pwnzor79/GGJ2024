@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://chty6t2k54gkv"]
+[gd_scene load_steps=4 format=3 uid="uid://chty6t2k54gkv"]
 
 [ext_resource type="Texture2D" uid="uid://ng0hsu7kjdng" path="res://ProblemCustomer/TestMap.png" id="1_k0psf"]
 [ext_resource type="PackedScene" uid="uid://cnyrv2jlnxnmm" path="res://ProblemCustomer/Player.tscn" id="2_1u70d"]
+[ext_resource type="PackedScene" uid="uid://da0m3b0eqyqeh" path="res://ProblemCustomer/test_wall.tscn" id="3_xumud"]
 
 [node name="MaddieScene" type="Node2D"]
 
@@ -12,5 +13,21 @@ offset_right = 1916.0
 offset_bottom = 1074.0
 texture = ExtResource("1_k0psf")
 
+[node name="TestWall" parent="." instance=ExtResource("3_xumud")]
+position = Vector2(128, 568)
+
+[node name="TestWall2" parent="." instance=ExtResource("3_xumud")]
+position = Vector2(1832, 576)
+
+[node name="TestWall3" parent="." instance=ExtResource("3_xumud")]
+position = Vector2(1064, 976)
+rotation = 1.5708
+scale = Vector2(1, 43.04)
+
+[node name="TestWall4" parent="." instance=ExtResource("3_xumud")]
+position = Vector2(1056, 328)
+rotation = 1.5708
+scale = Vector2(1, 42.96)
+
 [node name="Player" parent="." instance=ExtResource("2_1u70d")]
-position = Vector2(470, 482)
+position = Vector2(136, 336)
