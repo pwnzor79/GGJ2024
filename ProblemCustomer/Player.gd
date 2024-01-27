@@ -1,6 +1,6 @@
 extends Area2D
 
-var tile_size = 52
+var tile_size = 64
 var inputs = {"right": Vector2.RIGHT,
 			  "left": Vector2.LEFT,
 			  "up": Vector2.UP,
