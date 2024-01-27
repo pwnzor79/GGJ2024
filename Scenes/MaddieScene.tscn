@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://chty6t2k54gkv"]
+
+[ext_resource type="Texture2D" uid="uid://ng0hsu7kjdng" path="res://ProblemCustomer/TestMap.png" id="1_k0psf"]
+[ext_resource type="PackedScene" uid="uid://cnyrv2jlnxnmm" path="res://ProblemCustomer/Player.tscn" id="2_1u70d"]
+
+[node name="MaddieScene" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 1916.0
+offset_bottom = 1074.0
+texture = ExtResource("1_k0psf")
+
+[node name="Player" parent="." instance=ExtResource("2_1u70d")]
+position = Vector2(470, 482)

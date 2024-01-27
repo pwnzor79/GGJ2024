@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c42m8s1itdjn"
-path="res://.godot/imported/clown2.webp-e5706ab0f7e2c394df08acc406c2eb78.ctex"
+uid="uid://ng0hsu7kjdng"
+path="res://.godot/imported/TestMap.png-ea5eccc99fd2b7a9b533914eb20a0933.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ProblemCustomer/ProblemCustomerArt/clown2.webp"
-dest_files=["res://.godot/imported/clown2.webp-e5706ab0f7e2c394df08acc406c2eb78.ctex"]
+source_file="res://ProblemCustomer/TestMap.png"
+dest_files=["res://.godot/imported/TestMap.png-ea5eccc99fd2b7a9b533914eb20a0933.ctex"]
 
 [params]
 
