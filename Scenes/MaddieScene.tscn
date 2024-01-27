@@ -1,10 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://chty6t2k54gkv"]
+[gd_scene load_steps=10 format=3 uid="uid://chty6t2k54gkv"]
 
 [ext_resource type="Texture2D" uid="uid://ng0hsu7kjdng" path="res://ProblemCustomer/TestMap.png" id="1_k0psf"]
+[ext_resource type="Script" path="res://Scenes/MaddieScene.gd" id="1_rqrbd"]
 [ext_resource type="PackedScene" uid="uid://cnyrv2jlnxnmm" path="res://ProblemCustomer/Player.tscn" id="2_1u70d"]
 [ext_resource type="PackedScene" uid="uid://da0m3b0eqyqeh" path="res://ProblemCustomer/test_wall.tscn" id="3_xumud"]
+[ext_resource type="Script" path="res://Scenes/PathFollow2D.gd" id="5_5up1f"]
+[ext_resource type="PackedScene" uid="uid://do3k17wpvv88l" path="res://ProblemCustomer/test_customer.tscn" id="5_tnjy6"]
+[ext_resource type="Script" path="res://Scenes/RigidBody2D.gd" id="7_k6aev"]
+
+[sub_resource type="Curve2D" id="Curve2D_b55i0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -64, 128, 0, 0, 0, 0, 256, 128)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g14n"]
+size = Vector2(8, 64)
 
 [node name="MaddieScene" type="Node2D"]
+script = ExtResource("1_rqrbd")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -4.0
@@ -32,3 +46,20 @@ scale = Vector2(1, 42.96)
 [node name="Player" parent="." instance=ExtResource("2_1u70d")]
 position = Vector2(136, 336)
 scale = Vector2(0.839, 0.769)
+
+[node name="CustomerLine" type="Path2D" parent="."]
+curve = SubResource("Curve2D_b55i0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CustomerLine"]
+position = Vector2(-64, 128)
+loop = false
+script = ExtResource("5_5up1f")
+
+[node name="TestCustomer" parent="CustomerLine/PathFollow2D" instance=ExtResource("5_tnjy6")]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("7_k6aev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(316, 160)
+shape = SubResource("RectangleShape2D_7g14n")
