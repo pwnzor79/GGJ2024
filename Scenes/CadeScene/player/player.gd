@@ -65,10 +65,10 @@ func _input(event: InputEvent) -> void:
 
 # Movement Logic
 func handle_movement_input(delta: float) -> void:
-	if Input.is_action_pressed("move_sprint") and !Input.is_action_pressed("move_crouch") and sprint_enabled:
+	if Input.is_action_pressed("chasm_move_sprint") and !Input.is_action_pressed("chasm_move_crouch") and sprint_enabled:
 		if !$crouch_roof_detect.is_colliding(): #if the player is crouching and underneath a ceiling that is too low, don't let the player stand up
 			enter_sprint_state(delta)
-	elif Input.is_action_pressed("move_crouch") and !Input.is_action_pressed("move_sprint") and crouch_enabled:
+	elif Input.is_action_pressed("chasm_move_crouch") and !Input.is_action_pressed("chasm_move_sprint") and crouch_enabled:
 		enter_crouch_state(delta)
 	else:
 		if !$crouch_roof_detect.is_colliding(): #if the player is crouching and underneath a ceiling that is too low, don't let the player stand up
@@ -112,11 +112,11 @@ func apply_gravity(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 func handle_jump() -> void:
-	if Input.is_action_pressed("move_jump") and is_on_floor():
+	if Input.is_action_pressed("chasm_move_jump") and is_on_floor():
 		velocity.y += jump_velocity
 
 func move_character(delta: float) -> void:
-	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var input_dir: Vector2 = Input.get_vector("chasm_move_left", "chasm_move_right", "chasm_move_forward", "chasm_move_backward")
 	var direction: Vector2 = input_dir.normalized().rotated(-parts["head"].rotation.y)
 	if is_on_floor():
 		velocity.x = lerp(velocity.x, direction.x * speed, accel * delta)

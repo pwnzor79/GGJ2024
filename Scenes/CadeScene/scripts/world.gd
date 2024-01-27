@@ -21,7 +21,7 @@ func unpause_game():
 	unpause.emit()
 
 func _process(_delta):
-	if Input.is_action_just_released("game_pause"):
+	if Input.is_action_just_released("chasm_game_pause"):
 		paused = !paused
 		if paused:
 			pause_game()
