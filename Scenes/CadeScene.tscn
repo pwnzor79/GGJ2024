@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=9 format=3 uid="uid://0om1dcte4gao"]
+
+[ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
+[ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
+[ext_resource type="PackedScene" uid="uid://cwiu8nsyij4gn" path="res://Scenes/CadeScene/player/player.tscn" id="2_ljeje"]
+[ext_resource type="Texture2D" uid="uid://cqjenl6pl6dn7" path="res://Scenes/CadeScene/textures/skybox/EveningSkyHDRI018B_2K-HDR.exr" id="3_6myqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wex"]
+albedo_texture = ExtResource("1_0em0j")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_p1ob5"]
+panorama = ExtResource("3_6myqv")
+
+[sub_resource type="Sky" id="Sky_75snn"]
+sky_material = SubResource("PanoramaSkyMaterial_p1ob5")
+
+[sub_resource type="Environment" id="Environment_y8d6c"]
+background_mode = 2
+sky = SubResource("Sky_75snn")
 
 [node name="CadeScene" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83909, 0)
+script = ExtResource("1_vi6lb")
+
+[node name="geometry" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="geometry"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, -0.0598074, 0)
+use_collision = true
+size = Vector3(10, 1, 10)
+material = SubResource("StandardMaterial3D_m5wex")
+
+[node name="player" parent="." instance=ExtResource("2_ljeje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0984451, 1, -0.0863572)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y8d6c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.701407, 0.712761, 0, -0.712761, -0.701407, 0, 4.68077, 0)
+shadow_enabled = true
