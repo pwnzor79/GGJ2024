@@ -13,7 +13,9 @@ var file = FileAccess.open("res://BobbyAssets/words.txt", FileAccess.READ)
 var answerText: String = ""
 var timeTrim: float = 0.3
 var isTalking: bool = false
+var inDictionary: bool = true
 var dictionaryArray = [" "]
+var answerArray = [" "]
 var csvFile: String = ""
 
 # Called when the node enters the scene tree for the first time.
@@ -151,8 +153,15 @@ func _askQuestion():
 # this shows how to parse the text
 func _sayText(question: String):
 	isTalking = true
+	inDictionary = true
 	
-	if(dictionaryArray.has(question)):
+	answerArray = question.split(" ")
+	for word in answerArray:
+		if(!dictionaryArray.has(word)):
+			inDictionary = false
+		
+	
+	if(inDictionary):
 		print("that is in the dictionary")
 	else:
 		print("that is not in the dictionary")
