@@ -15,8 +15,12 @@ var answerText: String = ""
 var timeTrim: float = 0.3
 var isTalking: bool = false
 var inDictionary: bool = true
+var benefitOfTheDoubt: bool = true #determining factor when the answer is not predetermined
+var grammarSlam: bool = true #means you must get benefit of the doubt and be in the dictionary
 var dictionaryArray = [" "]
 var answerArray = [" "]
+var wrongAnswerArray = [" "]
+var correctAnswerArray = [" "]
 var csvFile: String = ""
 var anger: int = 0
 var happiness: int = 0
@@ -63,8 +67,46 @@ func _processQuestion():
 	#ask question
 	_askQuestion()
 
-func _processAnswer():
-	print("process answer")
+func _processAnswer(answer):
+	
+	#check spelling
+	inDictionary = true
+	
+	answerArray = answer.split(" ")
+	for word in answerArray:
+		if(!dictionaryArray.has(word)):
+			inDictionary = false
+		
+	print("process answer " + answerText)
+	if(wrongAnswerArray.has(answerText)):
+		print("wrong answer")
+		anger += 1
+	elif(correctAnswerArray.has(answerText)):
+		print("correct answer")
+		happiness += 1
+	else:
+		print("neither")
+		if(grammarSlam):
+			print("we are checking grammar")
+			if(inDictionary):
+				print("the word is in the dictionary")
+				if(benefitOfTheDoubt):
+					print("you get benefit of the doubt")
+					happiness += 1
+				else:
+					print("you do not get benefit of the doubt")
+					anger += 1
+			else:
+				print("that was not in the dictionary")
+				anger += 1
+		else:
+			print("we are not checking grammar")
+			if(benefitOfTheDoubt):
+				print("you get benefit of the doubt")
+				happiness += 1
+			else:
+				print("you do not get benefit of the doubt")
+				anger += 1
 
 func _input(event):
 
@@ -127,7 +169,7 @@ func _input(event):
 				if isTalking:
 					print("don't interrupt me")
 				else:
-					_processAnswer()
+					_processAnswer(answerText)
 					#_sayText(answerText)
 			"Backspace":
 				if(answerText.length() > 0):
@@ -138,10 +180,12 @@ func _input(event):
 		playerText.text = answerText
 
 func _askQuestion():
-	var questionPick := randi_range(0, 15) #this is inclusive on both sides
+	var questionPick := randi_range(0, 0) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
-		bobbyText.text = ("what is your name? ")
+		bobbyText.text = ("s ")
+		wrongAnswerArray = ["tim", "steve"]
+		correctAnswerArray = ["bobby", "gargathor"]
 		_sayText(bobbyText.text)
 	elif(questionPick == 1):
 		bobbyText.text = "what is your quest?"
@@ -199,18 +243,7 @@ func _askQuestion():
 # this shows how to parse the text
 func _sayText(question: String):
 	isTalking = true
-	inDictionary = true
-	
-	answerArray = question.split(" ")
-	for word in answerArray:
-		if(!dictionaryArray.has(word)):
-			inDictionary = false
-		
-	
-	if(inDictionary):
-		print("that is in the dictionary")
-	else:
-		print("that is not in the dictionary")
+
 	
 	for n in question.length()-1:
 		
