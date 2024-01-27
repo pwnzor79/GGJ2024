@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=3 uid="uid://l2fv4omh1odl"]
+
+[ext_resource type="PackedScene" uid="uid://cghpyrvt8wd2w" path="res://Scenes/CadeScene/assets/torch/castle_torch_holder.tscn" id="2_6d6gx"]
+[ext_resource type="PackedScene" uid="uid://dfuyuoy4tpatx" path="res://Scenes/CadeScene/assets/torch/castle_torch.tscn" id="2_7gs8n"]
+[ext_resource type="Texture2D" uid="uid://khr5lggmpge2" path="res://Scenes/CadeScene/assets/torch/sprites_fire.png" id="3_bae30"]
+
+[sub_resource type="Curve" id="Curve_io7ue"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.177515, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_as6u0"]
+curve = SubResource("Curve_io7ue")
+
+[sub_resource type="Gradient" id="Gradient_l4git"]
+offsets = PackedFloat32Array(0.0425532, 0.120567, 0.390071, 0.397163, 0.77305)
+colors = PackedColorArray(0, 0, 0.654902, 1, 1, 1, 0.32549, 1, 1, 0.541176, 0.419608, 1, 1, 0.145, 0.1, 1, 0.24, 0.24, 0.24, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ff2go"]
+gradient = SubResource("Gradient_l4git")
+width = 64
+
+[sub_resource type="Curve" id="Curve_444sb"]
+max_value = 23.76
+_data = [Vector2(0.497041, 4.96088), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_rc0d7"]
+curve = SubResource("Curve_444sb")
+
+[sub_resource type="Curve" id="Curve_iosyb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.142012, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_628fn"]
+width = 512
+curve = SubResource("Curve_iosyb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c0n1v"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+linear_accel_max = 4.0
+scale_min = 0.0
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_628fn")
+color = Color(1, 0.505882, 0.109804, 1)
+color_ramp = SubResource("GradientTexture1D_ff2go")
+alpha_curve = SubResource("CurveTexture_as6u0")
+emission_curve = SubResource("CurveTexture_rc0d7")
+hue_variation_min = -0.01
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nympy"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_bae30")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_gygid"]
+material = SubResource("StandardMaterial3D_nympy")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="castle_torch2" parent="." instance=ExtResource("2_7gs8n")]
+transform = Transform3D(0.196893, 0.035118, 0, -0.035118, 0.196893, 0, 0, 0, 0.2, 0.253549, 0.615967, -0.00429264)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.270849, 0.664707, -0.0142982)
+amount = 80
+lifetime = 0.5
+randomness = 1.0
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_c0n1v")
+draw_pass_1 = SubResource("QuadMesh_gygid")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.276571, 0.765753, 0)
+light_color = Color(1, 0.6, 0.2, 1)
+omni_attenuation = 1.36604
+
+[node name="castle_torch_holder" parent="." instance=ExtResource("2_6d6gx")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.00991537, -7.45058e-09, -0.00383661)

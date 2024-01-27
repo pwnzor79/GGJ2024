@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=15 format=3 uid="uid://0om1dcte4gao"]
 
 [ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cqjenl6pl6dn7" path="res://Scenes/CadeScene/textures/skybox/EveningSkyHDRI018B_2K-HDR.exr" id="3_6myqv"]
 [ext_resource type="ArrayMesh" uid="uid://ory4fkyg8km" path="res://Scenes/CadeScene/assets/cave/cave.obj" id="3_36v0w"]
 [ext_resource type="Material" uid="uid://1i8ou47kgqfk" path="res://Scenes/CadeScene/assets/cave/cave_rock.tres" id="3_f78dn"]
+[ext_resource type="Texture2D" uid="uid://b5jn3udlqjm7n" path="res://Scenes/CadeScene/assets/cave/textures/cave_wall_beware.png" id="6_narp6"]
+[ext_resource type="Material" uid="uid://c1aqsntxisr3r" path="res://Scenes/CadeScene/assets/torch/castle_torch.tres" id="7_g0nhh"]
+[ext_resource type="PackedScene" uid="uid://l2fv4omh1odl" path="res://Scenes/CadeScene/assets/torch/castle_torch_combo.tscn" id="8_g56hj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wex"]
 albedo_texture = ExtResource("1_0em0j")
@@ -21,7 +24,15 @@ sky_material = SubResource("PanoramaSkyMaterial_p1ob5")
 
 [sub_resource type="Environment" id="Environment_y8d6c"]
 background_mode = 2
+background_energy_multiplier = 0.4
 sky = SubResource("Sky_75snn")
+ambient_light_energy = 0.1
+tonemap_exposure = 1.5
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.5411, 0.576187, 0.630764, 1)
+fog_light_energy = 0.01
+fog_density = 0.06
 
 [node name="CadeScene" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83909, 0)
@@ -35,16 +46,42 @@ use_collision = true
 size = Vector3(10, 1, 10)
 material = SubResource("StandardMaterial3D_m5wex")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="geometry"]
+[node name="MeshInstance3D-cave" type="MeshInstance3D" parent="geometry"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3, 1)
 mesh = ExtResource("3_36v0w")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_f78dn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="geometry/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="geometry/MeshInstance3D-cave"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="geometry/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="geometry/MeshInstance3D-cave/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_33w7n")
+
+[node name="MeshInstance3D-torch" type="MeshInstance3D" parent="geometry"]
+
+[node name="torches" type="Node" parent="geometry"]
+
+[node name="castle_torch" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05708, 2.68681, -2.39594)
+
+[node name="castle_torch2" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.999986, 0, -0.00525344, 0, 1, 0, 0.00525344, 0, -0.999986, 2.74647, 3.99673, -11.4632)
+
+[node name="castle_torch3" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.0162483, 0, -0.999868, 0, 1, 0, 0.999868, 0, -0.0162483, 2.95106, 7.8912, -26.4272)
+
+[node name="castle_torch4" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.0162483, 0, -0.999868, 0, 1, 0, 0.999868, 0, -0.0162483, 21.677, 11.7768, -32.1751)
+
+[node name="castle_torch5" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(0.214684, 0, -0.976684, 0, 1, 0, 0.976684, 0, 0.214684, 25.829, 11.7768, -32.8035)
+
+[node name="decals" type="Node" parent="."]
+
+[node name="Decal" type="Decal" parent="decals"]
+transform = Transform3D(1.47669, 0.663304, -0.0287606, -0.0175292, -0.0311607, -1.61868, -0.663696, 1.47664, -0.0212388, 23.916, 11.8553, -32.8728)
+texture_albedo = ExtResource("6_narp6")
+normal_fade = 0.155
 
 [node name="player" parent="." instance=ExtResource("2_ljeje")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0984451, 1, -0.0863572)
@@ -54,4 +91,10 @@ environment = SubResource("Environment_y8d6c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.701407, 0.712761, 0, -0.712761, -0.701407, 0, 4.68077, 0)
-shadow_enabled = true
+light_color = Color(0.701961, 0.831373, 1, 1)
+light_energy = 0.004
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.180262, -0.983619, 0, 0.983619, 0.180262, 0, 0, 0, 1, -5.46655, 1.28407, 16.7472)
+material_override = ExtResource("7_g0nhh")
+skeleton = NodePath("")

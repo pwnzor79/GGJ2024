@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfuyuoy4tpatx"]
+
+[ext_resource type="PackedScene" uid="uid://cadetrt8um8jk" path="res://Scenes/CadeScene/assets/torch/castle_torch.dae" id="1_l7vd8"]
+[ext_resource type="Material" uid="uid://c1aqsntxisr3r" path="res://Scenes/CadeScene/assets/torch/castle_torch.tres" id="2_twtyg"]
+
+[node name="castle_torch" instance=ExtResource("1_l7vd8")]
+
+[node name="castle_torch_001" parent="." index="0"]
+transform = Transform3D(1, -4.37114e-08, 0, 4.37114e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_twtyg")
