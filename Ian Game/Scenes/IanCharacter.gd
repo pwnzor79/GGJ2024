@@ -7,6 +7,7 @@ var movementVector = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Hello it is me blumpldorf")
+	
 
 func _input(event: InputEvent):
 	# Upwards movement
@@ -43,7 +44,6 @@ func _input(event: InputEvent):
 			movementVector.x = -BLUMPL_SPEED
 		else :
 			movementVector.x = 0
-
 
 func _process(delta):
 	self.position += movementVector * delta
