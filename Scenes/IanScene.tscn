@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://swgkg14gq8e"]
+[gd_scene load_steps=3 format=3 uid="uid://swgkg14gq8e"]
+
+[ext_resource type="Texture2D" uid="uid://cvxv3s5dvqf1o" path="res://Ian Game/Textures/Blumpldorf.png" id="1_50flw"]
+[ext_resource type="Script" path="res://Scenes/IanCharacter.gd" id="2_3pulr"]
 
 [node name="IanScene" type="Node2D"]
+
+[node name="Character" type="Sprite2D" parent="."]
+position = Vector2(880, 289)
+scale = Vector2(1.11384, 1.11384)
+texture = ExtResource("1_50flw")
+script = ExtResource("2_3pulr")
