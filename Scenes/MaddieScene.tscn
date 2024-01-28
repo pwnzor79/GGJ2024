@@ -1,16 +1,75 @@
-[gd_scene load_steps=3 format=3 uid="uid://chty6t2k54gkv"]
+[gd_scene load_steps=11 format=3 uid="uid://cy2e4sk776bhw"]
 
-[ext_resource type="Texture2D" uid="uid://ng0hsu7kjdng" path="res://ProblemCustomer/TestMap.png" id="1_k0psf"]
-[ext_resource type="PackedScene" uid="uid://cnyrv2jlnxnmm" path="res://ProblemCustomer/Player.tscn" id="2_1u70d"]
+[ext_resource type="PackedScene" uid="uid://d1xl44hmb6ik2" path="res://MaddieGame/Scenes & Scripts/Player.tscn" id="1_7ds3p"]
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/MainScript.gd" id="1_vc4vs"]
+[ext_resource type="Shader" path="res://MaddieGame/Scenes & Scripts/BGShader.gdshader" id="3_3oxce"]
+[ext_resource type="PackedScene" uid="uid://bmuto43nt0pw1" path="res://MaddieGame/Scenes & Scripts/Enemy.tscn" id="3_uj6vg"]
+[ext_resource type="Texture2D" uid="uid://e0uf8kcq87lh" path="res://MaddieGame/Art/space.png" id="4_62654"]
+[ext_resource type="AudioStream" uid="uid://dmtb8o5ppx760" path="res://MaddieGame/Audio/deltarune explosion greenscreen.mp3" id="6_0ymjg"]
+[ext_resource type="AudioStream" uid="uid://bq5yem0e5dbdm" path="res://MaddieGame/Audio/Otis McDonald - Side Steppin'.mp3" id="7_eba56"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4t6j"]
+shader = ExtResource("3_3oxce")
+
+[sub_resource type="Curve2D" id="Curve2D_2u5jx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 1920, -128)
+}
+point_count = 2
+
+[sub_resource type="SystemFont" id="SystemFont_y02rt"]
+font_names = PackedStringArray("Comic Sans MS")
 
 [node name="MaddieScene" type="Node2D"]
+script = ExtResource("1_vc4vs")
+enemyToSpawn = ExtResource("3_uj6vg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -4.0
-offset_top = -6.0
-offset_right = 1916.0
-offset_bottom = 1074.0
-texture = ExtResource("1_k0psf")
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_m4t6j")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_62654")
+stretch_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("2_1u70d")]
-position = Vector2(470, 482)
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2u5jx")
+
+[node name="EnemySpawner" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(0, -128)
+
+[node name="Player" parent="." instance=ExtResource("1_7ds3p")]
+position = Vector2(960, 960)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ControlsMessage" type="Label" parent="HUD"]
+offset_left = 392.0
+offset_top = 400.0
+offset_right = 1550.0
+offset_bottom = 685.0
+theme_override_fonts/font = SubResource("SystemFont_y02rt")
+theme_override_font_sizes/font_size = 100
+text = "Pop the balloons!
+Press j to fire, h to honk"
+horizontal_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="HUD"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_0ymjg")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_eba56")
+volume_db = -7.5
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_spawn_timeout"]
+[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
+[connection signal="timeout" from="HUD/MessageTimer" to="." method="_on_message_timer_timeout"]

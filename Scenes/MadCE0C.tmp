@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy2e4sk776bhw"]
+
+[ext_resource type="PackedScene" uid="uid://d1xl44hmb6ik2" path="res://MaddieGame/Scenes & Scripts/Player.tscn" id="1_7ds3p"]
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/MainScript.gd" id="1_vc4vs"]
+[ext_resource type="Shader" path="res://MaddieGame/Scenes & Scripts/BGShader.gdshader" id="3_3oxce"]
+[ext_resource type="PackedScene" uid="uid://bmuto43nt0pw1" path="res://MaddieGame/Scenes & Scripts/Enemy.tscn" id="3_uj6vg"]
+[ext_resource type="Texture2D" uid="uid://e0uf8kcq87lh" path="res://MaddieGame/Art/space.png" id="4_62654"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4t6j"]
+shader = ExtResource("3_3oxce")
+
+[sub_resource type="Curve2D" id="Curve2D_2u5jx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 1920, -128)
+}
+point_count = 2
+
+[node name="MaddieScene" type="Node2D"]
+script = ExtResource("1_vc4vs")
+enemyToSpawn = ExtResource("3_uj6vg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_m4t6j")
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_62654")
+stretch_mode = 1
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2u5jx")
+
+[node name="EnemySpawner" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(0, -128)
+
+[node name="Player" parent="." instance=ExtResource("1_7ds3p")]
+position = Vector2(960, 960)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_spawn_timeout"]
+[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
