@@ -1,3 +1,98 @@
-[gd_scene format=3 uid="uid://swgkg14gq8e"]
+[gd_scene load_steps=15 format=3 uid="uid://swgkg14gq8e"]
+
+[ext_resource type="Script" path="res://Ian Game/Scenes/Game Manager.gd" id="1_4ngmh"]
+[ext_resource type="Script" path="res://Ian Game/Scenes/Jumpldorf.gd" id="1_mg3jw"]
+[ext_resource type="Script" path="res://Ian Game/Scenes/Obstacles/Obstacle Spawner.gd" id="4_ltwwl"]
+[ext_resource type="PackedScene" uid="uid://wmrhbj4yde0s" path="res://Ian Game/Scenes/Obstacles/Placeholder Air Obstacle.tscn" id="5_65p7i"]
+[ext_resource type="PackedScene" uid="uid://c8lyno7r2ix3h" path="res://Ian Game/Scenes/Obstacles/placeholder ground obstacle.tscn" id="5_vwrl8"]
+[ext_resource type="PackedScene" uid="uid://crqeuimby8pj6" path="res://Ian Game/Scenes/Obstacles/Red Car.tscn" id="6_j1n3y"]
+[ext_resource type="PackedScene" uid="uid://gbdtdr8aumtn" path="res://Ian Game/Scenes/Obstacles/Stoplight.tscn" id="7_42uqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stbhp"]
+size = Vector2(89.6, 187.844)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hphcm"]
+load_path = "res://.godot/imported/Clown1.png-5578949951a7fa9775455c617d21e858.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w4mcv"]
+load_path = "res://.godot/imported/Clown2.png-eb97f0131c315b4a4d45145d3d6b7f68.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ab4wy"]
+load_path = "res://.godot/imported/Clown3.png-e4c2c84a9ac454b00056d588d92948cf.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nwmjk"]
+load_path = "res://.godot/imported/Clown4.png-dd76ec44ec374ccb6726ac673d8173a1.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kq6pb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_hphcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_w4mcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ab4wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_nwmjk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63ar6"]
+size = Vector2(1910, 20)
 
 [node name="IanScene" type="Node2D"]
+script = ExtResource("1_4ngmh")
+
+[node name="Jumpldorf" type="CharacterBody2D" parent="."]
+position = Vector2(568, 848)
+platform_on_leave = 2
+script = ExtResource("1_mg3jw")
+gravity = 1200
+SPEED = 700.0
+JUMP_VELOCITY = -1000.0
+RELEASE_IMPULSE = 100
+fallingGravityRatio = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpldorf"]
+position = Vector2(-48, 101.403)
+rotation = 3.14159
+scale = Vector2(1.25, 1.25)
+shape = SubResource("RectangleShape2D_stbhp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Jumpldorf"]
+texture_filter = 1
+position = Vector2(-43.5, 72.5)
+scale = Vector2(6.1, 6.1)
+sprite_frames = SubResource("SpriteFrames_kq6pb")
+frame = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 544)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(1, 542)
+
+[node name="Collision" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
+shape = SubResource("RectangleShape2D_63ar6")
+
+[node name="Camera2D" type="Camera2D" parent="Camera2D"]
+position = Vector2(960, 544)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D/Camera2D"]
+position = Vector2(1, 542)
+
+[node name="Collision" type="CollisionShape2D" parent="Camera2D/Camera2D/StaticBody2D"]
+shape = SubResource("RectangleShape2D_63ar6")
+
+[node name="Obstacle Spawner" type="Node2D" parent="."]
+position = Vector2(1956, 1067)
+script = ExtResource("4_ltwwl")
+scenes = [ExtResource("5_vwrl8"), ExtResource("5_65p7i"), ExtResource("6_j1n3y"), ExtResource("7_42uqe")]
+distanceBetweenObstacles = 1000.0
+distanceVariation = Vector2(-500, 500)

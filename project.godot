@@ -16,6 +16,10 @@ run/main_scene="res://Scenes/BobbyScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+IanGameManager="*res://Ian Game/Scenes/Game Manager.gd"
+
 [display]
 
 window/size/viewport_width=1920
