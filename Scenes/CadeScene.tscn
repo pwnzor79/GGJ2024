@@ -130,8 +130,7 @@ func _on_body_entered(body):
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aa25n"]
 
-[sub_resource type="Animation" id="Animation_vx567"]
-resource_name = "music_fade_out"
+[sub_resource type="Animation" id="Animation_umy3h"]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -146,8 +145,9 @@ tracks/0/keys = {
 "values": [-4.762, -80.0]
 }
 
-[sub_resource type="Animation" id="Animation_umy3h"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_vx567"]
+resource_name = "music_fade_out"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -155,10 +155,10 @@ tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-4.762]
+"values": [-4.762, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_av601"]
