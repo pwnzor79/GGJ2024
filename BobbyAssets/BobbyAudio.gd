@@ -394,6 +394,9 @@ func _sayText(question: String):
 	isTalking = true
 	timer.paused = true
 	
+	$AnimatedSprite2D.frame = 0
+	$AnimatedSprite2D.play()
+	
 	print("saying " + question)
 	
 	for n in question.length()-1:
@@ -536,6 +539,9 @@ func _sayText(question: String):
 				await get_tree().create_timer(self.stream.get_length() - timeTrim).timeout
 		#hold until the sound is done
 		
+		
+	$AnimatedSprite2D.frame = 3
+	$AnimatedSprite2D.pause()
 	isTalking = false
 	timer.paused = false
 	if(askAfterTalking):

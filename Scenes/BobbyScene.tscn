@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddbbfdxgbmk87"]
+[gd_scene load_steps=19 format=3 uid="uid://ddbbfdxgbmk87"]
 
+[ext_resource type="Texture2D" uid="uid://dyn05koctln8d" path="res://BobbyAssets/Sprites/Bobby-Angry-Sheet.png" id="1_dpc45"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyAudio.gd" id="1_rmvtj"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyFaceScript.gd" id="2_7dc0r"]
 [ext_resource type="AudioStream" uid="uid://cpamjgdo8wt6x" path="res://BobbyAssets/Audio/ramSample1.wav" id="2_ee1ci"]
@@ -8,6 +9,49 @@
 [ext_resource type="Texture2D" uid="uid://dowbeylobxb50" path="res://BobbyAssets/Sprites/bobbyBackground.png" id="4_d45os"]
 [ext_resource type="AudioStream" uid="uid://u8s5u28bjbnt" path="res://BobbyAssets/Audio/right.wav" id="5_eibxl"]
 [ext_resource type="Script" path="res://BobbyAssets/honk.gd" id="5_xl2n2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t78xg"]
+atlas = ExtResource("1_dpc45")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg5u1"]
+atlas = ExtResource("1_dpc45")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8lgh"]
+atlas = ExtResource("1_dpc45")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppu7d"]
+atlas = ExtResource("1_dpc45")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oim61"]
+atlas = ExtResource("1_dpc45")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jypiq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t78xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg5u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8lgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppu7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oim61")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="FontFile" id="FontFile_lorec"]
 cache/0/16/0/ascent = 0.0
@@ -35,36 +79,41 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="BobbyScene" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-script = ExtResource("2_7dc0r")
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("4_d45os")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("playerText", "bobbyText", "timerText", "timer")]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." node_paths=PackedStringArray("playerText", "bobbyText", "timerText", "timer")]
+position = Vector2(899, 572)
+scale = Vector2(21.5833, 21.5833)
 stream = ExtResource("2_ee1ci")
 volume_db = 4.0
 script = ExtResource("1_rmvtj")
-playerText = NodePath("../../PlayerText")
-bobbyText = NodePath("../../BobbyText")
-timerText = NodePath("../../TimerText")
+playerText = NodePath("../PlayerText")
+bobbyText = NodePath("../BobbyText")
+timerText = NodePath("../TimerText")
 timer = NodePath("Timer")
 
-[node name="Timer" type="Timer" parent="AnimatedSprite2D/AudioStreamPlayer2D"]
+[node name="Timer" type="Timer" parent="AudioStreamPlayer2D"]
 wait_time = 20.0
 autostart = true
 
-[node name="wrong" type="AudioStreamPlayer2D" parent="AnimatedSprite2D/AudioStreamPlayer2D"]
+[node name="wrong" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
 stream = ExtResource("4_8wkfm")
 
-[node name="right" type="AudioStreamPlayer2D" parent="AnimatedSprite2D/AudioStreamPlayer2D"]
+[node name="right" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
 stream = ExtResource("5_eibxl")
 
-[node name="honk" type="AudioStreamPlayer2D" parent="AnimatedSprite2D/AudioStreamPlayer2D"]
+[node name="honk" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
 stream = ExtResource("4_3ogp2")
 autoplay = true
 script = ExtResource("5_xl2n2")
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
-texture = ExtResource("4_d45os")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AudioStreamPlayer2D"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_jypiq")
+autoplay = "default"
+script = ExtResource("2_7dc0r")
 
 [node name="PlayerText" type="RichTextLabel" parent="."]
 offset_left = 355.0
