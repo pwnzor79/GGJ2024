@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=30 format=3 uid="uid://0om1dcte4gao"]
 
 [ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
@@ -26,6 +26,7 @@ func _ready():
 func _process(delta):
 	ai_move()
 	check_for_teleport()
+	check_for_death()
 
 func ai_get_direction():
 	return player.position - self.position
@@ -36,6 +37,7 @@ func ai_move():
 	self.move_and_slide()
 	
 func check_for_teleport():
+	# If it's stuck
 	if velocity.length() < 0.5:
 		var search_center = self.position + (0.3* ai_get_direction())
 		var teleport_pos = null
@@ -54,6 +56,12 @@ func check_for_teleport():
 		if teleport_pos != null:
 			print(\"teleporting\")
 			self.position = teleport_pos
+			
+func check_for_death():
+	if ai_get_direction().length() < 3.0:
+		print(\"u dead\")
+		get_node(\"/root/CadeScene/Control/SceneTransitionRect\").death_screen()
+		self.set_process(false)
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bmigy"]
@@ -158,6 +166,11 @@ func transition_to() -> void:
 	# Changes the scene
 	#get_tree().change_scene(\"MaddieScene.tscn\")
 	get_tree().quit()
+
+func death_screen() -> void:
+	_anim_player.play(\"death\")
+	await(_anim_player.animation_finished)
+	get_tree().quit()
 "
 
 [sub_resource type="Animation" id="Animation_4fiio"]
@@ -191,9 +204,26 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_41dvq"]
+resource_name = "death"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1xwbm"]
 _data = {
 "RESET": SubResource("Animation_4fiio"),
+"death": SubResource("Animation_41dvq"),
 "fade_out": SubResource("Animation_fjl74")
 }
 
@@ -219,6 +249,12 @@ mesh = SubResource("CapsuleMesh_hrdeq")
 
 [node name="Marker3D4" type="Marker3D" parent="enemy/teleport_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4683, 7.37411, -61.2008)
+
+[node name="Marker3D19" type="Marker3D" parent="enemy/teleport_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07407, 8.81974, -34.4584)
+
+[node name="Marker3D20" type="Marker3D" parent="enemy/teleport_points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.96259, 7.82579, -26.242)
 
 [node name="Marker3D5" type="Marker3D" parent="enemy/teleport_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2564, 7.08108, -73.8312)
