@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddbbfdxgbmk87"]
+[gd_scene load_steps=10 format=3 uid="uid://ddbbfdxgbmk87"]
 
 [ext_resource type="Script" path="res://BobbyAssets/BobbyAudio.gd" id="1_rmvtj"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyFaceScript.gd" id="2_7dc0r"]
 [ext_resource type="AudioStream" uid="uid://cpamjgdo8wt6x" path="res://BobbyAssets/Audio/ramSample1.wav" id="2_ee1ci"]
+[ext_resource type="AudioStream" uid="uid://b6vkd3g41kg7a" path="res://BobbyAssets/Audio/clown-horn-double-honk-jam-fx-1-00-00.mp3" id="4_3ogp2"]
 [ext_resource type="Texture2D" uid="uid://dowbeylobxb50" path="res://BobbyAssets/Sprites/bobbyBackground.png" id="4_d45os"]
+[ext_resource type="Script" path="res://BobbyAssets/honk.gd" id="5_xl2n2"]
 
 [sub_resource type="FontFile" id="FontFile_lorec"]
 cache/0/16/0/ascent = 0.0
@@ -36,6 +38,7 @@ script = ExtResource("2_7dc0r")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("playerText", "bobbyText", "timerText", "timer")]
 stream = ExtResource("2_ee1ci")
+volume_db = 4.0
 script = ExtResource("1_rmvtj")
 playerText = NodePath("../../PlayerText")
 bobbyText = NodePath("../../BobbyText")
@@ -45,6 +48,11 @@ timer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="AnimatedSprite2D/AudioStreamPlayer2D"]
 wait_time = 20.0
 autostart = true
+
+[node name="honk" type="AudioStreamPlayer2D" parent="AnimatedSprite2D/AudioStreamPlayer2D"]
+stream = ExtResource("4_3ogp2")
+autoplay = true
+script = ExtResource("5_xl2n2")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)

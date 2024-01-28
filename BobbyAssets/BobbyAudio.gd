@@ -198,6 +198,7 @@ func _input(event):
 				else:
 					#_processAnswer(answerText)
 					sayingAnswer = true
+					#answerText = ""
 					_sayText(answerText)
 			"Backspace":
 				if(answerText.length() > 0):
@@ -212,7 +213,7 @@ func _askQuestion():
 	var questionPick := randi_range(0, 12) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
-		bobbyText.text = ("abcdefghijklmnopqrstuvwxyz ")
+		bobbyText.text = ("what is your name? ")
 		wrongAnswerArray = ["tim", "steve"]
 		correctAnswerArray = ["bobby", "gargathor"]
 		responseTextRight = ("that is a great name")
@@ -254,22 +255,22 @@ func _askQuestion():
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 4):
-		bobbyText.text = ("what is your social security number?")
-		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		bobbyText.text = ("what color do you create when you mix blue and yellow")
+		wrongAnswerArray = ["green"]
+		correctAnswerArray = ["blellow"]
+		responseTextRight = ("heck yeah")
+		responseTextWrong = ("you should watch malcolm in the middle")
+		responseTextMiscellaneous = ("what on earth could you have typed besides the answer for this?")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 5):
 		bobbyText.text = ("what is your favorite food?")
-		wrongAnswerArray = []
-		correctAnswerArray = ["pizza"]
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		wrongAnswerArray = ["anchovies", "anchovy", "black licorice", "eggs"]
+		correctAnswerArray = ["pizza", "bowl of olives"]
+		responseTextRight = ("heck yeah")
+		responseTextWrong = ("that's narsty")
+		responseTextMiscellaneous = ("I just have to hope that you said a food and not something obscene")
 		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)

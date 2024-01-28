@@ -14,3 +14,10 @@ config/name="GGJ2024"
 run/main_scene="res://Scenes/BobbyScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[input]
+
+bingus={
+"deadzone": 0.5,
+"events": []
+}
