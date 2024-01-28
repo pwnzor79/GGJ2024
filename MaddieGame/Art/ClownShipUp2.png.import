@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c42m8s1itdjn"
-path="res://.godot/imported/clown2.webp-64bc69963c498b5044a9a7d53bff2da3.ctex"
+uid="uid://dckplkjjbvjbl"
+path="res://.godot/imported/ClownShipUp2.png-1d2dde6c077fa8158618142d01f050ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ProblemCustomer/clown2.webp"
-dest_files=["res://.godot/imported/clown2.webp-64bc69963c498b5044a9a7d53bff2da3.ctex"]
+source_file="res://MaddieGame/Art/ClownShipUp2.png"
+dest_files=["res://.godot/imported/ClownShipUp2.png-1d2dde6c077fa8158618142d01f050ce.ctex"]
 
 [params]
 

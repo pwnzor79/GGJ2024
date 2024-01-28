@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ng0hsu7kjdng"
-path="res://.godot/imported/TestMap.png-ea5eccc99fd2b7a9b533914eb20a0933.ctex"
+uid="uid://nxu4d4ddu8m1"
+path="res://.godot/imported/GreenBalloon2.png-86600dc22b9c98800213eb67044d8dcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ProblemCustomer/TestMap.png"
-dest_files=["res://.godot/imported/TestMap.png-ea5eccc99fd2b7a9b533914eb20a0933.ctex"]
+source_file="res://MaddieGame/Art/GreenBalloon2.png"
+dest_files=["res://.godot/imported/GreenBalloon2.png-86600dc22b9c98800213eb67044d8dcf.ctex"]
 
 [params]
 

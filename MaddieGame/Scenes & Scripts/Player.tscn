@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1xl44hmb6ik2"]
+
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/Player.gd" id="1_u380f"]
+[ext_resource type="Texture2D" uid="uid://dj0shy6bseut0" path="res://MaddieGame/Art/ClownShipLeft1.png" id="2_mhnb8"]
+[ext_resource type="Texture2D" uid="uid://bfcclq4ajk3td" path="res://MaddieGame/Art/ClownShipLeft2.png" id="3_7p3gq"]
+[ext_resource type="Texture2D" uid="uid://dh2g8iq58kl1m" path="res://MaddieGame/Art/ClownShipRight1.png" id="4_ldst0"]
+[ext_resource type="Texture2D" uid="uid://lyo5cxkp8m0p" path="res://MaddieGame/Art/ClownShipRight2.png" id="5_gtvds"]
+[ext_resource type="Texture2D" uid="uid://bs2887qheg2ns" path="res://MaddieGame/Art/ClownShipUp1.png" id="6_cth58"]
+[ext_resource type="Texture2D" uid="uid://dckplkjjbvjbl" path="res://MaddieGame/Art/ClownShipUp2.png" id="7_1pd5n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxonb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mhnb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7p3gq")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ldst0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gtvds")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cth58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1pd5n")
+}],
+"loop": true,
+"name": &"up_down",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0l2ud"]
+size = Vector2(208, 224)
+
+[node name="Player" type="Area2D"]
+position = Vector2(40, 40)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_u380f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_lxonb")
+animation = &"up_down"
+frame_progress = 0.0259937
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_0l2ud")
