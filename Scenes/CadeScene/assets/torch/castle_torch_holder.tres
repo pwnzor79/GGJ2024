@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cjkcxtvkfl0rk"]
+
+[ext_resource type="Texture2D" uid="uid://cyocf5qum2jei" path="res://Scenes/CadeScene/assets/torch/castle_torch_holder.png" id="1_vaqns"]
+[ext_resource type="Texture2D" uid="uid://cxhxsu06lpvyy" path="res://Scenes/CadeScene/assets/torch/castle_torch_holder_nrm.png" id="2_swmr8"]
+
+[resource]
+albedo_texture = ExtResource("1_vaqns")
+normal_enabled = true
+normal_texture = ExtResource("2_swmr8")
