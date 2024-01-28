@@ -24,6 +24,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func pop():
 	is_dying = true
+	$Pop.play()
 
 func _timeout():
 	var bullet = bulletToSpawn.instantiate()

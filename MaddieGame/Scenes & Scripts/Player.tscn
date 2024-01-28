@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1xl44hmb6ik2"]
+[gd_scene load_steps=15 format=3 uid="uid://d1xl44hmb6ik2"]
 
 [ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/Player.gd" id="1_u380f"]
 [ext_resource type="Texture2D" uid="uid://jxmhr73lncid" path="res://MaddieGame/Art/ClownShipDie1.png" id="2_f05jv"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://lyo5cxkp8m0p" path="res://MaddieGame/Art/ClownShipRight2.png" id="5_gtvds"]
 [ext_resource type="Texture2D" uid="uid://bs2887qheg2ns" path="res://MaddieGame/Art/ClownShipUp1.png" id="6_cth58"]
 [ext_resource type="Texture2D" uid="uid://dckplkjjbvjbl" path="res://MaddieGame/Art/ClownShipUp2.png" id="7_1pd5n"]
+[ext_resource type="AudioStream" uid="uid://bas7cxiivssj" path="res://MaddieGame/Audio/clown-horn-double-honk-jam-fx-1-00-00.mp3" id="11_vakct"]
+[ext_resource type="AudioStream" uid="uid://bv4mbpj7n71fs" path="res://MaddieGame/Audio/splat.mp3" id="12_1r5kx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lxonb"]
 animations = [{
@@ -82,5 +84,12 @@ shape = SubResource("RectangleShape2D_0l2ud")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -80)
 scale = Vector2(4, 4)
+
+[node name="Honk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_vakct")
+volume_db = -7.5
+
+[node name="Splat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_1r5kx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

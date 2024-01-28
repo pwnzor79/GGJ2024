@@ -5,7 +5,8 @@ var game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$HUD/ControlsMessage.show()
+	$BGM.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,5 +22,10 @@ func _spawn_timeout():
 
 # Called when the player is hit
 func _on_player_game_over():
+	$Explosion.play()
 	game_over = true
 	print("Player loses here")
+
+# Fades out controls message on timeout
+func _on_message_timer_timeout():
+	$HUD/ControlsMessage.hide()

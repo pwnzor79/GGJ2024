@@ -22,9 +22,9 @@ func _process(delta):
 		if death_countdown == 0:
 			$AnimatedSprite2D.animation = "die"
 			death_countdown += 10
+			game_over.emit()
 		elif death_countdown == 350:
 			queue_free()
-			game_over.emit()
 		else: death_countdown += 10
 	
 	else:
@@ -55,6 +55,10 @@ func _process(delta):
 		# Checks if the player fires a pie
 		if Input.is_action_just_pressed("maddie_shoot"):
 			fire()
+			
+		# Checks for honk
+		if Input.is_action_just_pressed("honk"):
+			$Honk.play()
 
 
 # Fires a pie upwards out of the marker
@@ -62,6 +66,7 @@ func fire():
 	var p = Pie.instantiate()
 	owner.add_child(p)
 	p.transform = $Marker2D.global_transform
+	$Splat.play()
 
 
 func _on_body_entered(body):
