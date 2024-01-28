@@ -17,7 +17,7 @@ var answerText: String = ""
 var responseTextRight: String = ""
 var responseTextWrong: String = ""
 var responseTextMiscellaneous: String = ""
-var timeTrim: float = 0.3
+var timeTrim: float = 0.1
 var isTalking: bool = false
 var inDictionary: bool = true
 var benefitOfTheDoubt: bool = true #determining factor when the answer is not predetermined
@@ -210,7 +210,7 @@ func _askQuestion():
 	var questionPick := randi_range(0, 2) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
-		bobbyText.text = ("s ")
+		bobbyText.text = ("bb ")
 		wrongAnswerArray = ["tim", "steve"]
 		correctAnswerArray = ["bobby", "gargathor"]
 		responseTextRight = ("that is a great name")
