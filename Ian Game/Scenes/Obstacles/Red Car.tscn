@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://wsybf6jafnrf" path="res://Ian Game/Textures/Red train cars.png" id="2_llegi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0w4o"]
-size = Vector2(12.2629, 52.6415)
+size = Vector2(11.7682, 49.086)
 
 [node name="Obstacle" instance=ExtResource("1_2brp8")]
 position = Vector2(0, 24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-position = Vector2(252, -260)
-scale = Vector2(55.4517, 5.319)
+position = Vector2(164.79, -240.28)
+scale = Vector2(64.4464, 6.18179)
 shape = SubResource("RectangleShape2D_d0w4o")
 
 [node name="RedTrainCars" type="Sprite2D" parent="." index="1"]
-position = Vector2(232, -176)
-scale = Vector2(1.55285, 1.55285)
+position = Vector2(136.73, -143.27)
+scale = Vector2(1.6591, 1.6591)
 texture = ExtResource("2_llegi")

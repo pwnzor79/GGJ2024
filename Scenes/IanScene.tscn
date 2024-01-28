@@ -1,12 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://swgkg14gq8e"]
+[gd_scene load_steps=22 format=3 uid="uid://swgkg14gq8e"]
 
 [ext_resource type="Script" path="res://Ian Game/Scenes/Game Manager.gd" id="1_4ngmh"]
 [ext_resource type="Script" path="res://Ian Game/Scenes/Jumpldorf.gd" id="1_mg3jw"]
 [ext_resource type="Script" path="res://Ian Game/Scenes/Obstacles/Obstacle Spawner.gd" id="4_ltwwl"]
-[ext_resource type="PackedScene" uid="uid://wmrhbj4yde0s" path="res://Ian Game/Scenes/Obstacles/Placeholder Air Obstacle.tscn" id="5_65p7i"]
-[ext_resource type="PackedScene" uid="uid://c8lyno7r2ix3h" path="res://Ian Game/Scenes/Obstacles/placeholder ground obstacle.tscn" id="5_vwrl8"]
+[ext_resource type="PackedScene" uid="uid://p6jmsvp0ilqo" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Yellow Train Forwards.tscn" id="5_4aexh"]
+[ext_resource type="PackedScene" uid="uid://cghrenaylrrdt" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Purple Train Towards Player.tscn" id="6_c4nd5"]
+[ext_resource type="PackedScene" uid="uid://cqjvv7b02dbws" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Boxes 1.tscn" id="6_cj0nw"]
 [ext_resource type="PackedScene" uid="uid://crqeuimby8pj6" path="res://Ian Game/Scenes/Obstacles/Red Car.tscn" id="6_j1n3y"]
+[ext_resource type="AudioStream" uid="uid://dtpwt3d3lnlxw" path="res://Ian Game/Audio/Skating Goofy (get it).wav" id="6_yqs4l"]
 [ext_resource type="PackedScene" uid="uid://gbdtdr8aumtn" path="res://Ian Game/Scenes/Obstacles/Stoplight.tscn" id="7_42uqe"]
+[ext_resource type="PackedScene" uid="uid://jsscitkkhkc3" path="res://Ian Game/Scenes/Obstacles/Train Tracks.tscn" id="7_68prg"]
+[ext_resource type="PackedScene" uid="uid://l3v1ug3utq4c" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Boxes 2.tscn" id="7_pw2fk"]
+[ext_resource type="PackedScene" uid="uid://ds2qpvb055yyl" path="res://Ian Game/Scenes/Obstacles/Crate.tscn" id="8_6ng3i"]
+[ext_resource type="AudioStream" uid="uid://d17lwa62eucqd" path="res://Ian Game/Audio/clown-horn-double-honk-jam-fx-1-00-00.mp3" id="13_hq8ke"]
+[ext_resource type="Script" path="res://Scenes/Horn Sound.gd" id="14_54ubd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stbhp"]
 size = Vector2(89.6, 187.844)
@@ -44,13 +51,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63ar6"]
-size = Vector2(1910, 20)
+size = Vector2(2182.57, 4)
 
 [node name="IanScene" type="Node2D"]
+scale = Vector2(0.990345, 1)
 script = ExtResource("1_4ngmh")
+speed = 1
 
 [node name="Jumpldorf" type="CharacterBody2D" parent="."]
-position = Vector2(568, 848)
+position = Vector2(565.459, 808)
 platform_on_leave = 2
 script = ExtResource("1_mg3jw")
 gravity = 1200
@@ -58,6 +67,7 @@ SPEED = 700.0
 JUMP_VELOCITY = -1000.0
 RELEASE_IMPULSE = 100
 fallingGravityRatio = 1.0
+backwards_force_scale = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpldorf"]
 position = Vector2(-48, 101.403)
@@ -76,23 +86,38 @@ frame = 1
 position = Vector2(960, 544)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Camera2D"]
-position = Vector2(1, 542)
+position = Vector2(1.28116, 504)
 
 [node name="Collision" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
-shape = SubResource("RectangleShape2D_63ar6")
-
-[node name="Camera2D" type="Camera2D" parent="Camera2D"]
-position = Vector2(960, 544)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D/Camera2D"]
-position = Vector2(1, 542)
-
-[node name="Collision" type="CollisionShape2D" parent="Camera2D/Camera2D/StaticBody2D"]
+position = Vector2(-136.287, -12)
 shape = SubResource("RectangleShape2D_63ar6")
 
 [node name="Obstacle Spawner" type="Node2D" parent="."]
-position = Vector2(1956, 1067)
+position = Vector2(2286.07, 1032)
 script = ExtResource("4_ltwwl")
-scenes = [ExtResource("5_vwrl8"), ExtResource("5_65p7i"), ExtResource("6_j1n3y"), ExtResource("7_42uqe")]
-distanceBetweenObstacles = 1000.0
+scenes = [ExtResource("6_c4nd5"), ExtResource("5_4aexh"), ExtResource("6_cj0nw"), ExtResource("7_pw2fk"), ExtResource("8_6ng3i"), ExtResource("6_j1n3y"), ExtResource("7_42uqe")]
+distanceBetweenObstacles = 3200.0
 distanceVariation = Vector2(-500, 500)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_yqs4l")
+autoplay = true
+
+[node name="Track Spawner" type="Node2D" parent="."]
+position = Vector2(1987.19, -32)
+script = ExtResource("4_ltwwl")
+scenes = [ExtResource("7_68prg")]
+distanceBetweenObstacles = 1702.0
+distanceVariation = Vector2(1, 1)
+
+[node name="Rails" parent="." instance=ExtResource("7_68prg")]
+position = Vector2(121.17, -32)
+
+[node name="Also Rails" parent="." instance=ExtResource("7_68prg")]
+position = Vector2(-1001.67, -32)
+
+[node name="Horn Sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-3093.87, 400)
+stream = ExtResource("13_hq8ke")
+autoplay = true
+script = ExtResource("14_54ubd")
