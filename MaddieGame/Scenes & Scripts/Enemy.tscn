@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmuto43nt0pw1"]
+[gd_scene load_steps=8 format=3 uid="uid://bmuto43nt0pw1"]
 
 [ext_resource type="Texture2D" uid="uid://b7py0r1ied2n" path="res://MaddieGame/Art/GreenBalloon1.png" id="1_8el4f"]
 [ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/Enemy.gd" id="1_58bet"]
+[ext_resource type="PackedScene" uid="uid://do2y6lxt1ha6e" path="res://MaddieGame/Scenes & Scripts/EnemyBullet.tscn" id="2_3ihjs"]
 [ext_resource type="Texture2D" uid="uid://nxu4d4ddu8m1" path="res://MaddieGame/Art/GreenBalloon2.png" id="2_7fkbr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eaw62"]
@@ -19,11 +20,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2wfp"]
+size = Vector2(92, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkku2"]
 size = Vector2(128, 128)
 
-[node name="Enemy" type="RigidBody2D" groups=["mobs"]]
-gravity_scale = 1.66533e-16
+[node name="Enemy" type="RigidBody2D" groups=["Mobs"]]
+gravity_scale = -0.15
 script = ExtResource("1_58bet")
+bulletToSpawn = ExtResource("2_3ihjs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(64, 64)
@@ -31,9 +36,18 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_eaw62")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(64, 64)
-scale = Vector2(6.4, 6.4)
+position = Vector2(58, 66)
+scale = Vector2(4.6, 6.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(64, 64)
+position = Vector2(58, 66)
 shape = SubResource("RectangleShape2D_s2wfp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
+shape = SubResource("RectangleShape2D_wkku2")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_timeout"]
