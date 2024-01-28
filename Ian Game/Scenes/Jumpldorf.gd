@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var fallingGravityRatio = 0.5
 @export var JUMPS = 2
 @export var backwards_force_scale = 0.5
+@export var losePosition = -10
 
 var jumpsRemaining = JUMPS
 
@@ -29,6 +30,8 @@ func do_animation():
 func _process(delta):
 	do_game_manager_force(delta)
 	do_animation()
+	if position.x <= losePosition:
+		get_tree().reload_current_scene()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -60,5 +63,5 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	position = position.clamp(Vector2.ZERO, get_viewport_rect().size)
+	position = position.clamp(Vector2.ZERO - Vector2(100,0), get_viewport_rect().size)
 	move_and_slide()

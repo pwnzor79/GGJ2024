@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://i3olokfk7wd3"]
+
+[ext_resource type="Texture2D" uid="uid://c2t4n08qb1d27" path="res://Ian Game/Textures/Train Tracks Grey.png" id="1_3sclq"]
+
+[node name="TrainTracksGrey" type="Sprite2D"]
+z_index = -2
+position = Vector2(937.047, 312)
+scale = Vector2(18.72, 18.72)
+texture = ExtResource("1_3sclq")

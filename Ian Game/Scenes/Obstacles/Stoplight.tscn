@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcyb2dl34d0iw" path="res://Ian Game/Textures/Yellow Light.png" id="4_o06t4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cerme"]
-size = Vector2(20, 56.2108)
+size = Vector2(8.41976, 35.3119)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xuh7l"]
 animations = [{
@@ -28,13 +28,14 @@ animations = [{
 [node name="Obstacle" instance=ExtResource("1_84710")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-position = Vector2(-16, -1644)
+position = Vector2(-32, -944)
 rotation = 3.14159
 scale = Vector2(7.60117, -5.55053)
 shape = SubResource("RectangleShape2D_cerme")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
-position = Vector2(-14.5605, -1679.38)
-scale = Vector2(0.535315, 0.535315)
+position = Vector2(-32, -944)
+scale = Vector2(0.27972, 0.27972)
 sprite_frames = SubResource("SpriteFrames_xuh7l")
+autoplay = "default"
 frame_progress = 0.382699
