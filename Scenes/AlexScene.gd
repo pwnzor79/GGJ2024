@@ -16,6 +16,8 @@ func new_game():
 	$GameOver.hide()
 	$Alex_Player.start($StartPosition.position)
 	$StartTimer.start()
+	$Music.play()
+	$MusTimer.start()
 
 func _on_start_timer_timeout():
 	$BatTimer.start()
@@ -65,11 +67,27 @@ func _on_crook_2_timer_timeout():
 	crookB.position = crookB_spawn_location.position
 	add_child(crookB)
 	
+func _on_mus_timer_timeout():
+	$Music.stop()
+	$Music.play(0.0)
+	$MusTimer.start()
+	
 func game_over_bat():
+	get_tree().call_group("mobs", "queue_free")
+	$Music.stop()
+	$GameOver/Death.play()
 	$BatTimer.stop()
 	$CrookTimer.stop()
 	$Crook2Timer.stop()
+	$Foreground.hide()
+	$GameOver/GO_Text.hide()
 	$GameOver.show()
+	$GameOver/GO_Timer.start()
 
+func _on_go_timer_timeout():
+	$GameOver/GO_Text.show()
+	$PostDeathTimer.start()
+	#Switch to next scene a few seconds after this
 
-
+func _on_post_death_timer_timeout():
+	print("lose here")

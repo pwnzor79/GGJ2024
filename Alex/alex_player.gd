@@ -1,6 +1,7 @@
 extends Area2D
 
 signal hit
+signal sig_honk
 
 @export var speed = 400 # pixes/sec
 @export var Honks: PackedScene
@@ -42,6 +43,7 @@ func _process(delta):
 			velocity.y -= 1
 		
 	if Input.is_action_just_pressed("honk") or Input.is_action_just_pressed("left_click"):
+		
 		honk()
 	
 	if velocity.length() > 0:
@@ -74,6 +76,7 @@ func start(pos):
 	
 func honk():
 	var h = Honks.instantiate()
+	sig_honk.emit()
 	add_child(h)
 	h.transform = $Arm.transform
 	h.scale.x = 0.5

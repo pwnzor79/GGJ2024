@@ -1,13 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://i0nh88nisff0"]
+[gd_scene load_steps=22 format=3 uid="uid://i0nh88nisff0"]
 
 [ext_resource type="PackedScene" uid="uid://dp70u7b1s4wlb" path="res://Alex/alex_player.tscn" id="1_lm7jk"]
 [ext_resource type="Script" path="res://Scenes/AlexScene.gd" id="1_omb53"]
 [ext_resource type="PackedScene" uid="uid://cqsl1env7dqtv" path="res://Alex/alex_bat.tscn" id="2_1l7hs"]
 [ext_resource type="PackedScene" uid="uid://5lqlg7ern2m7" path="res://Alex/alex_crook.tscn" id="3_qillp"]
 [ext_resource type="Script" path="res://Scenes/Alex_Cursor.gd" id="4_ajay3"]
+[ext_resource type="Texture2D" uid="uid://2eq1lbye4alv" path="res://Alex/Alex_Art/curtain.png" id="4_bf35j"]
+[ext_resource type="Script" path="res://Scenes/LCurtain.gd" id="4_wwfgn"]
 [ext_resource type="PackedScene" uid="uid://dwjjw043u6gvn" path="res://Alex/alex_collision_box.tscn" id="5_ep2fj"]
 [ext_resource type="PackedScene" uid="uid://c38h83ep0wq15" path="res://Alex/alex_collision_box2.tscn" id="6_j61pe"]
+[ext_resource type="Script" path="res://Scenes/RCurtain.gd" id="6_o8dnm"]
 [ext_resource type="Texture2D" uid="uid://co8yb387usxgn" path="res://Alex/Alex_Art/foreground.png" id="6_qo6k8"]
+[ext_resource type="Script" path="res://Scenes/InstructionLayer.gd" id="7_q0nr0"]
+[ext_resource type="Script" path="res://Scenes/HInstructionLayer.gd" id="8_70tjv"]
+[ext_resource type="Texture2D" uid="uid://dce1j0dqsehn1" path="res://Alex/Alex_Art/Alex_EndGame_Screen.png" id="9_j8mdb"]
+[ext_resource type="AudioStream" uid="uid://bwq47u7co6tfc" path="res://Alex/ Alex_Audio/bat_outta_clown_hell_loop.wav" id="10_k8ttl"]
+[ext_resource type="AudioStream" uid="uid://ralqfa5sjr2h" path="res://Alex/ Alex_Audio/clown_death.mp3" id="11_jy4cb"]
+
+[sub_resource type="SystemFont" id="SystemFont_pm3ln"]
 
 [sub_resource type="Curve2D" id="Curve2D_tedgo"]
 _data = {
@@ -27,13 +37,118 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="SystemFont" id="SystemFont_ktv6t"]
+
 [node name="AlexScene" type="Node2D"]
 script = ExtResource("1_omb53")
 bat_scene = ExtResource("2_1l7hs")
 crook_scene = ExtResource("3_qillp")
 
+[node name="Curtains" type="CanvasLayer" parent="."]
+
+[node name="RCurtain" type="CanvasLayer" parent="Curtains"]
+offset = Vector2(1870, 540)
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 1870, 540)
+script = ExtResource("6_o8dnm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Curtains/RCurtain"]
+texture = ExtResource("4_bf35j")
+flip_h = true
+
+[node name="RCTimer" type="Timer" parent="Curtains/RCurtain"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="RCKill" type="Timer" parent="Curtains/RCurtain"]
+wait_time = 12.0
+one_shot = true
+autostart = true
+
+[node name="LCurtain" type="CanvasLayer" parent="Curtains"]
+offset = Vector2(50, 540)
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 50, 540)
+script = ExtResource("4_wwfgn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Curtains/LCurtain"]
+texture = ExtResource("4_bf35j")
+
+[node name="LCTimer" type="Timer" parent="Curtains/LCurtain"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="LCKill" type="Timer" parent="Curtains/LCurtain"]
+wait_time = 12.0
+one_shot = true
+autostart = true
+
+[node name="InstructionLayer" type="CanvasLayer" parent="."]
+script = ExtResource("7_q0nr0")
+
+[node name="InstructionsLabel" type="Label" parent="InstructionLayer"]
+custom_minimum_size = Vector2(700, 2.08165e-12)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -271.0
+offset_right = 16.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = SubResource("SystemFont_pm3ln")
+theme_override_font_sizes/font_size = 100
+text = "wasd to move mouse to aim"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="InstructionsTimer" type="Timer" parent="InstructionLayer"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="HInstructionLayer" type="CanvasLayer" parent="."]
+script = ExtResource("8_70tjv")
+
+[node name="HInstructionsLabel" type="Label" parent="HInstructionLayer"]
+custom_minimum_size = Vector2(700, 2.08165e-12)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -271.0
+offset_right = 348.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = SubResource("SystemFont_pm3ln")
+theme_override_font_sizes/font_size = 100
+text = "left click or h to honk"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HIAdd" type="Timer" parent="HInstructionLayer"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
 [node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 6.0
 one_shot = true
 
 [node name="BatTimer" type="Timer" parent="."]
@@ -44,6 +159,9 @@ wait_time = 3.9
 
 [node name="Crook2Timer" type="Timer" parent="."]
 wait_time = 4.1
+
+[node name="MusTimer" type="Timer" parent="."]
+wait_time = 84.0
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(960, 540)
@@ -102,9 +220,57 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_qo6k8")
 
 [node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("9_j8mdb")
 
+[node name="GO_Text" type="Label" parent="GameOver"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1536.0
+offset_top = -664.0
+offset_right = -389.0
+offset_bottom = -391.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = SubResource("SystemFont_ktv6t")
+theme_override_font_sizes/font_size = 200
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GO_Timer" type="Timer" parent="GameOver"]
+wait_time = 6.2
+
+[node name="Death" type="AudioStreamPlayer2D" parent="GameOver"]
+position = Vector2(-960, -540)
+stream = ExtResource("11_jy4cb")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_k8ttl")
+volume_db = 8.0
+
+[node name="PostDeathTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="Curtains/RCurtain/RCTimer" to="Curtains/RCurtain" method="_on_rc_timer_timeout"]
+[connection signal="timeout" from="Curtains/RCurtain/RCKill" to="Curtains/RCurtain" method="_on_rc_kill_timeout"]
+[connection signal="timeout" from="Curtains/LCurtain/LCTimer" to="Curtains/LCurtain" method="_on_lc_timer_timeout"]
+[connection signal="timeout" from="Curtains/LCurtain/LCKill" to="Curtains/LCurtain" method="_on_lc_kill_timeout"]
+[connection signal="timeout" from="InstructionLayer/InstructionsTimer" to="InstructionLayer" method="_on_instructions_timer_timeout"]
+[connection signal="timeout" from="HInstructionLayer/HIAdd" to="HInstructionLayer" method="_on_hi_add_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="BatTimer" to="." method="_on_bat_timer_timeout"]
 [connection signal="timeout" from="CrookTimer" to="." method="_on_crook_timer_timeout"]
 [connection signal="timeout" from="Crook2Timer" to="." method="_on_crook_2_timer_timeout"]
+[connection signal="timeout" from="MusTimer" to="." method="_on_mus_timer_timeout"]
 [connection signal="hit" from="Alex_Player" to="." method="game_over_bat"]
+[connection signal="sig_honk" from="Alex_Player" to="HInstructionLayer" method="_on_alex_player_sig_honk"]
+[connection signal="timeout" from="GameOver/GO_Timer" to="." method="_on_go_timer_timeout"]
+[connection signal="timeout" from="PostDeathTimer" to="." method="_on_post_death_timer_timeout"]
