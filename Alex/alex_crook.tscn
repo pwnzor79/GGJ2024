@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://5lqlg7ern2m7"]
+
+[ext_resource type="Script" path="res://Alex/alex_crook.gd" id="1_lgkei"]
+[ext_resource type="Texture2D" uid="uid://di0jxgrac8txs" path="res://Alex/Alex_Art/crook.png" id="1_muj2s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1pk0w"]
+radius = 8.0
+
+[node name="alex_crook" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+script = ExtResource("1_lgkei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(952, 0)
+shape = SubResource("CircleShape2D_1pk0w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_muj2s")
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_timer_timeout"]

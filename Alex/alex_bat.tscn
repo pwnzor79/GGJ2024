@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqsl1env7dqtv"]
+
+[ext_resource type="Script" path="res://Alex/alex_bat.gd" id="1_3p5i2"]
+[ext_resource type="Texture2D" uid="uid://hldfxbevb8n6" path="res://Alex/Alex_Art/Alex_bat1.png" id="1_gnp5o"]
+[ext_resource type="Texture2D" uid="uid://bdvibkgf7v6a7" path="res://Alex/Alex_Art/Alex_bat2.png" id="2_r4rjm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fo8yn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gnp5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r4rjm")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ut1y4"]
+radius = 16.0
+
+[node name="Bat" type="RigidBody2D" groups=["bats", "mobs"]]
+collision_mask = 0
+gravity_scale = 1.66533e-16
+script = ExtResource("1_3p5i2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fo8yn")
+animation = &"fly"
+frame_progress = 0.618494
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ut1y4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

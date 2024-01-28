@@ -1,3 +1,70 @@
-[gd_scene format=3 uid="uid://i0nh88nisff0"]
+[gd_scene load_steps=9 format=3 uid="uid://i0nh88nisff0"]
+
+[ext_resource type="PackedScene" uid="uid://dp70u7b1s4wlb" path="res://Alex/alex_player.tscn" id="1_lm7jk"]
+[ext_resource type="Script" path="res://Scenes/AlexScene.gd" id="1_omb53"]
+[ext_resource type="PackedScene" uid="uid://cqsl1env7dqtv" path="res://Alex/alex_bat.tscn" id="2_1l7hs"]
+[ext_resource type="Script" path="res://Scenes/Alex_Cursor.gd" id="4_ajay3"]
+[ext_resource type="PackedScene" uid="uid://dwjjw043u6gvn" path="res://Alex/alex_collision_box.tscn" id="5_ep2fj"]
+[ext_resource type="PackedScene" uid="uid://c38h83ep0wq15" path="res://Alex/alex_collision_box2.tscn" id="6_j61pe"]
+[ext_resource type="Texture2D" uid="uid://co8yb387usxgn" path="res://Alex/Alex_Art/foreground.png" id="6_qo6k8"]
+
+[sub_resource type="Curve2D" id="Curve2D_tedgo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 320, 64, 0, 0, 0, 0, 1600, 64)
+}
+point_count = 2
 
 [node name="AlexScene" type="Node2D"]
+script = ExtResource("1_omb53")
+bat_scene = ExtResource("2_1l7hs")
+
+[node name="BatTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="BatPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_tedgo")
+
+[node name="BatSpawnLocation" type="PathFollow2D" parent="BatPath"]
+position = Vector2(320, 64)
+
+[node name="Alex_Cursor" type="Node2D" parent="."]
+position = Vector2(-152, 32)
+script = ExtResource("4_ajay3")
+
+[node name="alex_collision_box" parent="." instance=ExtResource("5_ep2fj")]
+position = Vector2(960, 1056)
+scale = Vector2(30.0224, 1.02047)
+
+[node name="alex_collision_box2" parent="." instance=ExtResource("5_ep2fj")]
+position = Vector2(960, 32)
+scale = Vector2(30.0224, 1.02047)
+
+[node name="alex_collision_box3" parent="." instance=ExtResource("5_ep2fj")]
+position = Vector2(224, 544)
+scale = Vector2(0.98237, 17.1005)
+
+[node name="alex_collision_box4" parent="." instance=ExtResource("5_ep2fj")]
+position = Vector2(1696, 544)
+scale = Vector2(0.98237, 17.1005)
+
+[node name="alex_collision_box5" parent="." instance=ExtResource("6_j61pe")]
+position = Vector2(960, 240)
+scale = Vector2(24, 6.04386)
+
+[node name="Alex_Player" parent="." instance=ExtResource("1_lm7jk")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("6_qo6k8")
+
+[connection signal="timeout" from="BatTimer" to="." method="_on_bat_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="hit" from="Alex_Player" to="." method="game_over_bat"]

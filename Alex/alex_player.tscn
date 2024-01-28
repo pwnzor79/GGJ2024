@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dp70u7b1s4wlb"]
+
+[ext_resource type="Script" path="res://Alex/alex_player.gd" id="1_ik2bt"]
+[ext_resource type="Texture2D" uid="uid://bkdbr2cyxies2" path="res://Alex/Alex_Art/Alex_clown1.png" id="1_p82bt"]
+[ext_resource type="Texture2D" uid="uid://bhc2cdoep6n17" path="res://Alex/Alex_Art/Alex_clown2.png" id="2_huslx"]
+[ext_resource type="Texture2D" uid="uid://bt2fhk21rubtb" path="res://Alex/Alex_Art/arm.png" id="2_it40c"]
+[ext_resource type="PackedScene" uid="uid://b5yg18xqt1lmr" path="res://Alex/alex_honk.tscn" id="2_ucnes"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4gph"]
+radius = 17.0
+height = 58.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bie3e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_it40c")
+}],
+"loop": true,
+"name": &"honk",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jl5i4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p82bt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_huslx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Alex_Player" type="Area2D"]
+script = ExtResource("1_ik2bt")
+Honks = ExtResource("2_ucnes")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_l4gph")
+
+[node name="Arm" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bie3e")
+animation = &"honk"
+frame_progress = 0.602065
+
+[node name="HonkSpawn" type="Marker2D" parent="Arm"]
+scale = Vector2(0.5, 0.5)
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jl5i4")
+animation = &"walk"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
