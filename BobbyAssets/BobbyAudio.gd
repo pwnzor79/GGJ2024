@@ -100,11 +100,13 @@ func _processAnswer(answer):
 	if(wrongAnswerArray.has(answerText)):
 		print("wrong answer")
 		anger += 1
+		$wrong.play()
 		bobbyText.text = responseTextWrong
 		_sayText(responseTextWrong)
 	elif(correctAnswerArray.has(answerText)):
 		print("correct answer")
 		happiness += 1
+		$right.play()
 		bobbyText.text = responseTextRight
 		_sayText(responseTextRight)
 	else:
@@ -118,20 +120,25 @@ func _processAnswer(answer):
 				if(benefitOfTheDoubt):
 					print("you get benefit of the doubt")
 					happiness += 1
+					$right.play()
 				else:
 					print("you do not get benefit of the doubt")
 					anger += 1
+					$wrong.play()
 			else:
 				print("that was not in the dictionary")
 				anger += 1
+				$wrong.play()
 		else:
 			print("we are not checking grammar")
 			if(benefitOfTheDoubt):
 				print("you get benefit of the doubt")
 				happiness += 1
+				$right.play()
 			else:
 				print("you do not get benefit of the doubt")
 				anger += 1
+				$wrong.play()
 	
 	#_processQuestion()
 
