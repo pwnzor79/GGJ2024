@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=26 format=3 uid="uid://0om1dcte4gao"]
 
 [ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
@@ -9,6 +9,37 @@
 [ext_resource type="Texture2D" uid="uid://b5jn3udlqjm7n" path="res://Scenes/CadeScene/assets/cave/textures/cave_wall_beware.png" id="6_narp6"]
 [ext_resource type="PackedScene" uid="uid://l2fv4omh1odl" path="res://Scenes/CadeScene/assets/torch/castle_torch_combo.tscn" id="8_g56hj"]
 [ext_resource type="PackedScene" uid="uid://4kmdibflh3s8" path="res://Scenes/CadeScene/assets/cave/cave_rock_1.tscn" id="10_cd50o"]
+
+[sub_resource type="GDScript" id="GDScript_jn11a"]
+resource_name = "Enemy"
+script/source = "extends CharacterBody3D
+
+var player
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	player = get_node(\"/root/CadeScene/player\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	ai_move()
+
+func ai_get_direction():
+	return player.position - self.position
+
+func ai_move():
+	var direction = ai_get_direction()
+	self.velocity = direction.normalized() * 5
+	self.move_and_slide()
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bmigy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iwsb"]
+albedo_color = Color(0.917647, 0.529412, 0.168627, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hrdeq"]
+material = SubResource("StandardMaterial3D_3iwsb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wex"]
 albedo_texture = ExtResource("1_0em0j")
@@ -145,6 +176,18 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83909, 0)
 script = ExtResource("1_vi6lb")
 
+[node name="enemy" type="Node" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71435, 4.86662, -14.8174)
+script = SubResource("GDScript_jn11a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy/CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_bmigy")
+
+[node name="body" type="MeshInstance3D" parent="enemy/CharacterBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_hrdeq")
+
 [node name="geometry" type="Node" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="geometry"]
@@ -228,7 +271,7 @@ texture_albedo = ExtResource("6_narp6")
 normal_fade = 0.155
 
 [node name="player" parent="." instance=ExtResource("2_ljeje")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7269, 8.63993, -176.923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182841, 1.11917, 0.911486)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8d6c")
@@ -238,8 +281,9 @@ transform = Transform3D(1, 0, 0, 0, -0.701407, 0.712761, 0, -0.712761, -0.701407
 light_color = Color(0.701961, 0.831373, 1, 1)
 light_energy = 0.004
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D-Debug" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.701407, 0.712761, 0, -0.712761, -0.701407, 10.7723, 4.68077, 0)
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
