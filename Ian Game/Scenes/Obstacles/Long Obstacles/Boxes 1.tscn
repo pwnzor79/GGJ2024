@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://crg1i46xfj0pc" path="res://Ian Game/Scenes/Obstacles/obstacle.tscn" id="1_v0g7w"]
 [ext_resource type="PackedScene" uid="uid://ds2qpvb055yyl" path="res://Ian Game/Scenes/Obstacles/Crate.tscn" id="2_ttn7o"]
 [ext_resource type="Texture2D" uid="uid://caahnes4rrtlb" path="res://Ian Game/Textures/grey crate.png" id="3_ocheh"]
-[ext_resource type="PackedScene" uid="uid://bwd6hx46lc80c" path="res://Ian Game/Scenes/Obstacles/Light Crate.tscn" id="4_xs2wp"]
+[ext_resource type="PackedScene" path="res://Ian Game/Scenes/Obstacles/Light Crate.tscn" id="4_xs2wp"]
 [ext_resource type="Texture2D" uid="uid://dmvgti6s4pjis" path="res://Ian Game/Textures/grey create.png" id="5_xhqij"]
 [ext_resource type="PackedScene" uid="uid://crqeuimby8pj6" path="res://Ian Game/Scenes/Obstacles/Red Car.tscn" id="6_n2olj"]
 [ext_resource type="Texture2D" uid="uid://c0jepl7aa72dg" path="res://Ian Game/Textures/light grey crate.png" id="7_p8vut"]
 [ext_resource type="PackedScene" uid="uid://gbdtdr8aumtn" path="res://Ian Game/Scenes/Obstacles/Stoplight.tscn" id="8_cc4h2"]
 
-[node name="Obstacle" instance=ExtResource("1_v0g7w")]
+[node name="Obstacle3" instance=ExtResource("1_v0g7w")]
 
 [node name="Obstacle" parent="." index="0" instance=ExtResource("2_ttn7o")]
 position = Vector2(216, -376)

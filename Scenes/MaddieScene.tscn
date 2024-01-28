@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy2e4sk776bhw"]
+[gd_scene load_steps=11 format=3 uid="uid://chty6t2k54gkv"]
 
 [ext_resource type="PackedScene" uid="uid://d1xl44hmb6ik2" path="res://MaddieGame/Scenes & Scripts/Player.tscn" id="1_7ds3p"]
 [ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/MainScript.gd" id="1_vc4vs"]

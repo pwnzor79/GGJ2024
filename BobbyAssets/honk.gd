@@ -13,4 +13,4 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("honk"):
 		print("the player has pressed h")
-		$honk.playing = true
+		playing = true

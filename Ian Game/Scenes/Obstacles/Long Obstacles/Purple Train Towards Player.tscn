@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://5fku6gomseha" path="res://Ian Game/Textures/Purple Train.png" id="2_gv1dt"]
 [ext_resource type="Texture2D" uid="uid://cadpwfoc10h2c" path="res://Ian Game/Textures/Purple Car.png" id="3_yiifw"]
 [ext_resource type="PackedScene" uid="uid://ds2qpvb055yyl" path="res://Ian Game/Scenes/Obstacles/Crate.tscn" id="4_mmsow"]
-[ext_resource type="PackedScene" uid="uid://bwd6hx46lc80c" path="res://Ian Game/Scenes/Obstacles/Light Crate.tscn" id="5_8k8p0"]
+[ext_resource type="PackedScene" path="res://Ian Game/Scenes/Obstacles/Light Crate.tscn" id="5_8k8p0"]
 
-[node name="Obstacle" instance=ExtResource("1_kk5qv")]
+[node name="Obstacle2" instance=ExtResource("1_kk5qv")]
 
 [node name="PurpleTrain" type="Sprite2D" parent="." index="0"]
 texture_filter = 1
