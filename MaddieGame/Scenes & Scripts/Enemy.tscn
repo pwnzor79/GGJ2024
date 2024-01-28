@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmuto43nt0pw1"]
+
+[ext_resource type="Texture2D" uid="uid://b7py0r1ied2n" path="res://MaddieGame/Art/GreenBalloon1.png" id="1_8el4f"]
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/Enemy.gd" id="1_58bet"]
+[ext_resource type="Texture2D" uid="uid://nxu4d4ddu8m1" path="res://MaddieGame/Art/GreenBalloon2.png" id="2_7fkbr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eaw62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8el4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7fkbr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2wfp"]
+size = Vector2(128, 128)
+
+[node name="Enemy" type="RigidBody2D" groups=["Mobs"]]
+gravity_scale = 1.66533e-16
+script = ExtResource("1_58bet")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_eaw62")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(6.4, 6.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
+shape = SubResource("RectangleShape2D_s2wfp")
