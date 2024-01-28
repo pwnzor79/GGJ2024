@@ -1,6 +1,7 @@
 extends Control
 
 @export var scenes = []
+@export var finalScene: Node3D
 var scenesVisited = {}
 var timeBetweenScenes = Vector2(30,60)
 var minScenesToVisit = 6
@@ -13,6 +14,26 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	scenes.shuffle()
-	add_child(scenes[0])
-	pass
+	while true:
+		scenes.shuffle()
+		add_child(scenes[0])
+		# if visited randomize music
+		scenesVisited[scenes[0]] = true
+		var time = randf_range(timeBetweenScenes.x, timeBetweenScenes.y)
+		await get_tree().create_timer(time).timeout
+		remove_child(scenes[0])
+		#do static
+		
+		if checkCompletion():
+			add_child(finalScene)
+			break
+
+func checkCompletion():
+	if numScenesVisited >= minScenesToVisit:
+		for scene in scenesVisited:
+			if scenesVisited[scene] == false:
+				return false
+		return true
+	else:
+		return false
+
