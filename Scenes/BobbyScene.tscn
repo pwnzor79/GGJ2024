@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddbbfdxgbmk87"]
+[gd_scene load_steps=5 format=3 uid="uid://cj18qqpuhqj3o"]
 
 [ext_resource type="Script" path="res://BobbyAssets/BobbyAudio.gd" id="1_rmvtj"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyFaceScript.gd" id="2_7dc0r"]
