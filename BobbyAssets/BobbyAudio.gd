@@ -14,11 +14,15 @@ var file = FileAccess.open("res://BobbyAssets/words.txt", FileAccess.READ)
 
 #var questionPick int: = 0
 var answerText: String = ""
+var responseTextRight: String = ""
+var responseTextWrong: String = ""
+var responseTextMiscellaneous: String = ""
 var timeTrim: float = 0.3
 var isTalking: bool = false
 var inDictionary: bool = true
 var benefitOfTheDoubt: bool = true #determining factor when the answer is not predetermined
 var grammarSlam: bool = true #means you must get benefit of the doubt and be in the dictionary
+var askAfterTalking: bool = false #determines if "say text" goes to "process question"
 var dictionaryArray = [" "]
 var answerArray = [" "]
 var wrongAnswerArray = [" "]
@@ -44,7 +48,7 @@ func _process(delta):
 	if(timer.time_left < 1):
 		timer.paused = true
 		timerText.text = ("0")
-		print("game over")
+		#print("game over")
 	pass
 
 func _loadFile() -> void: #it is redundant to call this file if 
@@ -67,6 +71,8 @@ func _loadFile() -> void: #it is redundant to call this file if
 
 func _processQuestion():
 	print("question process")
+	askAfterTalking = false
+	
 	#check if angriness is enough to lose
 	if(anger >= 5):
 		print("you lose!")
@@ -82,6 +88,7 @@ func _processAnswer(answer):
 	
 	#check spelling
 	inDictionary = true
+	askAfterTalking = true
 	
 	answerArray = answer.split(" ")
 	for word in answerArray:
@@ -92,11 +99,17 @@ func _processAnswer(answer):
 	if(wrongAnswerArray.has(answerText)):
 		print("wrong answer")
 		anger += 1
+		bobbyText.text = responseTextWrong
+		_sayText(responseTextWrong)
 	elif(correctAnswerArray.has(answerText)):
 		print("correct answer")
 		happiness += 1
+		bobbyText.text = responseTextRight
+		_sayText(responseTextRight)
 	else:
 		print("neither")
+		bobbyText.text = responseTextMiscellaneous
+		_sayText(responseTextMiscellaneous)
 		if(grammarSlam):
 			print("we are checking grammar")
 			if(inDictionary):
@@ -119,7 +132,7 @@ func _processAnswer(answer):
 				print("you do not get benefit of the doubt")
 				anger += 1
 	
-	_processQuestion()
+	#_processQuestion()
 
 func _input(event):
 
@@ -193,12 +206,16 @@ func _input(event):
 		playerText.text = answerText
 
 func _askQuestion():
+	
 	var questionPick := randi_range(0, 0) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
 		bobbyText.text = ("s ")
 		wrongAnswerArray = ["tim", "steve"]
 		correctAnswerArray = ["bobby", "gargathor"]
+		responseTextRight = ("that is a great name")
+		responseTextWrong = ("TIM!!")
+		responseTextMiscellaneous = (answerText + "is a cool name!")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -261,6 +278,8 @@ func _askQuestion():
 func _sayText(question: String):
 	isTalking = true
 	timer.paused = true
+	
+	print("saying " + question)
 	
 	for n in question.length()-1:
 		
@@ -404,5 +423,7 @@ func _sayText(question: String):
 		
 	isTalking = false
 	timer.paused = false
+	if(askAfterTalking):
+		_processQuestion()
 	
 	
