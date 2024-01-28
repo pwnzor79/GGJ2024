@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8er7cb3gwhcl"
+path="res://.godot/imported/Ether Disco.mp3-3cc81b73ffe2ed15b78559594735d0c6.mp3str"
+
+[deps]
+
+source_file="res://Scenes/DoriScene/Songs/Ether Disco.mp3"
+dest_files=["res://.godot/imported/Ether Disco.mp3-3cc81b73ffe2ed15b78559594735d0c6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

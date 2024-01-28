@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://gu85efk656il"]
+
+[ext_resource type="Texture2D" uid="uid://bes7a2ynmoapl" path="res://Scenes/DoriScene/Sprites/DoriUI/left_pizza_1.png" id="1_2ap6m"]
+[ext_resource type="Texture2D" uid="uid://bdbk3nlyy50gb" path="res://Scenes/DoriScene/Sprites/DoriUI/left_pizza_2.png" id="2_5l2qs"]
+[ext_resource type="Script" path="res://Scenes/DoriScene/Scripts/arrow_button.gd" id="3_g6b5e"]
+[ext_resource type="Texture2D" uid="uid://d1vlc3q74dsbb" path="res://Scenes/DoriScene/Sprites/DoriUI/right_pizza_1.png" id="3_yaomo"]
+[ext_resource type="Texture2D" uid="uid://dj0y6fjiiec1s" path="res://Scenes/DoriScene/Sprites/DoriUI/right_pizza_2.png" id="4_asego"]
+[ext_resource type="Texture2D" uid="uid://dfoaq7nwh3m2t" path="res://Scenes/DoriScene/Sprites/DoriUI/up_pizza_1.png" id="5_kdg6r"]
+[ext_resource type="Texture2D" uid="uid://bx5n4ky6te5vu" path="res://Scenes/DoriScene/Sprites/DoriUI/up_pizza_2.png" id="6_llwaw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bti2m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2ap6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5l2qs")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yaomo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_asego")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kdg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_llwaw")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e38bj"]
+size = Vector2(44, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5vy3"]
+size = Vector2(5.62398, 11.8962)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvfyw"]
+size = Vector2(89, 86)
+
+[node name="ArrowButton" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_bti2m")
+animation = &"up"
+script = ExtResource("3_g6b5e")
+
+[node name="PerfetctArea" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerfetctArea"]
+position = Vector2(-10, 14)
+shape = SubResource("RectangleShape2D_e38bj")
+
+[node name="GreatArea" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreatArea"]
+position = Vector2(-9.51, 14.4437)
+scale = Vector2(8.005, -8.985)
+shape = SubResource("RectangleShape2D_g5vy3")
+
+[node name="OkayArea" type="Area2D" parent="."]
+position = Vector2(7, -2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OkayArea"]
+position = Vector2(-16.5, -0.955)
+scale = Vector2(0.505, 1.635)
+shape = SubResource("RectangleShape2D_mvfyw")
+
+[node name="PushTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="area_entered" from="PerfetctArea" to="." method="_on_perfetct_area_area_entered"]
+[connection signal="area_exited" from="PerfetctArea" to="." method="_on_perfetct_area_area_exited"]
+[connection signal="area_entered" from="GreatArea" to="." method="_on_great_area_area_entered"]
+[connection signal="area_exited" from="GreatArea" to="." method="_on_great_area_area_exited"]
+[connection signal="area_entered" from="OkayArea" to="." method="_on_okay_area_area_entered"]
+[connection signal="area_exited" from="OkayArea" to="." method="_on_okay_area_area_exited"]
+[connection signal="timeout" from="PushTimer" to="." method="_on_push_timer_timeout"]
