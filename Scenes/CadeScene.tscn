@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=31 format=3 uid="uid://0om1dcte4gao"]
 
 [ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
+[ext_resource type="PackedScene" uid="uid://cnb8llgeqlbg7" path="res://Scenes/CadeScene/assets/enemy/willie_injured_run.tscn" id="2_2bnkc"]
 [ext_resource type="PackedScene" uid="uid://cwiu8nsyij4gn" path="res://Scenes/CadeScene/player/player.tscn" id="2_ljeje"]
 [ext_resource type="Texture2D" uid="uid://cqjenl6pl6dn7" path="res://Scenes/CadeScene/textures/skybox/EveningSkyHDRI018B_2K-HDR.exr" id="3_6myqv"]
 [ext_resource type="ArrayMesh" uid="uid://ory4fkyg8km" path="res://Scenes/CadeScene/assets/cave/cave.obj" id="3_36v0w"]
@@ -188,22 +189,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fjl74"]
-resource_name = "fade_out"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_41dvq"]
 resource_name = "death"
 length = 3.0
@@ -218,6 +203,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fjl74"]
+resource_name = "fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1xwbm"]
@@ -242,7 +243,11 @@ script = SubResource("GDScript_jn11a")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy/CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_bmigy")
 
+[node name="willie_injured_run" parent="enemy/CharacterBody3D/CollisionShape3D" instance=ExtResource("2_2bnkc")]
+transform = Transform3D(-6.32656, 0, -5.53085e-07, 0, 6.32656, 0, 5.53085e-07, 0, -6.32656, 0, -0.949723, 0.212795)
+
 [node name="body" type="MeshInstance3D" parent="enemy/CharacterBody3D/CollisionShape3D"]
+visible = false
 mesh = SubResource("CapsuleMesh_hrdeq")
 
 [node name="teleport_points" type="Node" parent="enemy"]
@@ -447,7 +452,6 @@ light_energy = 0.004
 
 [node name="DirectionalLight3D-Debug" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.701407, 0.712761, 0, -0.712761, -0.701407, 10.7723, 4.68077, 0)
-visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
