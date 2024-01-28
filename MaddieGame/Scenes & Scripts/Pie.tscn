@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvtvh5dkvceyq"]
+
+[ext_resource type="Texture2D" uid="uid://pa5xwjs26j6e" path="res://MaddieGame/Art/Cream Pie.png" id="1_3ripc"]
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/Pie.gd" id="1_e8iec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npiqx"]
+size = Vector2(20, 18)
+
+[node name="Pie" type="Node2D"]
+position = Vector2(32, 32)
+scale = Vector2(3, 3)
+script = ExtResource("1_e8iec")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_3ripc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_npiqx")

@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var speed = 500
+@export var Pie = preload("res://MaddieGame/Scenes & Scripts/Pie.tscn")
 var screen_size
 
 # Called when the node enters the scene tree for the first time.
@@ -35,3 +36,14 @@ func _process(delta):
 	
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
+	
+	# Checks if the player fires a pie
+	if Input.is_action_just_pressed("maddie_shoot"):
+		fire()
+
+
+# Fires a pie upwards out of the marker
+func fire():
+	var p = Pie.instantiate()
+	owner.add_child(p)
+	p.transform = $Marker2D.global_transform
