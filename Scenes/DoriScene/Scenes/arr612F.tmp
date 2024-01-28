@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://gu85efk656il"]
+
+[ext_resource type="Texture2D" uid="uid://d18cam1rcwrsy" path="res://Scenes/DoriScene/Sprites/game/arrow_button/left/arrow_button_left1.png" id="1_g3sei"]
+[ext_resource type="Texture2D" uid="uid://douj1ompwflud" path="res://Scenes/DoriScene/Sprites/game/arrow_button/up/arrow_button_up1.png" id="1_mvsbx"]
+[ext_resource type="Texture2D" uid="uid://b40d2qbuhbtkv" path="res://Scenes/DoriScene/Sprites/game/arrow_button/up/arrow_button_up2.png" id="2_s8v7b"]
+[ext_resource type="Texture2D" uid="uid://sd5sfdryth00" path="res://Scenes/DoriScene/Sprites/game/arrow_button/left/arrow_button_left2.png" id="2_t2gid"]
+[ext_resource type="Script" path="res://Scenes/DoriScene/Scripts/arrow_button.gd" id="3_g6b5e"]
+[ext_resource type="Texture2D" uid="uid://bj6q00bkxt64g" path="res://Scenes/DoriScene/Sprites/game/arrow_button/right/arrow_button_right1.png" id="3_iaoyu"]
+[ext_resource type="Texture2D" uid="uid://cbxcvgt47n0cf" path="res://Scenes/DoriScene/Sprites/game/arrow_button/right/arrow_button_right2.png" id="4_ka47w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bti2m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g3sei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t2gid")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_iaoyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ka47w")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mvsbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s8v7b")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e38bj"]
+size = Vector2(8, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5vy3"]
+size = Vector2(8, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvfyw"]
+size = Vector2(8, 24)
+
+[node name="ArrowButton" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_bti2m")
+animation = &"left"
+script = ExtResource("3_g6b5e")
+
+[node name="PerfetctArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerfetctArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_e38bj")
+
+[node name="GreatArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreatArea"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_g5vy3")
+
+[node name="OkayArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OkayArea"]
+shape = SubResource("RectangleShape2D_mvfyw")
+
+[node name="PushTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="area_entered" from="PerfetctArea" to="." method="_on_perfetct_area_area_entered"]
+[connection signal="area_exited" from="PerfetctArea" to="." method="_on_perfetct_area_area_exited"]
+[connection signal="area_entered" from="GreatArea" to="." method="_on_great_area_area_entered"]
+[connection signal="area_exited" from="GreatArea" to="." method="_on_great_area_area_exited"]
+[connection signal="area_entered" from="OkayArea" to="." method="_on_okay_area_area_entered"]
+[connection signal="area_exited" from="OkayArea" to="." method="_on_okay_area_area_exited"]
+[connection signal="timeout" from="PushTimer" to="." method="_on_push_timer_timeout"]

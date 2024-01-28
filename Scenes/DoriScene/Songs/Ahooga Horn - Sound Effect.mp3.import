@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbpwhlxyqp84l"
+path="res://.godot/imported/Ahooga Horn - Sound Effect.mp3-23f7e2c215e2d5bec0852cb06ab5c2b9.mp3str"
+
+[deps]
+
+source_file="res://Scenes/DoriScene/Songs/Ahooga Horn - Sound Effect.mp3"
+dest_files=["res://.godot/imported/Ahooga Horn - Sound Effect.mp3-23f7e2c215e2d5bec0852cb06ab5c2b9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

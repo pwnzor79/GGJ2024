@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://38oe8rlfcele"]
+
+[ext_resource type="Script" path="res://Scenes/DoriScene/Scripts/Conductor.gd" id="1_7ecif"]
+[ext_resource type="AudioStream" uid="uid://c8er7cb3gwhcl" path="res://Scenes/DoriScene/Songs/Ether Disco.mp3" id="1_e26no"]
+
+[node name="Conductor" type="AudioStreamPlayer"]
+stream = ExtResource("1_e26no")
+script = ExtResource("1_7ecif")
+bpm = 120
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

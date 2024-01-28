@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://cf7o38s1ep38g"]
+
+[ext_resource type="Script" path="res://Scenes/DoriScene/Scripts/Note.gd" id="1_om66c"]
+[ext_resource type="Texture2D" uid="uid://bes7a2ynmoapl" path="res://Scenes/DoriScene/Sprites/DoriUI/left_pizza_1.png" id="2_1itjs"]
+[ext_resource type="Texture2D" uid="uid://dfoaq7nwh3m2t" path="res://Scenes/DoriScene/Sprites/DoriUI/up_pizza_1.png" id="3_tpqes"]
+[ext_resource type="Texture2D" uid="uid://d1vlc3q74dsbb" path="res://Scenes/DoriScene/Sprites/DoriUI/right_pizza_1.png" id="4_uquov"]
+[ext_resource type="Texture2D" uid="uid://defxvwlced0cn" path="res://Scenes/DoriScene/Sprites/game/particles/star.png" id="5_muib7"]
+[ext_resource type="AudioStream" uid="uid://cbpwhlxyqp84l" path="res://Scenes/DoriScene/Songs/Ahooga Horn - Sound Effect.mp3" id="6_hivbi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rr7jt"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1itjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tpqes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uquov")
+}],
+"loop": true,
+"name": &"arrows",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ty833"]
+radius = 18.3333
+height = 36.6666
+
+[node name="Note" type="Area2D" groups=["note"]]
+script = ExtResource("1_om66c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rr7jt")
+animation = &"arrows"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.5, -18.3333)
+shape = SubResource("CapsuleShape2D_ty833")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource("5_muib7")
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Node2D"]
+anchors_preset = -1
+offset_left = -77.0
+offset_top = -54.0
+offset_right = 49.0
+offset_bottom = 15.0
+scale = Vector2(0.998491, 1.1399)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HonkHonk" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(6.5, -18.3333)
+stream = ExtResource("6_hivbi")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
