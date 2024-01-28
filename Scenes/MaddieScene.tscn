@@ -1,7 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy2e4sk776bhw"]
+[gd_scene load_steps=5 format=3 uid="uid://cy2e4sk776bhw"]
 
 [ext_resource type="PackedScene" uid="uid://d1xl44hmb6ik2" path="res://MaddieGame/Scenes & Scripts/Player.tscn" id="1_7ds3p"]
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/MainScript.gd" id="1_vc4vs"]
+[ext_resource type="PackedScene" uid="uid://bmuto43nt0pw1" path="res://MaddieGame/Scenes & Scripts/Enemy.tscn" id="3_uj6vg"]
+
+[sub_resource type="Curve2D" id="Curve2D_2u5jx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 1920, -128)
+}
+point_count = 2
 
 [node name="MaddieScene" type="Node2D"]
+script = ExtResource("1_vc4vs")
 
 [node name="Player" parent="." instance=ExtResource("1_7ds3p")]
+
+[node name="Enemy" parent="." instance=ExtResource("3_uj6vg")]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2u5jx")
+
+[node name="EnemySpawner" type="PathFollow2D" parent="EnemyPath"]
+position = Vector2(0, -128)

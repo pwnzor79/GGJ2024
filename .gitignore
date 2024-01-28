@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+
+# KILL DS_STORE PERISH DIE BEGONE I SMITE YOU FROM THE FACE OF GIT
+**/.DS_Store
