@@ -7,8 +7,8 @@
 [ext_resource type="ArrayMesh" uid="uid://ory4fkyg8km" path="res://Scenes/CadeScene/assets/cave/cave.obj" id="3_36v0w"]
 [ext_resource type="Material" uid="uid://1i8ou47kgqfk" path="res://Scenes/CadeScene/assets/cave/cave_rock.tres" id="3_f78dn"]
 [ext_resource type="Texture2D" uid="uid://b5jn3udlqjm7n" path="res://Scenes/CadeScene/assets/cave/textures/cave_wall_beware.png" id="6_narp6"]
-[ext_resource type="Material" uid="uid://c1aqsntxisr3r" path="res://Scenes/CadeScene/assets/torch/castle_torch.tres" id="7_g0nhh"]
 [ext_resource type="PackedScene" uid="uid://l2fv4omh1odl" path="res://Scenes/CadeScene/assets/torch/castle_torch_combo.tscn" id="8_g56hj"]
+[ext_resource type="PackedScene" uid="uid://4kmdibflh3s8" path="res://Scenes/CadeScene/assets/cave/cave_rock_1.tscn" id="10_cd50o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wex"]
 albedo_texture = ExtResource("1_0em0j")
@@ -76,9 +76,32 @@ transform = Transform3D(-0.0162483, 0, -0.999868, 0, 1, 0, 0.999868, 0, -0.01624
 [node name="castle_torch5" parent="geometry/torches" instance=ExtResource("8_g56hj")]
 transform = Transform3D(0.214684, 0, -0.976684, 0, 1, 0, 0.976684, 0, 0.214684, 25.829, 11.7768, -32.8035)
 
+[node name="castle_torch6" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.300473, 0, 0.95379, 0, 1, 0, -0.95379, 0, -0.300473, 37.9308, 10.0837, -30.3812)
+
+[node name="rocks" type="Node" parent="geometry"]
+
+[node name="cave_rock_12" parent="geometry/rocks" instance=ExtResource("10_cd50o")]
+transform = Transform3D(5.44156, 0, 0, 0, 5.44156, 0, 0, 0, 5.44156, 39.4534, 8.68357, -31.3695)
+
+[node name="cave_rock_16" parent="geometry/rocks" instance=ExtResource("10_cd50o")]
+transform = Transform3D(6.89127, 0, 0, 0, 6.89127, 0, 0, 0, 6.89127, 40.6693, 8.68357, -32.9202)
+
+[node name="cave_rock_13" parent="geometry/rocks" instance=ExtResource("10_cd50o")]
+transform = Transform3D(1.18028, 4.64979, 2.56846, 1.94152, -2.82667, 4.22505, 4.94449, 9.66615e-15, -2.27212, 39.9221, 10.0205, -31.5893)
+
+[node name="cave_rock_17" parent="geometry/rocks" instance=ExtResource("10_cd50o")]
+transform = Transform3D(-1.61033, -2.20083, -0.732425, 1.00748, -1.46679, 2.19243, -2.08927, 0.988998, 1.62174, 40.2111, 10.4423, -32.8479)
+
+[node name="cave_rock_14" parent="geometry/rocks" instance=ExtResource("10_cd50o")]
+transform = Transform3D(0.975233, 3.84201, 2.12226, 1.60423, -2.33561, 3.49105, 4.08552, 7.98691e-15, -1.8774, 39.629, 8.23335, -32.7438)
+
+[node name="cave_rock_15" parent="geometry/rocks" instance=ExtResource("10_cd50o")]
+transform = Transform3D(0.626965, 2.46998, 1.36437, 1.03134, -1.50153, 2.24435, 2.62653, 5.13468e-15, -1.20696, 39.3941, 9.40882, -32.5377)
+
 [node name="decals" type="Node" parent="."]
 
-[node name="Decal" type="Decal" parent="decals"]
+[node name="cave_wall_writing" type="Decal" parent="decals"]
 transform = Transform3D(1.47669, 0.663304, -0.0287606, -0.0175292, -0.0311607, -1.61868, -0.663696, 1.47664, -0.0212388, 23.916, 11.8553, -32.8728)
 texture_albedo = ExtResource("6_narp6")
 normal_fade = 0.155
@@ -93,8 +116,3 @@ environment = SubResource("Environment_y8d6c")
 transform = Transform3D(1, 0, 0, 0, -0.701407, 0.712761, 0, -0.712761, -0.701407, 0, 4.68077, 0)
 light_color = Color(0.701961, 0.831373, 1, 1)
 light_energy = 0.004
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.180262, -0.983619, 0, 0.983619, 0.180262, 0, 0, 0, 1, -5.46655, 1.28407, 16.7472)
-material_override = ExtResource("7_g0nhh")
-skeleton = NodePath("")
