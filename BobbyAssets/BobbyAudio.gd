@@ -215,7 +215,7 @@ func _askQuestion():
 		correctAnswerArray = ["bobby", "gargathor"]
 		responseTextRight = ("that is a great name")
 		responseTextWrong = ("TIM!!")
-		responseTextMiscellaneous = (answerText + "is a cool name!")
+		responseTextMiscellaneous = (answerText + " is a cool name!")#this is set when askQuestion is called
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -223,49 +223,156 @@ func _askQuestion():
 		
 	elif(questionPick == 1):
 		bobbyText.text = "what is your quest?"
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 2):
 		bobbyText.text = ("what is your favorite color?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
+		_sayText(bobbyText.text)
 	elif(questionPick == 3):
 		bobbyText.text = ("how was your day?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 4):
 		bobbyText.text = ("what is your social security number?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 5):
 		bobbyText.text = ("what is your favorite food?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
-		
 	elif(questionPick == 6):
 		bobbyText.text = "what is Ian's middle name?"
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 7):
 		bobbyText.text = ("what color are the curtains behind me?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
+		_sayText(bobbyText.text)
 	elif(questionPick == 8):
 		bobbyText.text = ("what is the square root of pi")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 9):
 		bobbyText.text = ("are you funny?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 10):
 		bobbyText.text = ("tell me a story")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 11):
 		bobbyText.text = "knock knock" #the player should say 'who is there', 'whos' makes me angry
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 12):
 		bobbyText.text = ("Rene Descarte famously stated 'I think therefore I am' in order to assert cognizance 
 		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that 
 		there is no certainty behind the assertion that the reality we observe is real at all. What are your
 		thoughts on this issue? Also what is 4/7?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
+		_sayText(bobbyText.text)
 	elif(questionPick == 13):
 		bobbyText.text = ("sdrawkcab 'reflection' tou epyt")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 14):
 		bobbyText.text = ("what is the name of prometheus' brother?") #epimetheus or brometheus
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 15):
 		bobbyText.text = ("what is your favorite food?")
+		wrongAnswerArray = []
+		correctAnswerArray = []
+		responseTextRight = ("")
+		responseTextWrong = ("")
+		responseTextMiscellaneous = ("")
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 		
 	#_questionProcess()
