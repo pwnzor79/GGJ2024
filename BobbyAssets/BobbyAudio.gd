@@ -196,7 +196,8 @@ func _input(event):
 				if isTalking:
 					print("don't interrupt me")
 				else:
-					_processAnswer(answerText)
+					#_processAnswer(answerText)
+					sayingAnswer = true
 					_sayText(answerText)
 			"Backspace":
 				if(answerText.length() > 0):
@@ -532,6 +533,10 @@ func _sayText(question: String):
 	isTalking = false
 	timer.paused = false
 	if(askAfterTalking):
+		askAfterTalking = false
 		_processQuestion()
+	elif(sayingAnswer):
+		sayingAnswer = false
+		_processAnswer(answerText)
 	
 	
