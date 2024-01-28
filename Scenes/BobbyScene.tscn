@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ddbbfdxgbmk87"]
+[gd_scene load_steps=20 format=3 uid="uid://ddbbfdxgbmk87"]
 
 [ext_resource type="Texture2D" uid="uid://dyn05koctln8d" path="res://BobbyAssets/Sprites/Bobby-Angry-Sheet.png" id="1_dpc45"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyAudio.gd" id="1_rmvtj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dowbeylobxb50" path="res://BobbyAssets/Sprites/bobbyBackground.png" id="4_d45os"]
 [ext_resource type="AudioStream" uid="uid://u8s5u28bjbnt" path="res://BobbyAssets/Audio/right.wav" id="5_eibxl"]
 [ext_resource type="Script" path="res://BobbyAssets/honk.gd" id="5_xl2n2"]
+[ext_resource type="AudioStream" uid="uid://fqxnri0c377y" path="res://BobbyAssets/Audio/smooth clownge music.wav" id="8_ng3fv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t78xg"]
 atlas = ExtResource("1_dpc45")
@@ -106,11 +107,16 @@ stream = ExtResource("5_eibxl")
 
 [node name="honk" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
 stream = ExtResource("4_3ogp2")
-autoplay = true
 script = ExtResource("5_xl2n2")
 
+[node name="backgroundMusic" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+position = Vector2(-41.6526, -26.502)
+scale = Vector2(0.0463321, 0.0463321)
+stream = ExtResource("8_ng3fv")
+volume_db = -1.0
+autoplay = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AudioStreamPlayer2D"]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_jypiq")
 autoplay = "default"
 script = ExtResource("2_7dc0r")
