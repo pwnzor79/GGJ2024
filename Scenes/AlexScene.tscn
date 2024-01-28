@@ -164,7 +164,7 @@ wait_time = 4.1
 wait_time = 84.0
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(960, 540)
+position = Vector2(960, 780)
 
 [node name="BatPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_tedgo")
