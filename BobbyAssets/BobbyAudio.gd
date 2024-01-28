@@ -343,12 +343,12 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 12):
 		bobbyText.text = ("Rene Descarte famously stated 'I think therefore I am' in order to assert cognizance 
-		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that there is no certainty behind the assertion that the reality we observe is real at all. What are yourthoughts on this issue? Also what is 4/7?")
+		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that there is no certainty behind the assertion that the reality we observe is real at all. What are your thoughts on this issue? Also what is 4/7?")
 		wrongAnswerArray = []
 		correctAnswerArray = []
 		responseTextRight = ("")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("sorry you had to listen to all of that, the subject is a bit to complex for me to properly process if you said something smartsince you're listening to me anyways I might just keep talkign forever")
+		responseTextMiscellaneous = ("sorry you had to listen to all of that, the subject is a bit to complex for me to properly process if you said something smart since you're listening to me anyways I might just keep talkign forever")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)

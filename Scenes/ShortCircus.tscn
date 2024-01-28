@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1ec27kbicb4d"]
+
+[ext_resource type="Texture2D" uid="uid://cb6n11u5vs188" path="res://BobbyAssets/Sprites/static.png" id="1_la26w"]
+[ext_resource type="Script" path="res://BobbyAssets/static.gd" id="2_tve0s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fheh"]
+atlas = ExtResource("1_la26w")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osmux"]
+atlas = ExtResource("1_la26w")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkww8"]
+atlas = ExtResource("1_la26w")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tl8fx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fheh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osmux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkww8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="ShortCircus" type="Node"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_tl8fx")
+autoplay = "default"
+script = ExtResource("2_tve0s")
