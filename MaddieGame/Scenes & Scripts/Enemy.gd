@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#Checks if the player is dying, and plays the death animation
+	#Checks if the player is dying, increases the player's score, and plays the death animation
 	if is_dying == true:
 		if death_countdown == 0:
 			$AnimatedSprite2D.animation = "die"
