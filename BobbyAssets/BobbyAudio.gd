@@ -207,7 +207,7 @@ func _input(event):
 
 func _askQuestion():
 	
-	var questionPick := randi_range(0, 0) #this is inclusive on both sides
+	var questionPick := randi_range(0, 2) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
 		bobbyText.text = ("s ")
@@ -215,7 +215,7 @@ func _askQuestion():
 		correctAnswerArray = ["bobby", "gargathor"]
 		responseTextRight = ("that is a great name")
 		responseTextWrong = ("TIM!!")
-		responseTextMiscellaneous = (answerText + " is a cool name!")#this is set when askQuestion is called
+		responseTextMiscellaneous = ("that is a cool name!")#this is set when askQuestion is called
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -224,31 +224,31 @@ func _askQuestion():
 	elif(questionPick == 1):
 		bobbyText.text = "what is your quest?"
 		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		correctAnswerArray = ["to seek the holy grail"]
+		responseTextRight = ("nerd")
+		responseTextWrong = ("it is hard to throw you off a bridge with just text")
+		responseTextMiscellaneous = ("i hope you didn't just type nonsense")
 		grammarSlam = false
-		benefitOfTheDoubt = true
+		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 2):
 		bobbyText.text = ("what is your favorite color?")
-		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
-		grammarSlam = false
+		wrongAnswerArray = ["yellow"]
+		correctAnswerArray = ["blue"]
+		responseTextRight = ("heck yeah we love blue")
+		responseTextWrong = ("I hate yellow!")
+		responseTextMiscellaneous = ("aight")
+		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 3):
 		bobbyText.text = ("how was your day?")
-		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
-		grammarSlam = false
+		wrongAnswerArray = ["bad", "horrible"]
+		correctAnswerArray = ["good", "fine"]
+		responseTextRight = ("that's good")
+		responseTextWrong = ("wrong!")
+		responseTextMiscellaneous = ("I am only program to adknowledge like three words, so if you said something of substance it probably went over my head")
+		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 4):
@@ -264,18 +264,18 @@ func _askQuestion():
 	elif(questionPick == 5):
 		bobbyText.text = ("what is your favorite food?")
 		wrongAnswerArray = []
-		correctAnswerArray = []
+		correctAnswerArray = ["pizza"]
 		responseTextRight = ("")
 		responseTextWrong = ("")
 		responseTextMiscellaneous = ("")
-		grammarSlam = false
+		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 6):
 		bobbyText.text = "what is Ian's middle name?"
 		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
+		correctAnswerArray = ["mark"]
+		responseTextRight = ("how did you know that?")
 		responseTextWrong = ("")
 		responseTextMiscellaneous = ("")
 		grammarSlam = false
@@ -284,12 +284,12 @@ func _askQuestion():
 	elif(questionPick == 7):
 		bobbyText.text = ("what color are the curtains behind me?")
 		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		correctAnswerArray = ["red"]
+		responseTextRight = ("yep")
+		responseTextWrong = ("no, they're red")
+		responseTextMiscellaneous = ("no, they're red")
 		grammarSlam = false
-		benefitOfTheDoubt = true
+		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 8):
 		bobbyText.text = ("what is the square root of pi")
@@ -303,9 +303,9 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 9):
 		bobbyText.text = ("are you funny?")
-		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
+		wrongAnswerArray = ["no"]
+		correctAnswerArray = ["yes"]
+		responseTextRight = ("funny looking maybe")
 		responseTextWrong = ("")
 		responseTextMiscellaneous = ("")
 		grammarSlam = false
@@ -323,13 +323,13 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 11):
 		bobbyText.text = "knock knock" #the player should say 'who is there', 'whos' makes me angry
-		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		wrongAnswerArray = ["whos there"]
+		correctAnswerArray = ["who is there", "hello"]
+		responseTextRight = ("a door to door salesman")
+		responseTextWrong = ("your grammar is incorrect")
+		responseTextMiscellaneous = ("how did you not follow the general pattern of a knock knock joke")
 		grammarSlam = false
-		benefitOfTheDoubt = true
+		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 12):
 		bobbyText.text = ("Rene Descarte famously stated 'I think therefore I am' in order to assert cognizance 
@@ -346,32 +346,32 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 13):
 		bobbyText.text = ("sdrawkcab 'reflection' tou epyt")
-		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		wrongAnswerArray = ["reflection"]
+		correctAnswerArray = ["noitcelfer"]
+		responseTextRight = ("noice")
+		responseTextWrong = ("nuh uh")
+		responseTextMiscellaneous = ("nuh uh")
 		grammarSlam = false
-		benefitOfTheDoubt = true
+		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 14):
 		bobbyText.text = ("what is the name of prometheus' brother?") #epimetheus or brometheus
 		wrongAnswerArray = []
-		correctAnswerArray = []
+		correctAnswerArray = ["epimetheus", "brometheus"]
 		responseTextRight = ("")
 		responseTextWrong = ("")
 		responseTextMiscellaneous = ("")
 		grammarSlam = false
-		benefitOfTheDoubt = true
+		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 15):
 		bobbyText.text = ("what is your favorite food?")
 		wrongAnswerArray = []
-		correctAnswerArray = []
+		correctAnswerArray = ["pizza"]
 		responseTextRight = ("")
 		responseTextWrong = ("")
 		responseTextMiscellaneous = ("")
-		grammarSlam = false
+		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 		
