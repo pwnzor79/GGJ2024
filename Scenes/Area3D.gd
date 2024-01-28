@@ -22,3 +22,5 @@ func _on_body_entered(body):
 		var spawn_pos = get_node("/root/CadeScene/enemy/spawn").position
 		get_node("/root/CadeScene/enemy/CharacterBody3D").position = spawn_pos
 		chase_active = true
+		get_node("/root/CadeScene/player/ChaseStart").play()
+		get_node("/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_sound").play()

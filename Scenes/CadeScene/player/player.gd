@@ -118,7 +118,7 @@ func handle_jump() -> void:
 		
 func handle_honk() -> void:
 	if Input.is_action_pressed("chasm_honk"):
-		$AudioStreamPlayer3D.play()
+		$Honk.play()
 
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("chasm_move_left", "chasm_move_right", "chasm_move_forward", "chasm_move_backward")
