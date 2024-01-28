@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=35 format=3 uid="uid://0om1dcte4gao"]
 
 [ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://1i8ou47kgqfk" path="res://Scenes/CadeScene/assets/cave/cave_rock.tres" id="3_f78dn"]
 [ext_resource type="AudioStream" uid="uid://dycybagqen3rt" path="res://Scenes/CadeScene/sound/horror_willie.mp3" id="3_kwkdl"]
 [ext_resource type="AudioStream" uid="uid://bpl7hqoenjsqv" path="res://Scenes/CadeScene/sound/death_boom.mp3" id="4_qoqeh"]
+[ext_resource type="AudioStream" uid="uid://cl2bppo11rmx1" path="res://Scenes/CadeScene/sound/willie_scream.mp3" id="5_le1n6"]
 [ext_resource type="Texture2D" uid="uid://b5jn3udlqjm7n" path="res://Scenes/CadeScene/assets/cave/textures/cave_wall_beware.png" id="6_narp6"]
 [ext_resource type="Script" path="res://Scenes/Area3D.gd" id="7_cacqn"]
 [ext_resource type="PackedScene" uid="uid://l2fv4omh1odl" path="res://Scenes/CadeScene/assets/torch/castle_torch_combo.tscn" id="8_g56hj"]
@@ -128,7 +129,7 @@ sky_material = SubResource("PanoramaSkyMaterial_p1ob5")
 
 [sub_resource type="Environment" id="Environment_y8d6c"]
 background_mode = 2
-background_energy_multiplier = 0.4
+background_energy_multiplier = 0.6
 sky = SubResource("Sky_75snn")
 ambient_light_energy = 0.1
 tonemap_exposure = 1.5
@@ -258,6 +259,7 @@ mesh = SubResource("CapsuleMesh_hrdeq")
 
 [node name="willie_sound" type="AudioStreamPlayer3D" parent="enemy/CharacterBody3D/CollisionShape3D"]
 stream = ExtResource("3_kwkdl")
+attenuation_model = 2
 volume_db = 14.285
 max_distance = 40.0
 panning_strength = 0.8
@@ -275,6 +277,11 @@ light_energy = 0.209
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.68026)
 light_color = Color(0.780392, 0.905882, 1, 1)
 light_energy = 0.9
+
+[node name="willie_scream" type="AudioStreamPlayer3D" parent="enemy/CharacterBody3D/CollisionShape3D"]
+stream = ExtResource("5_le1n6")
+volume_db = 13.334
+max_distance = 99.57
 
 [node name="teleport_points" type="Node" parent="enemy"]
 
@@ -396,6 +403,18 @@ transform = Transform3D(0.872044, 0, -0.489428, 0, 1, 0, 0.489428, 0, 0.872044, 
 
 [node name="castle_torch17" parent="geometry/torches" instance=ExtResource("8_g56hj")]
 transform = Transform3D(0.872044, 0, -0.489428, 0, 1, 0, 0.489428, 0, 0.872044, 9.74317, 4.91901, -191.953)
+
+[node name="castle_torch20" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.872761, 0, 0.488149, 0, 1, 0, -0.488149, 0, -0.872761, 27.4416, 6.09884, -190.598)
+
+[node name="castle_torch21" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.872761, 0, 0.488149, 0, 1, 0, -0.488149, 0, -0.872761, 13.9621, 5.80723, -167.888)
+
+[node name="castle_torch23" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.0209072, 0, -0.999781, 0, 1, 0, 0.999781, 0, -0.0209072, 26.7386, 4.97304, -214.822)
+
+[node name="castle_torch24" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.155003, 0, -0.987914, 0, 1, 0, 0.987914, 0, -0.155003, 41.2636, 9.89484, -210.036)
 
 [node name="castle_torch10" parent="geometry/torches" instance=ExtResource("8_g56hj")]
 transform = Transform3D(-0.997245, 0, 0.0741781, 0, 1, 0, -0.0741781, 0, -0.997245, -3.31019, 8.25627, -81.1609)

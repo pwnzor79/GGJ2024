@@ -24,3 +24,4 @@ func _on_body_entered(body):
 		chase_active = true
 		get_node("/root/CadeScene/player/ChaseStart").play()
 		get_node("/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_sound").play()
+		get_node("/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_scream").play()
