@@ -1,23 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://t2lchx5y7d5a"]
+[gd_scene load_steps=7 format=3 uid="uid://t2lchx5y7d5a"]
 
 [ext_resource type="Script" path="res://Scenes/DoriScene/Scripts/DoriScene.gd" id="1_oo1aj"]
 [ext_resource type="Texture2D" uid="uid://cddqqj42cvayu" path="res://Scenes/DoriScene/Sprites/DoriUI/pizza_rack_party.png" id="2_ag1dv"]
 [ext_resource type="PackedScene" uid="uid://gu85efk656il" path="res://Scenes/DoriScene/Scenes/arrow_button.tscn" id="2_jpohw"]
 [ext_resource type="Texture2D" uid="uid://cewlq1g8y1bgt" path="res://Scenes/DoriScene/Sprites/DoriUI/oven_top.png" id="2_tq8jo"]
 [ext_resource type="PackedScene" uid="uid://38oe8rlfcele" path="res://Scenes/DoriScene/Scenes/conductor.tscn" id="3_31jnp"]
+[ext_resource type="Texture2D" uid="uid://bysnw8mfwx1r8" path="res://Scenes/DoriScene/Sprites/DoriUI/vecteezy_seamless-pattern-background-with-pizza-shape_7357130-1.jpg" id="6_2rj47"]
 
 [node name="DoriScene" type="Node2D"]
 script = ExtResource("1_oo1aj")
 
 [node name="OvenTop" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(473, 57)
+position = Vector2(937, 1009)
 texture = ExtResource("2_tq8jo")
+flip_v = true
 
 [node name="Score" type="Label" parent="."]
-offset_right = 73.0
-offset_bottom = 26.0
-text = "0"
+z_index = 1
+offset_left = 844.0
+offset_top = 990.0
+offset_right = 1085.0
+offset_bottom = 1059.0
+theme_override_font_sizes/font_size = 50
+text = "Score: 0"
 
 [node name="Combo" type="Label" parent="."]
 offset_left = 1.0
@@ -28,20 +34,26 @@ offset_bottom = 45.0
 [node name="Conductor" parent="." instance=ExtResource("3_31jnp")]
 
 [node name="Lanes" type="Sprite2D" parent="."]
-position = Vector2(58, -10)
+position = Vector2(522, -10)
 texture = ExtResource("2_ag1dv")
 centered = false
 
 [node name="ArrowRight" parent="." instance=ExtResource("2_jpohw")]
-position = Vector2(720, 984)
-animation = &"right"
+position = Vector2(1184, 892)
 
 [node name="ArrowLeft" parent="." instance=ExtResource("2_jpohw")]
-position = Vector2(233, 985)
+position = Vector2(697, 898)
 animation = &"left"
 
 [node name="ArrowUp" parent="." instance=ExtResource("2_jpohw")]
-position = Vector2(485, 958)
+position = Vector2(949, 852)
+animation = &"up"
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(964, 534.5)
+scale = Vector2(1.00104, 0.904167)
+texture = ExtResource("6_2rj47")
 
 [connection signal="beat" from="Conductor" to="." method="_on_conductor_beat"]
 [connection signal="measure" from="Conductor" to="." method="_on_conductor_measure"]

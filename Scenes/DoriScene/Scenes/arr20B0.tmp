@@ -72,7 +72,7 @@ size = Vector2(89, 86)
 
 [node name="ArrowButton" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_bti2m")
-animation = &"right"
+animation = &"up"
 script = ExtResource("3_g6b5e")
 
 [node name="PerfetctArea" type="Area2D" parent="."]

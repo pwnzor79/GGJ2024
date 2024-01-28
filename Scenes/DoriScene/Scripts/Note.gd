@@ -4,9 +4,9 @@ const TARGET_Y = 984
 const SPAWN_Y = -16
 const DIST_TO_TARGET = TARGET_Y - SPAWN_Y
 
-const LEFT_LANE_SPAWN = Vector2(240, SPAWN_Y)
-const CENTRE_LANE_SPAWN = Vector2(480, SPAWN_Y)
-const RIGHT_LANE_SPAWN = Vector2(720, SPAWN_Y)
+const LEFT_LANE_SPAWN = Vector2(697, SPAWN_Y)
+const CENTRE_LANE_SPAWN = Vector2(949, SPAWN_Y)
+const RIGHT_LANE_SPAWN = Vector2(1184, SPAWN_Y)
 
 var speed = 0
 var hit = false
@@ -49,13 +49,16 @@ func destroy(score):
 	$Timer.start()
 	hit = true
 	if score == 3:
-		$Node2D/Label.text = "GREAT"
+		$Node2D/Label.text = "PERFECT!"
 		$Node2D/Label.modulate = Color("f6d6bd")
+		$HonkHonk.play()
 	elif score == 2:
 		$Node2D/Label.text = "GOOD"
 		$Node2D/Label.modulate = Color("c3a38a")
+		$HonkHonk.play()
 	elif score == 1:
 		$Node2D/Label.text = "OKAY"
+		$HonkHonk.play()
 		$Node2D/Label.modulate = Color("997577")
 
 

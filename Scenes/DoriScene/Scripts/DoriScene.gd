@@ -9,7 +9,7 @@ var good = 0
 var okay = 0
 var missed = 0
 
-var bpm = 115
+var bpm = 120
 
 var song_position = 0.0
 var song_position_in_beats = 0
@@ -29,7 +29,7 @@ var instance
 
 func _ready():
 	randomize()
-	$Conductor.play_with_beat_offset(8)
+	$Conductor.play_with_beat_offset(7.5)
 
 
 func _spawn_notes(to_spawn):
@@ -65,7 +65,7 @@ func increment_score(by):
 	
 	
 	score += by * combo
-	$Score.text = str(score)
+	$Score.text = "Score: " + str(score)
 	if combo > 0:
 		$Combo.text = str(combo) + " combo!"
 		if combo > max_combo:
