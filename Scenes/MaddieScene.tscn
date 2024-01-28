@@ -20,9 +20,10 @@ point_count = 2
 [sub_resource type="SystemFont" id="SystemFont_y02rt"]
 font_names = PackedStringArray("Comic Sans MS")
 
-[node name="MaddieScene" type="Node2D"]
+[node name="MaddieScene" type="Node2D" node_paths=PackedStringArray("backgroundMusic")]
 script = ExtResource("1_vc4vs")
 enemyToSpawn = ExtResource("3_uj6vg")
+backgroundMusic = NodePath("BGM")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1

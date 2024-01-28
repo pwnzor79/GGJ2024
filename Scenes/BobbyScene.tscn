@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://ddbbfdxgbmk87"]
+[gd_scene load_steps=21 format=3 uid="uid://ddbbfdxgbmk87"]
 
 [ext_resource type="Texture2D" uid="uid://dyn05koctln8d" path="res://BobbyAssets/Sprites/Bobby-Angry-Sheet.png" id="1_dpc45"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyAudio.gd" id="1_rmvtj"]
+[ext_resource type="Script" path="res://BobbyAssets/musicSkip.gd" id="1_uhc4c"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyFaceScript.gd" id="2_7dc0r"]
 [ext_resource type="AudioStream" uid="uid://cpamjgdo8wt6x" path="res://BobbyAssets/Audio/ramSample1.wav" id="2_ee1ci"]
 [ext_resource type="AudioStream" uid="uid://b6vkd3g41kg7a" path="res://BobbyAssets/Audio/clown-horn-double-honk-jam-fx-1-00-00.mp3" id="4_3ogp2"]
@@ -78,7 +79,9 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[node name="BobbyScene" type="Node2D"]
+[node name="BobbyScene" type="Node2D" node_paths=PackedStringArray("backgroundMusic")]
+script = ExtResource("1_uhc4c")
+backgroundMusic = NodePath("AudioStreamPlayer2D/backgroundMusic")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
@@ -114,7 +117,6 @@ position = Vector2(-41.6526, -26.502)
 scale = Vector2(0.0463321, 0.0463321)
 stream = ExtResource("8_ng3fv")
 volume_db = -1.0
-autoplay = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AudioStreamPlayer2D"]
 sprite_frames = SubResource("SpriteFrames_jypiq")
