@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var bat_scene: PackedScene
+@export var crook_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,14 +12,14 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func game_over_bat():
-	$BatTimer.stop()
-
 func new_game():
+	$GameOver.hide()
 	$Alex_Player.start($StartPosition.position)
 	$StartTimer.start()
 
+func _on_start_timer_timeout():
+	$BatTimer.start()
+	#$CrookTimer.start()
 
 func _on_bat_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -48,5 +49,16 @@ func _on_bat_timer_timeout():
 	# Spawn the mob by adding it to the Main scene.
 	add_child(bat)
 
-func _on_start_timer_timeout():
-	$BatTimer.start()
+#func _on_crook_timer_timeout():
+	#var crookA = crook_scene.instantiate()
+	#var crook_spawn_location = $CrookPath/CrookSpawnLocation
+	#crook_spawn_location.progress_ratio = randf()
+	#crookA.position = crook_spawn_location.position
+	#
+	#add_child(crookA)
+	
+
+func game_over_bat():
+	$BatTimer.stop()
+	$CrookTimer.stop()
+	$GameOver.show()

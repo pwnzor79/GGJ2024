@@ -4,7 +4,7 @@ extends RigidBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if position.x < 0: #left side
+	if position.x < 960: #left side
 		$Sprite2D.flip_h = false
 	else: #right side
 		$Sprite2D.flip_h = true
@@ -16,7 +16,19 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	if position.x < 0: #left side
-		speed = 500
+	if position.x < 960: #left side
+		speed = 1000
 	else: #right side
-		speed = -500
+		speed = -1000
+
+
+func _on_reverse_timer_timeout():
+	speed *= -1
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	$DeleteTimer.start()
+
+
+func _on_delete_timer_timeout():
+	queue_free()
