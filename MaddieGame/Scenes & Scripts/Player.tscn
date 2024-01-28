@@ -1,0 +1,95 @@
+[gd_scene load_steps=15 format=3 uid="uid://d1xl44hmb6ik2"]
+
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/Player.gd" id="1_u380f"]
+[ext_resource type="Texture2D" uid="uid://jxmhr73lncid" path="res://MaddieGame/Art/ClownShipDie1.png" id="2_f05jv"]
+[ext_resource type="Texture2D" uid="uid://dj0shy6bseut0" path="res://MaddieGame/Art/ClownShipLeft1.png" id="2_mhnb8"]
+[ext_resource type="Texture2D" uid="uid://bfcclq4ajk3td" path="res://MaddieGame/Art/ClownShipLeft2.png" id="3_7p3gq"]
+[ext_resource type="Texture2D" uid="uid://xa56n5aim44l" path="res://MaddieGame/Art/ClownShipDie2.png" id="3_jl8fq"]
+[ext_resource type="Texture2D" uid="uid://c3qmsfclktqeh" path="res://MaddieGame/Art/ClownShipDie3.png" id="4_kmkgo"]
+[ext_resource type="Texture2D" uid="uid://dh2g8iq58kl1m" path="res://MaddieGame/Art/ClownShipRight1.png" id="4_ldst0"]
+[ext_resource type="Texture2D" uid="uid://lyo5cxkp8m0p" path="res://MaddieGame/Art/ClownShipRight2.png" id="5_gtvds"]
+[ext_resource type="Texture2D" uid="uid://bs2887qheg2ns" path="res://MaddieGame/Art/ClownShipUp1.png" id="6_cth58"]
+[ext_resource type="Texture2D" uid="uid://dckplkjjbvjbl" path="res://MaddieGame/Art/ClownShipUp2.png" id="7_1pd5n"]
+[ext_resource type="AudioStream" uid="uid://bas7cxiivssj" path="res://MaddieGame/Audio/clown-horn-double-honk-jam-fx-1-00-00.mp3" id="11_vakct"]
+[ext_resource type="AudioStream" uid="uid://bv4mbpj7n71fs" path="res://MaddieGame/Audio/splat.mp3" id="12_1r5kx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxonb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f05jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jl8fq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kmkgo")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mhnb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7p3gq")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ldst0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gtvds")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cth58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1pd5n")
+}],
+"loop": true,
+"name": &"up_down",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0l2ud"]
+size = Vector2(208, 224)
+
+[node name="Player" type="Area2D" groups=["player"]]
+position = Vector2(40, 40)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_u380f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_lxonb")
+animation = &"die"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_0l2ud")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -80)
+scale = Vector2(4, 4)
+
+[node name="Honk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_vakct")
+volume_db = -7.5
+
+[node name="Splat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_1r5kx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

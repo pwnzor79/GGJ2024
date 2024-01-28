@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnb8llgeqlbg7"]
+
+[ext_resource type="PackedScene" uid="uid://bfnr6pxtg3iwu" path="res://Scenes/CadeScene/assets/enemy/willie_injured_run.glb" id="1_env4h"]
+[ext_resource type="Script" path="res://Scenes/CadeScene/assets/enemy/willie_injured_run.gd" id="2_3ql8a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g236p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucoo4"]
+emission_enabled = true
+emission = Color(0.623529, 0.87451, 0.87451, 1)
+emission_energy_multiplier = 8.41
+
+[node name="willie_injured_run" instance=ExtResource("1_env4h")]
+script = ExtResource("2_3ql8a")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0.00582073, 0.135095, 0.00631881)
+bones/0/rotation = Quaternion(0.161298, 0.0255047, 0.00708648, 0.986551)
+bones/1/rotation = Quaternion(0.105429, -0.0623714, 0.0403987, 0.991646)
+bones/2/rotation = Quaternion(0.0585071, -0.0369232, 0.0278298, 0.997216)
+bones/3/rotation = Quaternion(0.0584704, -0.0359374, 0.0296925, 0.9972)
+bones/4/rotation = Quaternion(-0.084755, 0.0139022, -0.0121761, 0.99623)
+bones/5/rotation = Quaternion(-0.0722248, 0.0637377, -0.0550744, 0.993825)
+bones/7/rotation = Quaternion(-0.458959, -0.537351, 0.395407, -0.586741)
+bones/8/rotation = Quaternion(0.199372, -0.239979, 0.0434542, 0.949091)
+bones/9/rotation = Quaternion(-0.0219801, -0.00084627, 0.584434, 0.811143)
+bones/11/rotation = Quaternion(0.503208, -0.501628, 0.437708, 0.550966)
+bones/12/rotation = Quaternion(0.402131, -0.131866, 0.2141, 0.880377)
+bones/13/rotation = Quaternion(-0.0227571, 0.0011379, -0.545163, 0.83802)
+bones/15/rotation = Quaternion(0.102459, -0.0148612, 0.991432, -0.0796534)
+bones/16/rotation = Quaternion(-0.369875, -0.112675, 0.10257, 0.916502)
+bones/17/rotation = Quaternion(0.662852, -0.297554, -0.103061, 0.679313)
+bones/18/rotation = Quaternion(0.453533, -0.183532, 0.0467374, 0.870884)
+bones/20/rotation = Quaternion(-0.0408609, 0.649564, 0.742069, -0.160407)
+bones/21/rotation = Quaternion(-0.496363, -0.0341447, -0.230527, 0.83625)
+bones/22/rotation = Quaternion(0.678414, 0.199498, -0.121983, 0.696474)
+bones/23/rotation = Quaternion(0.253992, 0.0784931, -0.0306917, 0.963527)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.996542, -0.0491706, -0.066972, 0.0142253, 0.895148, -0.445541, 0.0818574, 0.443048, 0.892753, -0.00793446, 0.217331, 0.0628396)
+bone_name = "mixamorig_Head"
+bone_idx = 5
+
+[node name="lefteye" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(0.0211012, -0.000391187, 0.000179376, 0.000279609, 0.0245878, 0.00426636, -0.000255949, -0.00538997, 0.0194491, -0.0137383, 0.0801946, 0.064329)
+mesh = SubResource("CapsuleMesh_g236p")
+surface_material_override/0 = SubResource("StandardMaterial3D_ucoo4")
+
+[node name="righteye" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="1"]
+transform = Transform3D(0.0210885, 0.000976477, -8.8322e-05, -0.000778356, 0.0245481, 0.00435347, 0.000270252, -0.00549567, 0.0194304, 0.0124629, 0.0789018, 0.0625681)
+mesh = SubResource("CapsuleMesh_g236p")
+surface_material_override/0 = SubResource("StandardMaterial3D_ucoo4")

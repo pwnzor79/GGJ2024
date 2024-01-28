@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://4kmdibflh3s8"]
+
+[ext_resource type="PackedScene" uid="uid://c0o157n8b3x78" path="res://Scenes/CadeScene/assets/cave/cave_rock_1.glb" id="1_d6aln"]
+[ext_resource type="Material" uid="uid://1i8ou47kgqfk" path="res://Scenes/CadeScene/assets/cave/cave_rock.tres" id="2_koppd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_els3f"]
+points = PackedVector3Array(-0.445309, -0.408061, -0.506663, 0.102963, 0.261961, 1.07226, 0.193724, 0.352864, 1.01133, 0.777054, -0.59301, 0.103134, 0.104345, 1.06232, -0.450071, -0.781904, -0.408748, 0.286494, -0.532866, 0.837579, 0.285841, -0.23306, -0.718083, 0.746817, 0.84187, -0.104858, -0.327361, 0.102736, 1.04675, 0.496687, 0.0733842, -0.470598, -0.599964, -0.0802255, -0.785255, -0.144736, 0.0122849, 0.755291, -0.665548, 0.64395, -0.189388, 0.616129, -0.62582, -0.101866, -0.412755, -0.198668, -0.491263, 0.978584, -0.316053, 0.977321, 0.553325, 0.370652, 0.828293, 0.165493, -0.228967, 0.925396, -0.40811, 0.073319, -0.775334, 0.622349, -0.69056, -0.592322, 0.164446, 0.49872, 0.597174, -0.473882, -0.742074, 0.23186, 0.134725, 0.715506, -0.623203, -0.0801631, -0.294112, -0.134583, -0.662847, 0.562677, -0.287083, -0.47767, -0.0182641, 1.15008, 0.164429, 0.251913, 0.710838, 0.704394, 0.0122849, 0.625709, 0.952203, 0.165893, 1.12378, -0.143037, 0.0421864, -0.27973, 1.00728, -0.531476, 0.715317, -0.0465324)
+
+[node name="cave_rock_12" instance=ExtResource("1_d6aln")]
+
+[node name="cave_rock_1" parent="." index="0"]
+transform = Transform3D(0.203063, 0, 0, 0, 0.203063, 0, 0, 0, 0.203063, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_koppd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="cave_rock_1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cave_rock_1/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_els3f")

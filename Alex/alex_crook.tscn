@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://5lqlg7ern2m7"]
+
+[ext_resource type="Script" path="res://Alex/alex_crook.gd" id="1_lgkei"]
+[ext_resource type="Texture2D" uid="uid://cqgft6txd6id2" path="res://Alex/Alex_Art/crook.png" id="1_muj2s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54dde"]
+radius = 16.0
+height = 32.0
+
+[node name="Crook" type="RigidBody2D" groups=["crooks", "mobs"]]
+position = Vector2(-952, 0)
+collision_mask = 0
+gravity_scale = 1.66533e-16
+script = ExtResource("1_lgkei")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_muj2s")
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="ReverseTimer" type="Timer" parent="."]
+wait_time = 1.25
+one_shot = true
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="DeleteTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["mobs"]]
+shape = SubResource("CapsuleShape2D_54dde")
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ReverseTimer" to="." method="_on_reverse_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://1g5yntod7g6s"]
+
+[ext_resource type="Script" path="res://MaddieGame/Scenes & Scripts/maddie_hud.gd" id="1_op4od"]
+
+[sub_resource type="SystemFont" id="SystemFont_j0ypk"]
+font_names = PackedStringArray("Comic Sans MS")
+subpixel_positioning = 0
+
+[node name="Maddie_HUD" type="CanvasLayer"]
+script = ExtResource("1_op4od")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 40.0
+offset_right = 323.0
+offset_bottom = 145.0
+theme_override_fonts/font = SubResource("SystemFont_j0ypk")
+theme_override_font_sizes/font_size = 75
+text = "0"
+
+[node name="Message" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="MessageTimer" type="Timer" parent="."]
