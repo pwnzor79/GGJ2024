@@ -25,7 +25,7 @@ size = Vector2(92, 124)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkku2"]
 size = Vector2(128, 128)
 
-[node name="Enemy" type="RigidBody2D" groups=["Mobs"]]
+[node name="Enemy" type="RigidBody2D" groups=["mobs"]]
 gravity_scale = -0.15
 script = ExtResource("1_58bet")
 bulletToSpawn = ExtResource("2_3ihjs")
