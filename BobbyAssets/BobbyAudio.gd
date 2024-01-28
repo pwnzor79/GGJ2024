@@ -217,7 +217,7 @@ func _input(event):
 
 func _askQuestion():
 	
-	var questionPick := randi_range(0, 12) #this is inclusive on both sides
+	var questionPick := randi_range(0, 14) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
 		bobbyText.text = ("what is your name? ")
@@ -287,9 +287,9 @@ func _askQuestion():
 		correctAnswerArray = ["mark"]
 		responseTextRight = ("how did you know that?")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("wrong his middle name is mark, also his address is 476 devinney court")
 		grammarSlam = false
-		benefitOfTheDoubt = true
+		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 7):
 		bobbyText.text = ("what color are the curtains behind me?")
@@ -307,7 +307,7 @@ func _askQuestion():
 		correctAnswerArray = []
 		responseTextRight = ("")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("sorry, the system doesn't handle numbers (it could but I don't trust you with that power) i'll assume you get it right")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -327,7 +327,7 @@ func _askQuestion():
 		correctAnswerArray = []
 		responseTextRight = ("")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("i'm sensing a terrible amount of yapping coming from your direction")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -343,14 +343,12 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 12):
 		bobbyText.text = ("Rene Descarte famously stated 'I think therefore I am' in order to assert cognizance 
-		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that 
-		there is no certainty behind the assertion that the reality we observe is real at all. What are your
-		thoughts on this issue? Also what is 4/7?")
+		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that there is no certainty behind the assertion that the reality we observe is real at all. What are yourthoughts on this issue? Also what is 4/7?")
 		wrongAnswerArray = []
 		correctAnswerArray = []
 		responseTextRight = ("")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("sorry you had to listen to all of that, the subject is a bit to complex for me to properly process if you said something smartsince you're listening to me anyways I might just keep talkign forever")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -366,21 +364,21 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 14):
 		bobbyText.text = ("what is the name of prometheus' brother?") #epimetheus or brometheus
-		wrongAnswerArray = []
+		wrongAnswerArray = ["jumpledorf"]
 		correctAnswerArray = ["epimetheus", "brometheus"]
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextRight = ("you probably got this right by saying epimetheus, but I also accept brometheus")
+		responseTextWrong = ("why on earth did you say jumpledorf?")
+		responseTextMiscellaneous = ("you are wrong, presuming I know how to spell these words")
 		grammarSlam = false
 		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 15):
-		bobbyText.text = ("what is your favorite food?")
-		wrongAnswerArray = []
-		correctAnswerArray = ["pizza"]
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		bobbyText.text = ("what is your favorite band") #epimetheus or brometheus
+		wrongAnswerArray = ["imagine dragons", "gecs", "one hundred gecs"]
+		correctAnswerArray = ["limp bizkit"]
+		responseTextRight = ("heck yeah")
+		responseTextWrong = ("you give me an aneurysm")
+		responseTextMiscellaneous = ("you are only correct if the band name is composed entire of words from the dictionary")
 		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
