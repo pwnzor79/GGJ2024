@@ -61,7 +61,7 @@ func _process(delta):
 		$Body.flip_h = velocity.x > 0
 
 func _on_body_entered(body):
-	if body.is_in_group("mobs"):
+	#if body.is_in_group("bats") or body.is_in_group("crooks"):
 		hide() # Player disappears after being hit.
 		hit.emit()
 		$CollisionShape2D.set_deferred("disabled", true)

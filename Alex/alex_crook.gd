@@ -6,13 +6,16 @@ extends RigidBody2D
 func _ready():
 	if position.x < 960: #left side
 		$Sprite2D.flip_h = false
+		$CollisionShape2D.position.x += 944
 	else: #right side
 		$Sprite2D.flip_h = true
+		$CollisionShape2D.position.x -= 944
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.x += speed * delta
+	$Sprite2D.position.x += speed * delta
+	$CollisionShape2D.position.x += speed * delta
 
 
 func _on_timer_timeout():

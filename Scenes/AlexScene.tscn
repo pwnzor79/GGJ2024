@@ -23,7 +23,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_o06bg"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1664, 448, 0, 0, 0, 0, 1664, 1008)
+"points": PackedVector2Array(0, 0, 0, 0, 2608, 448, 0, 0, 0, 0, 2608, 1008)
 }
 point_count = 2
 
@@ -40,7 +40,10 @@ one_shot = true
 wait_time = 0.2
 
 [node name="CrookTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.9
+
+[node name="Crook2Timer" type="Timer" parent="."]
+wait_time = 4.1
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(960, 540)
@@ -52,6 +55,7 @@ curve = SubResource("Curve2D_tedgo")
 position = Vector2(320, 64)
 
 [node name="CrookPath" type="Path2D" parent="."]
+position = Vector2(416, 24)
 curve = SubResource("Curve2D_onywp")
 
 [node name="CrookSpawnLocation" type="PathFollow2D" parent="CrookPath"]
@@ -62,7 +66,7 @@ rotation = 1.5708
 curve = SubResource("Curve2D_o06bg")
 
 [node name="Crook2SpawnLocation" type="PathFollow2D" parent="Crook2Path"]
-position = Vector2(1664, 448)
+position = Vector2(2608, 448)
 rotation = 1.5708
 
 [node name="Alex_Cursor" type="Node2D" parent="."]
@@ -102,4 +106,5 @@ texture = ExtResource("6_qo6k8")
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="BatTimer" to="." method="_on_bat_timer_timeout"]
 [connection signal="timeout" from="CrookTimer" to="." method="_on_crook_timer_timeout"]
+[connection signal="timeout" from="Crook2Timer" to="." method="_on_crook_2_timer_timeout"]
 [connection signal="hit" from="Alex_Player" to="." method="game_over_bat"]

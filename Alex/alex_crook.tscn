@@ -1,21 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://5lqlg7ern2m7"]
 
 [ext_resource type="Script" path="res://Alex/alex_crook.gd" id="1_lgkei"]
-[ext_resource type="Texture2D" uid="uid://di0jxgrac8txs" path="res://Alex/Alex_Art/crook.png" id="1_muj2s"]
+[ext_resource type="Texture2D" uid="uid://cqgft6txd6id2" path="res://Alex/Alex_Art/crook.png" id="1_muj2s"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1pk0w"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54dde"]
+radius = 16.0
+height = 32.0
 
-[node name="alex_crook" type="RigidBody2D" groups=["mobs"]]
+[node name="Crook" type="RigidBody2D" groups=["crooks"]]
 position = Vector2(-952, 0)
 collision_mask = 0
 gravity_scale = 1.66533e-16
 script = ExtResource("1_lgkei")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["mobs"]]
-position = Vector2(952, 0)
-shape = SubResource("CircleShape2D_1pk0w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_muj2s")
@@ -35,6 +31,9 @@ autostart = true
 [node name="DeleteTimer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["mobs"]]
+shape = SubResource("CapsuleShape2D_54dde")
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ReverseTimer" to="." method="_on_reverse_timer_timeout"]

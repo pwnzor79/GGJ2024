@@ -19,7 +19,8 @@ func new_game():
 
 func _on_start_timer_timeout():
 	$BatTimer.start()
-	#$CrookTimer.start()
+	$CrookTimer.start()
+	$Crook2Timer.start()
 
 func _on_bat_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -49,16 +50,26 @@ func _on_bat_timer_timeout():
 	# Spawn the mob by adding it to the Main scene.
 	add_child(bat)
 
-#func _on_crook_timer_timeout():
-	#var crookA = crook_scene.instantiate()
-	#var crook_spawn_location = $CrookPath/CrookSpawnLocation
-	#crook_spawn_location.progress_ratio = randf()
-	#crookA.position = crook_spawn_location.position
-	#
-	#add_child(crookA)
+func _on_crook_timer_timeout():
+	var crookA = crook_scene.instantiate()
+	var crookA_spawn_location = $CrookPath/CrookSpawnLocation
+	crookA_spawn_location.progress_ratio = randf()
+	crookA.position = crookA_spawn_location.position
+	add_child(crookA)
 	
-
+	
+func _on_crook_2_timer_timeout():
+	var crookB = crook_scene.instantiate()
+	var crookB_spawn_location = $Crook2Path/Crook2SpawnLocation
+	crookB_spawn_location.progress_ratio = randf()
+	crookB.position = crookB_spawn_location.position
+	add_child(crookB)
+	
 func game_over_bat():
 	$BatTimer.stop()
 	$CrookTimer.stop()
+	$Crook2Timer.stop()
 	$GameOver.show()
+
+
+
