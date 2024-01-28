@@ -14,8 +14,21 @@ var jumpsRemaining = JUMPS
 func do_game_manager_force(delta):
 	position.x -= IanGameManager.speed * backwards_force_scale * delta
 
+func do_animation():
+	if velocity.y > 0:
+		$AnimatedSprite2D.frame=3
+	elif velocity.y < -100:
+		$AnimatedSprite2D.frame=2
+	elif velocity.x > 0 and is_on_floor():
+		$AnimatedSprite2D.frame=1
+	elif is_on_floor():
+		$AnimatedSprite2D.frame=0
+		
+		
+
 func _process(delta):
 	do_game_manager_force(delta)
+	do_animation()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -32,6 +45,8 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("up") and jumpsRemaining > 0:
 		velocity.y = JUMP_VELOCITY
+		#if jumpsRemaining < JUMPS:
+			#$GPUParticles2D.emit_particle()
 		jumpsRemaining-=1
 	
 	if Input.is_action_just_released("up") and not is_on_floor():
