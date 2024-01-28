@@ -22,7 +22,7 @@ func _physics_process(delta):
 	
 
 # Detects collision with mobs and despawns projectile
-func on_pie_body_entered(body):
+func _on_area_2d_body_entered(body):
 	if body.is_in_group("mobs"):
 		body.pop()
 	queue_free()

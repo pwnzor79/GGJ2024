@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2wfp"]
 size = Vector2(128, 128)
 
-[node name="Enemy" type="RigidBody2D" groups=["Mobs"]]
+[node name="Enemy" type="RigidBody2D" groups=["mobs"]]
 gravity_scale = 1.66533e-16
 script = ExtResource("1_58bet")
 
