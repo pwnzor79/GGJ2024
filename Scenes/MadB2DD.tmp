@@ -29,6 +29,7 @@ texture = ExtResource("4_62654")
 stretch_mode = 1
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="EnemyPath" type="Path2D" parent="."]
