@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8lpr"]
 size = Vector2(20, 32)
 
-[node name="EnemyBullet" type="RigidBody2D"]
+[node name="EnemyBullet" type="RigidBody2D" groups=["destructableAttacks"]]
 position = Vector2(48, 144)
 gravity_scale = 1.66533e-16
 lock_rotation = true
