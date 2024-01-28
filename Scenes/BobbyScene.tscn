@@ -10,11 +10,17 @@
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 script = ExtResource("2_7dc0r")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("playerText", "bobbyText")]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("playerText", "bobbyText", "timerText", "timer")]
 stream = ExtResource("2_ee1ci")
 script = ExtResource("1_rmvtj")
 playerText = NodePath("../../PlayerText")
 bobbyText = NodePath("../../BobbyText")
+timerText = NodePath("../../TimerText")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D/AudioStreamPlayer2D"]
+wait_time = 20.0
+autostart = true
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)

@@ -2,7 +2,9 @@ extends AudioStreamPlayer2D
 
 @export var playerText: RichTextLabel
 @export var bobbyText: RichTextLabel
+@export var timerText: RichTextLabel
 @export var dictionary: String
+@export var timer: Timer
 
 #https://forum.godotengine.org/t/how-to-import-and-read-text/21936
 #https://github.com/dwyl/english-words/blob/master/words.txt
@@ -29,11 +31,20 @@ var happiness: int = 0
 func _ready():
 	_loadFile()
 	_processQuestion()
+	#timerText.clear()
+	#timerText.add_text(str(snapped(timer.time_left, 0.1)))
+	#timerText.text = timer.time_left
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#https://forum.godotengine.org/t/how-to-assign-a-label-text-property-to-a-timers-time-left-function/21794/2
+	timerText.text = str($Timer.time_left - 1)
+	if(timer.time_left < 1):
+		timer.paused = true
+		timerText.text = ("0")
+		print("game over")
 	pass
 
 func _loadFile() -> void: #it is redundant to call this file if 
@@ -107,6 +118,8 @@ func _processAnswer(answer):
 			else:
 				print("you do not get benefit of the doubt")
 				anger += 1
+	
+	_processQuestion()
 
 func _input(event):
 
@@ -186,7 +199,11 @@ func _askQuestion():
 		bobbyText.text = ("s ")
 		wrongAnswerArray = ["tim", "steve"]
 		correctAnswerArray = ["bobby", "gargathor"]
+		grammarSlam = false
+		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
+		
+		
 	elif(questionPick == 1):
 		bobbyText.text = "what is your quest?"
 		_sayText(bobbyText.text)
@@ -222,7 +239,7 @@ func _askQuestion():
 	elif(questionPick == 12):
 		bobbyText.text = ("Rene Descarte famously stated 'I think therefore I am' in order to assert cognizance 
 		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that 
-		there is no truth behind the assertion that the reality we observe is real at all. What are your
+		there is no certainty behind the assertion that the reality we observe is real at all. What are your
 		thoughts on this issue? Also what is 4/7?")
 	elif(questionPick == 13):
 		bobbyText.text = ("sdrawkcab 'reflection' tou epyt")
@@ -243,7 +260,7 @@ func _askQuestion():
 # this shows how to parse the text
 func _sayText(question: String):
 	isTalking = true
-
+	timer.paused = true
 	
 	for n in question.length()-1:
 		
@@ -386,6 +403,6 @@ func _sayText(question: String):
 		#hold until the sound is done
 		
 	isTalking = false
-	
+	timer.paused = false
 	
 	
