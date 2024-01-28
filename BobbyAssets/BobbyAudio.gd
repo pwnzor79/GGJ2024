@@ -17,12 +17,13 @@ var answerText: String = ""
 var responseTextRight: String = ""
 var responseTextWrong: String = ""
 var responseTextMiscellaneous: String = ""
-var timeTrim: float = 0.3
+var timeTrim: float = 0.0
 var isTalking: bool = false
 var inDictionary: bool = true
 var benefitOfTheDoubt: bool = true #determining factor when the answer is not predetermined
 var grammarSlam: bool = true #means you must get benefit of the doubt and be in the dictionary
 var askAfterTalking: bool = false #determines if "say text" goes to "process question"
+var sayingAnswer: bool = false
 var dictionaryArray = [" "]
 var answerArray = [" "]
 var wrongAnswerArray = [" "]
@@ -99,11 +100,13 @@ func _processAnswer(answer):
 	if(wrongAnswerArray.has(answerText)):
 		print("wrong answer")
 		anger += 1
+		$wrong.play()
 		bobbyText.text = responseTextWrong
 		_sayText(responseTextWrong)
 	elif(correctAnswerArray.has(answerText)):
 		print("correct answer")
 		happiness += 1
+		$right.play()
 		bobbyText.text = responseTextRight
 		_sayText(responseTextRight)
 	else:
@@ -117,20 +120,25 @@ func _processAnswer(answer):
 				if(benefitOfTheDoubt):
 					print("you get benefit of the doubt")
 					happiness += 1
+					$right.play()
 				else:
 					print("you do not get benefit of the doubt")
 					anger += 1
+					$wrong.play()
 			else:
 				print("that was not in the dictionary")
 				anger += 1
+				$wrong.play()
 		else:
 			print("we are not checking grammar")
 			if(benefitOfTheDoubt):
 				print("you get benefit of the doubt")
 				happiness += 1
+				$right.play()
 			else:
 				print("you do not get benefit of the doubt")
 				anger += 1
+				$wrong.play()
 	
 	#_processQuestion()
 
@@ -195,8 +203,10 @@ func _input(event):
 				if isTalking:
 					print("don't interrupt me")
 				else:
-					_processAnswer(answerText)
-					#_sayText(answerText)
+					#_processAnswer(answerText)
+					sayingAnswer = true
+					#answerText = ""
+					_sayText(answerText)
 			"Backspace":
 				if(answerText.length() > 0):
 					answerText[answerText.length()-1] = ""
@@ -207,10 +217,10 @@ func _input(event):
 
 func _askQuestion():
 	
-	var questionPick := randi_range(0, 2) #this is inclusive on both sides
+	var questionPick := randi_range(0, 14) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
-		bobbyText.text = ("s ")
+		bobbyText.text = ("what is your name? ")
 		wrongAnswerArray = ["tim", "steve"]
 		correctAnswerArray = ["bobby", "gargathor"]
 		responseTextRight = ("that is a great name")
@@ -252,22 +262,22 @@ func _askQuestion():
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 4):
-		bobbyText.text = ("what is your social security number?")
-		wrongAnswerArray = []
-		correctAnswerArray = []
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		bobbyText.text = ("what color do you create when you mix blue and yellow")
+		wrongAnswerArray = ["green"]
+		correctAnswerArray = ["blellow"]
+		responseTextRight = ("heck yeah")
+		responseTextWrong = ("you should watch malcolm in the middle")
+		responseTextMiscellaneous = ("what on earth could you have typed besides the answer for this?")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
 	elif(questionPick == 5):
 		bobbyText.text = ("what is your favorite food?")
-		wrongAnswerArray = []
-		correctAnswerArray = ["pizza"]
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		wrongAnswerArray = ["anchovies", "anchovy", "black licorice", "eggs"]
+		correctAnswerArray = ["pizza", "bowl of olives"]
+		responseTextRight = ("heck yeah")
+		responseTextWrong = ("that's narsty")
+		responseTextMiscellaneous = ("I just have to hope that you said a food and not something obscene")
 		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -277,9 +287,9 @@ func _askQuestion():
 		correctAnswerArray = ["mark"]
 		responseTextRight = ("how did you know that?")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("wrong his middle name is mark, also his address is 476 devinney court")
 		grammarSlam = false
-		benefitOfTheDoubt = true
+		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 7):
 		bobbyText.text = ("what color are the curtains behind me?")
@@ -297,7 +307,7 @@ func _askQuestion():
 		correctAnswerArray = []
 		responseTextRight = ("")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("sorry, the system doesn't handle numbers (it could but I don't trust you with that power) i'll assume you get it right")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -317,7 +327,7 @@ func _askQuestion():
 		correctAnswerArray = []
 		responseTextRight = ("")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("i'm sensing a terrible amount of yapping coming from your direction")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -333,14 +343,12 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 12):
 		bobbyText.text = ("Rene Descarte famously stated 'I think therefore I am' in order to assert cognizance 
-		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that 
-		there is no certainty behind the assertion that the reality we observe is real at all. What are your
-		thoughts on this issue? Also what is 4/7?")
+		is the ultimate proof of existence, however this idea is challenged by gnostic beliefs which assert that there is no certainty behind the assertion that the reality we observe is real at all. What are yourthoughts on this issue? Also what is 4/7?")
 		wrongAnswerArray = []
 		correctAnswerArray = []
 		responseTextRight = ("")
 		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextMiscellaneous = ("sorry you had to listen to all of that, the subject is a bit to complex for me to properly process if you said something smartsince you're listening to me anyways I might just keep talkign forever")
 		grammarSlam = false
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -356,21 +364,21 @@ func _askQuestion():
 		_sayText(bobbyText.text)
 	elif(questionPick == 14):
 		bobbyText.text = ("what is the name of prometheus' brother?") #epimetheus or brometheus
-		wrongAnswerArray = []
+		wrongAnswerArray = ["jumpledorf"]
 		correctAnswerArray = ["epimetheus", "brometheus"]
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		responseTextRight = ("you probably got this right by saying epimetheus, but I also accept brometheus")
+		responseTextWrong = ("why on earth did you say jumpledorf?")
+		responseTextMiscellaneous = ("you are wrong, presuming I know how to spell these words")
 		grammarSlam = false
 		benefitOfTheDoubt = false
 		_sayText(bobbyText.text)
 	elif(questionPick == 15):
-		bobbyText.text = ("what is your favorite food?")
-		wrongAnswerArray = []
-		correctAnswerArray = ["pizza"]
-		responseTextRight = ("")
-		responseTextWrong = ("")
-		responseTextMiscellaneous = ("")
+		bobbyText.text = ("what is your favorite band") #epimetheus or brometheus
+		wrongAnswerArray = ["imagine dragons", "gecs", "one hundred gecs"]
+		correctAnswerArray = ["limp bizkit"]
+		responseTextRight = ("heck yeah")
+		responseTextWrong = ("you give me an aneurysm")
+		responseTextMiscellaneous = ("you are only correct if the band name is composed entire of words from the dictionary")
 		grammarSlam = true
 		benefitOfTheDoubt = true
 		_sayText(bobbyText.text)
@@ -531,6 +539,10 @@ func _sayText(question: String):
 	isTalking = false
 	timer.paused = false
 	if(askAfterTalking):
+		askAfterTalking = false
 		_processQuestion()
+	elif(sayingAnswer):
+		sayingAnswer = false
+		_processAnswer(answerText)
 	
 	
