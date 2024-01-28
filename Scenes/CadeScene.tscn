@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=37 format=3 uid="uid://0om1dcte4gao"]
 
 [ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
@@ -16,6 +16,8 @@
 [ext_resource type="AudioStream" uid="uid://d0tw2h2sxsv87" path="res://Scenes/CadeScene/sound/clown_honk.mp3" id="9_fweob"]
 [ext_resource type="PackedScene" uid="uid://4kmdibflh3s8" path="res://Scenes/CadeScene/assets/cave/cave_rock_1.tscn" id="10_cd50o"]
 [ext_resource type="AudioStream" uid="uid://j4uixrc8562x" path="res://Scenes/CadeScene/sound/horn_blast.mp3" id="12_yyotm"]
+[ext_resource type="AudioStream" uid="uid://cb6nw1mr7tyic" path="res://Scenes/CadeScene/music/cave_calm.mp3" id="16_is2rc"]
+[ext_resource type="AudioStream" uid="uid://dvyefcfxecsvi" path="res://Scenes/CadeScene/music/cave_chase.mp3" id="17_5obu5"]
 
 [sub_resource type="GDScript" id="GDScript_jn11a"]
 resource_name = "Enemy"
@@ -25,6 +27,7 @@ var player
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node(\"/root/CadeScene/player\")
+	get_node(\"/root/CadeScene/player/MusicCaveCalm\").play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,6 +71,7 @@ func check_for_death():
 		print(\"u dead\")
 		get_node(\"/root/CadeScene/Control/SceneTransitionRect\").death_screen()
 		get_node(\"/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_sound\").stop()
+		get_node(\"/root/CadeScene/player/MusicCaveChase\").stop()
 		get_node(\"/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/death_boom\").play()
 		self.set_process(false)
 "
@@ -490,6 +494,14 @@ volume_db = -21.905
 
 [node name="ChaseStart" type="AudioStreamPlayer3D" parent="player"]
 stream = ExtResource("12_yyotm")
+
+[node name="MusicCaveCalm" type="AudioStreamPlayer3D" parent="player"]
+stream = ExtResource("16_is2rc")
+volume_db = -30.476
+
+[node name="MusicCaveChase" type="AudioStreamPlayer3D" parent="player"]
+stream = ExtResource("17_5obu5")
+volume_db = -4.762
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8d6c")

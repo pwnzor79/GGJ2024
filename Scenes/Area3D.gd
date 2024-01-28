@@ -4,6 +4,7 @@ extends Area3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node("/root/CadeScene/enemy/CharacterBody3D").set_process(false)
+	willie_scream_stream = get_node("/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_scream")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,6 +13,7 @@ func _process(delta):
 
 var chase_active = false
 var start_active = false
+var willie_scream_stream
 func _on_body_entered(body):
 	if (start_active == false):
 		start_active = true
@@ -24,4 +26,7 @@ func _on_body_entered(body):
 		chase_active = true
 		get_node("/root/CadeScene/player/ChaseStart").play()
 		get_node("/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_sound").play()
-		get_node("/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_scream").play()
+		willie_scream_stream.play()
+		await(willie_scream_stream.finished)
+		get_node("/root/CadeScene/player/MusicCaveCalm").stop()
+		get_node("/root/CadeScene/player/MusicCaveChase").play()
