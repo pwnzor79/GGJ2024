@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0e3ya7ag6hg0"]
+
+[ext_resource type="Script" path="res://ProblemCustomer/cutting_board.gd" id="1_rhrg6"]
+
+[node name="CuttingBoard" type="StaticBody2D"]
+scale = Vector2(14.5941, 6.36)
+script = ExtResource("1_rhrg6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="." groups=["dropable"]]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1, 1.50314)
+color = Color(0.780392, 0.792157, 0.807843, 1)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c26kg4c0s7yu0"]
+
+[ext_resource type="Texture2D" uid="uid://5akhkmkmidjl" path="res://ProblemCustomer/Pizza_BlankCrust.PNG" id="1_wfaku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dosbt"]
+size = Vector2(64, 64)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("1_wfaku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_dosbt")
