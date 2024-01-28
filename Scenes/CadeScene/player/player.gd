@@ -57,6 +57,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	handle_jump()
+	handle_honk()
 	move_character(delta)
 
 func _input(event: InputEvent) -> void:
@@ -114,6 +115,10 @@ func apply_gravity(delta: float) -> void:
 func handle_jump() -> void:
 	if Input.is_action_pressed("chasm_move_jump") and is_on_floor():
 		velocity.y += jump_velocity
+		
+func handle_honk() -> void:
+	if Input.is_action_pressed("chasm_honk"):
+		$AudioStreamPlayer3D.play()
 
 func move_character(delta: float) -> void:
 	var input_dir: Vector2 = Input.get_vector("chasm_move_left", "chasm_move_right", "chasm_move_forward", "chasm_move_backward")

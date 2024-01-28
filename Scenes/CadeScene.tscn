@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://0om1dcte4gao"]
+[gd_scene load_steps=29 format=3 uid="uid://0om1dcte4gao"]
 
 [ext_resource type="Texture2D" uid="uid://byyuo1kjmsqjg" path="res://Scenes/CadeScene/assets/prototype/Orange/texture_05.png" id="1_0em0j"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/scripts/world.gd" id="1_vi6lb"]
@@ -7,7 +7,9 @@
 [ext_resource type="ArrayMesh" uid="uid://ory4fkyg8km" path="res://Scenes/CadeScene/assets/cave/cave.obj" id="3_36v0w"]
 [ext_resource type="Material" uid="uid://1i8ou47kgqfk" path="res://Scenes/CadeScene/assets/cave/cave_rock.tres" id="3_f78dn"]
 [ext_resource type="Texture2D" uid="uid://b5jn3udlqjm7n" path="res://Scenes/CadeScene/assets/cave/textures/cave_wall_beware.png" id="6_narp6"]
+[ext_resource type="Script" path="res://Scenes/Area3D.gd" id="7_cacqn"]
 [ext_resource type="PackedScene" uid="uid://l2fv4omh1odl" path="res://Scenes/CadeScene/assets/torch/castle_torch_combo.tscn" id="8_g56hj"]
+[ext_resource type="AudioStream" uid="uid://d0tw2h2sxsv87" path="res://Scenes/CadeScene/sound/clown_honk.mp3" id="9_fweob"]
 [ext_resource type="PackedScene" uid="uid://4kmdibflh3s8" path="res://Scenes/CadeScene/assets/cave/cave_rock_1.tscn" id="10_cd50o"]
 
 [sub_resource type="GDScript" id="GDScript_jn11a"]
@@ -100,6 +102,8 @@ func _on_body_entered(body):
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_milqe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aa25n"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_p1ob5"]
 panorama = ExtResource("3_6myqv")
@@ -200,7 +204,7 @@ script = ExtResource("1_vi6lb")
 [node name="enemy" type="Node" parent="."]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71435, 4.86662, -14.8174)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9812, 9.06255, -33.4948)
 floor_stop_on_slope = false
 floor_constant_speed = true
 script = SubResource("GDScript_jn11a")
@@ -212,15 +216,6 @@ shape = SubResource("CapsuleShape3D_bmigy")
 mesh = SubResource("CapsuleMesh_hrdeq")
 
 [node name="teleport_points" type="Node" parent="enemy"]
-
-[node name="Marker3D" type="Marker3D" parent="enemy/teleport_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.77697, 8.2011, -47.4465)
-
-[node name="Marker3D2" type="Marker3D" parent="enemy/teleport_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.819, 7.35767, -52.2877)
-
-[node name="Marker3D3" type="Marker3D" parent="enemy/teleport_points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9505, 7.40576, -56.8879)
 
 [node name="Marker3D4" type="Marker3D" parent="enemy/teleport_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4683, 7.37411, -61.2008)
@@ -266,6 +261,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53021, 2.06438, -128.495)
 
 [node name="Marker3D18" type="Marker3D" parent="enemy/teleport_points"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46489, 2.80664, -130.787)
+
+[node name="spawn" type="Marker3D" parent="enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96223, 7.9504, -24.5727)
 
 [node name="geometry" type="Node" parent="."]
 
@@ -342,6 +340,17 @@ script = SubResource("GDScript_svxoh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="geometry/end_area/FogVolume/Area3D"]
 shape = SubResource("BoxShape3D_milqe")
 
+[node name="start_chase" type="Node" parent="geometry"]
+
+[node name="Node3D" type="Node3D" parent="geometry/start_chase"]
+transform = Transform3D(17.6725, 0, 0, 0, 14.7346, 0, 0, 0, 1, -11.0779, 10.3107, -50.1498)
+
+[node name="Area3D" type="Area3D" parent="geometry/start_chase/Node3D"]
+script = ExtResource("7_cacqn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="geometry/start_chase/Node3D/Area3D"]
+shape = SubResource("BoxShape3D_aa25n")
+
 [node name="decals" type="Node" parent="."]
 
 [node name="cave_wall_writing" type="Decal" parent="decals"]
@@ -351,6 +360,10 @@ normal_fade = 0.155
 
 [node name="player" parent="." instance=ExtResource("2_ljeje")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182841, 1.11917, 0.911486)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182841, -1.11917, -0.911486)
+stream = ExtResource("9_fweob")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_y8d6c")
@@ -385,9 +398,5 @@ libraries = {
 "": SubResource("AnimationLibrary_1xwbm")
 }
 
-[node name="Container" type="Container" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [connection signal="body_entered" from="geometry/end_area/FogVolume/Area3D" to="geometry/end_area/FogVolume/Area3D" method="_on_body_entered"]
+[connection signal="body_entered" from="geometry/start_chase/Node3D/Area3D" to="geometry/start_chase/Node3D/Area3D" method="_on_body_entered"]
