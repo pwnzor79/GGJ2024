@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnb8llgeqlbg7"]
+[gd_scene load_steps=5 format=3 uid="uid://cnb8llgeqlbg7"]
 
 [ext_resource type="PackedScene" uid="uid://bfnr6pxtg3iwu" path="res://Scenes/CadeScene/assets/enemy/willie_injured_run.glb" id="1_env4h"]
 [ext_resource type="Script" path="res://Scenes/CadeScene/assets/enemy/willie_injured_run.gd" id="2_3ql8a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g236p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucoo4"]
+emission_enabled = true
+emission = Color(0.623529, 0.87451, 0.87451, 1)
+emission_energy_multiplier = 8.41
 
 [node name="willie_injured_run" instance=ExtResource("1_env4h")]
 script = ExtResource("2_3ql8a")
@@ -28,3 +35,18 @@ bones/20/rotation = Quaternion(-0.0408609, 0.649564, 0.742069, -0.160407)
 bones/21/rotation = Quaternion(-0.496363, -0.0341447, -0.230527, 0.83625)
 bones/22/rotation = Quaternion(0.678414, 0.199498, -0.121983, 0.696474)
 bones/23/rotation = Quaternion(0.253992, 0.0784931, -0.0306917, 0.963527)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.996542, -0.0491706, -0.066972, 0.0142253, 0.895148, -0.445541, 0.0818574, 0.443048, 0.892753, -0.00793446, 0.217331, 0.0628396)
+bone_name = "mixamorig_Head"
+bone_idx = 5
+
+[node name="lefteye" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(0.0211012, -0.000391187, 0.000179376, 0.000279609, 0.0245878, 0.00426636, -0.000255949, -0.00538997, 0.0194491, -0.0137383, 0.0801946, 0.064329)
+mesh = SubResource("CapsuleMesh_g236p")
+surface_material_override/0 = SubResource("StandardMaterial3D_ucoo4")
+
+[node name="righteye" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="1"]
+transform = Transform3D(0.0210885, 0.000976477, -8.8322e-05, -0.000778356, 0.0245481, 0.00435347, 0.000270252, -0.00549567, 0.0194304, 0.0124629, 0.0789018, 0.0625681)
+mesh = SubResource("CapsuleMesh_g236p")
+surface_material_override/0 = SubResource("StandardMaterial3D_ucoo4")

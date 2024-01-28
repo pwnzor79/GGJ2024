@@ -266,6 +266,16 @@ panning_strength = 0.8
 stream = ExtResource("4_qoqeh")
 volume_db = 11.429
 
+[node name="frontlight" type="OmniLight3D" parent="enemy/CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3727)
+light_color = Color(0.780392, 0.905882, 1, 1)
+light_energy = 0.209
+
+[node name="frontlight2" type="OmniLight3D" parent="enemy/CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.68026)
+light_color = Color(0.780392, 0.905882, 1, 1)
+light_energy = 0.9
+
 [node name="teleport_points" type="Node" parent="enemy"]
 
 [node name="Marker3D4" type="Marker3D" parent="enemy/teleport_points"]
