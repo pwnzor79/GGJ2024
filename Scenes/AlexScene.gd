@@ -3,11 +3,21 @@ extends Node2D
 @export var bat_scene: PackedScene
 @export var crook_scene: PackedScene
 
+var skip_intro = false
+var music_time = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_game()
-
-
+	if skip_intro:
+		new_game_skip()
+	else:
+		new_game()
+		skip_intro = true
+		
+func start_music(music_start_time):
+	$Music.play(music_start_time)
+	$MusTimer.start(music_start_time)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -18,6 +28,19 @@ func new_game():
 	$StartTimer.start()
 	$Music.play()
 	$MusTimer.start()
+	
+func new_game_skip():
+	$GameOver.hide()
+	$Curtains.hide()
+	$Curtains.queue_free()
+	$InstructionLayer.hide()
+	$InstructionLayer.queue_free()
+	$HInstructionLayer.hide()
+	$HInstructionLayer.queue_free()
+	$Alex_Player.start($StartPosition.position)
+	$StartTimer.start(2)
+	$Music.play(music_time)
+	$MusTimer.start(music_time)
 
 func _on_start_timer_timeout():
 	$BatTimer.start()
