@@ -297,6 +297,42 @@ transform = Transform3D(-0.999986, 0, -0.00525344, 0, 1, 0, 0.00525344, 0, -0.99
 [node name="castle_torch3" parent="geometry/torches" instance=ExtResource("8_g56hj")]
 transform = Transform3D(-0.0162483, 0, -0.999868, 0, 1, 0, 0.999868, 0, -0.0162483, 2.95106, 7.8912, -26.4272)
 
+[node name="castle_torch7" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.998315, 0, -0.0580345, 0, 1, 0, 0.0580345, 0, -0.998315, -6.08334, 7.8912, -60.8844)
+
+[node name="castle_torch8" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(0.937416, 0, 0.348212, 0, 1, 0, -0.348212, 0, 0.937416, -19.2146, 7.8912, -61.9242)
+
+[node name="castle_torch18" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.997049, 0, -0.0767711, 0, 1, 0, 0.0767711, 0, -0.997049, -7.65727, 8.94508, -43.5214)
+
+[node name="castle_torch9" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(0.997912, 0, 0.0645846, 0, 1, 0, -0.0645846, 0, 0.997912, -24.2644, 8.50528, -79.1123)
+
+[node name="castle_torch11" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(0.0599684, 0, -0.9982, 0, 1, 0, 0.9982, 0, 0.0599684, -14.6806, 8.50528, -92.1824)
+
+[node name="castle_torch12" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(0.999856, 0, -0.0169464, 0, 1, 0, 0.0169464, 0, 0.999856, -41.4479, 5.58814, -107.717)
+
+[node name="castle_torch13" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.963392, 0, 0.268096, 0, 1, 0, -0.268096, 0, -0.963392, -6.80555, 3.78363, -121.333)
+
+[node name="castle_torch14" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.963392, 0, 0.268096, 0, 1, 0, -0.268096, 0, -0.963392, 8.90944, 5.35719, -103.89)
+
+[node name="castle_torch15" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.603431, 0, -0.797415, 0, 1, 0, 0.797415, 0, -0.603431, 12.6216, 5.72603, -150.193)
+
+[node name="castle_torch16" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(0.872044, 0, -0.489428, 0, 1, 0, 0.489428, 0, 0.872044, -4.63913, 3.10987, -142.619)
+
+[node name="castle_torch17" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(0.872044, 0, -0.489428, 0, 1, 0, 0.489428, 0, 0.872044, 9.74317, 4.91901, -191.953)
+
+[node name="castle_torch10" parent="geometry/torches" instance=ExtResource("8_g56hj")]
+transform = Transform3D(-0.997245, 0, 0.0741781, 0, 1, 0, -0.0741781, 0, -0.997245, -3.31019, 8.25627, -81.1609)
+
 [node name="castle_torch4" parent="geometry/torches" instance=ExtResource("8_g56hj")]
 transform = Transform3D(-0.0162483, 0, -0.999868, 0, 1, 0, 0.999868, 0, -0.0162483, 21.677, 11.7768, -32.1751)
 
