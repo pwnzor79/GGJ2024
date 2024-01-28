@@ -23,6 +23,7 @@ var inDictionary: bool = true
 var benefitOfTheDoubt: bool = true #determining factor when the answer is not predetermined
 var grammarSlam: bool = true #means you must get benefit of the doubt and be in the dictionary
 var askAfterTalking: bool = false #determines if "say text" goes to "process question"
+var sayingAnswer: bool = false
 var dictionaryArray = [" "]
 var answerArray = [" "]
 var wrongAnswerArray = [" "]
@@ -196,7 +197,7 @@ func _input(event):
 					print("don't interrupt me")
 				else:
 					_processAnswer(answerText)
-					#_sayText(answerText)
+					_sayText(answerText)
 			"Backspace":
 				if(answerText.length() > 0):
 					answerText[answerText.length()-1] = ""
@@ -207,7 +208,7 @@ func _input(event):
 
 func _askQuestion():
 	
-	var questionPick := randi_range(12, 12) #this is inclusive on both sides
+	var questionPick := randi_range(0, 12) #this is inclusive on both sides
 	print(questionPick)
 	if(questionPick == 0):
 		bobbyText.text = ("abcdefghijklmnopqrstuvwxyz ")

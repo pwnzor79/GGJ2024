@@ -1,9 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddbbfdxgbmk87"]
+[gd_scene load_steps=8 format=3 uid="uid://ddbbfdxgbmk87"]
 
 [ext_resource type="Script" path="res://BobbyAssets/BobbyAudio.gd" id="1_rmvtj"]
 [ext_resource type="Script" path="res://BobbyAssets/BobbyFaceScript.gd" id="2_7dc0r"]
 [ext_resource type="AudioStream" uid="uid://cpamjgdo8wt6x" path="res://BobbyAssets/Audio/ramSample1.wav" id="2_ee1ci"]
 [ext_resource type="Texture2D" uid="uid://dowbeylobxb50" path="res://BobbyAssets/Sprites/bobbyBackground.png" id="4_d45os"]
+
+[sub_resource type="FontFile" id="FontFile_lorec"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="FontFile_1djfr"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="FontFile_vmt5f"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="BobbyScene" type="Node2D"]
 
@@ -27,16 +51,23 @@ position = Vector2(960, 540)
 texture = ExtResource("4_d45os")
 
 [node name="PlayerText" type="RichTextLabel" parent="."]
-offset_top = 107.0
-offset_right = 1156.0
-offset_bottom = 646.0
+offset_left = 355.0
+offset_top = 658.0
+offset_right = 1511.0
+offset_bottom = 925.0
+theme_override_fonts/normal_font = SubResource("FontFile_lorec")
+theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 
 [node name="BobbyText" type="RichTextLabel" parent="."]
-offset_right = 1150.0
-offset_bottom = 119.0
+offset_right = 777.0
+offset_bottom = 409.0
+theme_override_fonts/normal_font = SubResource("FontFile_1djfr")
+theme_override_font_sizes/normal_font_size = 20
 
 [node name="TimerText" type="RichTextLabel" parent="."]
 offset_left = 1376.0
 offset_right = 1741.0
 offset_bottom = 282.0
+theme_override_fonts/normal_font = SubResource("FontFile_vmt5f")
+theme_override_font_sizes/normal_font_size = 20
