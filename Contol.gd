@@ -4,7 +4,7 @@ extends Control
 @export var scenes = {}
 @export var scenesArray = []
 @export var finalScene = []
-var timeBetweenScenes = Vector2(30,45)
+var timeBetweenScenes = Vector2(25,30)
 var minScenesToVisit = 6
 var numScenesVisited = 0
 
