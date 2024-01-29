@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cidtxf0vokhlc"]
+[gd_scene load_steps=15 format=3 uid="uid://cidtxf0vokhlc"]
 
 [ext_resource type="Script" path="res://Contol.gd" id="1_5o16l"]
 [ext_resource type="PackedScene" uid="uid://swgkg14gq8e" path="res://Scenes/IanScene.tscn" id="1_cfjdr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://i0nh88nisff0" path="res://Scenes/AlexScene.tscn" id="4_ol2f5"]
 [ext_resource type="PackedScene" uid="uid://dbatpp77e1vqi" path="res://Scenes/BobbyScene.tscn" id="5_auayh"]
 [ext_resource type="PackedScene" uid="uid://0om1dcte4gao" path="res://Scenes/CadeScene.tscn" id="6_yb3qv"]
+[ext_resource type="PackedScene" uid="uid://t2lchx5y7d5a" path="res://Scenes/DoriScene/Scenes/DoriScene.tscn" id="7_od717"]
 [ext_resource type="Texture2D" uid="uid://cb6n11u5vs188" path="res://BobbyAssets/Sprites/static.png" id="7_xaang"]
 [ext_resource type="Script" path="res://BobbyAssets/static.gd" id="8_u1lxa"]
 [ext_resource type="AudioStream" uid="uid://dtqeg11je737m" path="res://game_tuning_sound.mp3" id="9_ud0bc"]
@@ -51,6 +52,19 @@ ExtResource("5_auayh"): 0.0
 }
 scenesArray = [ExtResource("2_33dnh"), ExtResource("1_cfjdr"), ExtResource("4_ol2f5"), ExtResource("5_auayh")]
 finalScene = [ExtResource("6_yb3qv")]
+sceneCodes = {
+"a": ExtResource("4_ol2f5"),
+"b": ExtResource("5_auayh"),
+"i": ExtResource("1_cfjdr"),
+"j": ExtResource("2_33dnh"),
+"m": ExtResource("2_33dnh")
+}
+cadeSceneCodes = {
+"c": ExtResource("6_yb3qv")
+}
+doriSceneCodes = {
+"d": ExtResource("7_od717")
+}
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 3
