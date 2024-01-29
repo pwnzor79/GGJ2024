@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/DoriScene/Scripts/DoriScene.gd" id="1_oo1aj"]
 [ext_resource type="Texture2D" uid="uid://cddqqj42cvayu" path="res://Scenes/DoriScene/Sprites/DoriUI/pizza_rack_party.png" id="2_ag1dv"]
 [ext_resource type="PackedScene" uid="uid://gu85efk656il" path="res://Scenes/DoriScene/Scenes/arrow_button.tscn" id="2_jpohw"]
-[ext_resource type="Texture2D" uid="uid://cewlq1g8y1bgt" path="res://Scenes/DoriScene/Sprites/DoriUI/oven_top.png" id="2_tq8jo"]
+[ext_resource type="Texture2D" uid="uid://bvgqy4ysisof2" path="res://Scenes/DoriScene/Sprites/DoriUI/oven_top.png" id="2_tq8jo"]
 [ext_resource type="PackedScene" uid="uid://38oe8rlfcele" path="res://Scenes/DoriScene/Scenes/conductor.tscn" id="3_31jnp"]
 [ext_resource type="Texture2D" uid="uid://bysnw8mfwx1r8" path="res://Scenes/DoriScene/Sprites/DoriUI/vecteezy_seamless-pattern-background-with-pizza-shape_7357130-1.jpg" id="6_2rj47"]
 
