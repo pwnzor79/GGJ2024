@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cghrenaylrrdt"]
+[gd_scene load_steps=4 format=3 uid="uid://cghrenaylrrdt"]
 
 [ext_resource type="PackedScene" uid="uid://crg1i46xfj0pc" path="res://Ian Game/Scenes/Obstacles/obstacle.tscn" id="1_kk5qv"]
 [ext_resource type="Texture2D" uid="uid://5fku6gomseha" path="res://Ian Game/Textures/Purple Train.png" id="2_gv1dt"]
 [ext_resource type="Texture2D" uid="uid://cadpwfoc10h2c" path="res://Ian Game/Textures/Purple Car.png" id="3_yiifw"]
-[ext_resource type="PackedScene" uid="uid://ds2qpvb055yyl" path="res://Ian Game/Scenes/Obstacles/Crate.tscn" id="4_mmsow"]
-[ext_resource type="PackedScene" path="res://Ian Game/Scenes/Obstacles/Light Crate.tscn" id="5_8k8p0"]
 
 [node name="Obstacle2" instance=ExtResource("1_kk5qv")]
 
@@ -21,11 +19,3 @@ texture = ExtResource("3_yiifw")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
 position = Vector2(-183.08, -4.789)
 polygon = PackedVector2Array(0, -114.24, 288.5, -322.47, 0, -5.68, 2696.4, 0, 2696, -322)
-
-[node name="Obstacle" parent="." index="3" instance=ExtResource("4_mmsow")]
-position = Vector2(1936.92, -332.789)
-script = null
-
-[node name="Obstacle2" parent="." index="4" instance=ExtResource("5_8k8p0")]
-position = Vector2(2192.92, -332.789)
-script = null

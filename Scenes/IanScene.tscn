@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://swgkg14gq8e"]
+[gd_scene load_steps=26 format=3 uid="uid://swgkg14gq8e"]
 
 [ext_resource type="Script" path="res://Ian Game/Scenes/Game Manager.gd" id="1_4ngmh"]
 [ext_resource type="Script" path="res://Ian Game/Scenes/Jumpldorf.gd" id="1_mg3jw"]
@@ -12,8 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://jsscitkkhkc3" path="res://Ian Game/Scenes/Obstacles/Train Tracks.tscn" id="7_68prg"]
 [ext_resource type="PackedScene" uid="uid://l3v1ug3utq4c" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Boxes 2.tscn" id="7_pw2fk"]
 [ext_resource type="PackedScene" uid="uid://ds2qpvb055yyl" path="res://Ian Game/Scenes/Obstacles/Crate.tscn" id="8_6ng3i"]
-[ext_resource type="AudioStream" uid="uid://d17lwa62eucqd" path="res://Ian Game/Audio/clown-horn-double-honk-jam-fx-1-00-00.mp3" id="13_hq8ke"]
-[ext_resource type="Script" path="res://Scenes/Horn Sound.gd" id="14_54ubd"]
+[ext_resource type="PackedScene" uid="uid://cs4ao77rsdw3l" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Mountain.tscn" id="11_lp1te"]
+[ext_resource type="PackedScene" uid="uid://cbuw4fbpsubv8" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Nyoom Train.tscn" id="12_av6go"]
+[ext_resource type="PackedScene" uid="uid://ds7bvboa0yysq" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/Duck Train.tscn" id="13_ulyq6"]
+[ext_resource type="PackedScene" uid="uid://dyhr6s2kg58ig" path="res://Ian Game/Scenes/Obstacles/Long Obstacles/pillars.tscn" id="14_kg1f2"]
+[ext_resource type="AudioStream" uid="uid://b6vkd3g41kg7a" path="res://BobbyAssets/Audio/clown-horn-double-honk-jam-fx-1-00-00.mp3" id="17_jfn1l"]
+[ext_resource type="Script" path="res://BobbyAssets/honk.gd" id="18_3llf2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stbhp"]
 size = Vector2(89.6, 187.844)
@@ -96,7 +100,7 @@ shape = SubResource("RectangleShape2D_63ar6")
 [node name="Obstacle Spawner" type="Node2D" parent="."]
 position = Vector2(2286.07, 1032)
 script = ExtResource("4_ltwwl")
-scenes = [ExtResource("6_c4nd5"), ExtResource("5_4aexh"), ExtResource("6_cj0nw"), ExtResource("7_pw2fk"), ExtResource("8_6ng3i"), ExtResource("6_j1n3y"), ExtResource("7_42uqe")]
+scenes = [ExtResource("6_c4nd5"), ExtResource("5_4aexh"), ExtResource("6_cj0nw"), ExtResource("7_pw2fk"), ExtResource("8_6ng3i"), ExtResource("6_j1n3y"), ExtResource("7_42uqe"), ExtResource("11_lp1te"), ExtResource("12_av6go"), ExtResource("13_ulyq6"), ExtResource("14_kg1f2")]
 distanceBetweenObstacles = 3200.0
 distanceVariation = Vector2(-500, 500)
 
@@ -116,8 +120,6 @@ position = Vector2(121.17, -32)
 [node name="Also Rails" parent="." instance=ExtResource("7_68prg")]
 position = Vector2(-1001.67, -32)
 
-[node name="Horn Sound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-3093.87, 400)
-stream = ExtResource("13_hq8ke")
-autoplay = true
-script = ExtResource("14_54ubd")
+[node name="honk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_jfn1l")
+script = ExtResource("18_3llf2")

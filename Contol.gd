@@ -26,6 +26,7 @@ func _ready():
 		await get_tree().create_timer(time).timeout
 		scenes[scene] = scene.backgroundMusic.get_playback_position()
 		scene.queue_free()
+		Input.set_custom_mouse_cursor(null)
 	
 	self.PRESET_CENTER
 	await $AnimatedSprite2D.do_static(2)
