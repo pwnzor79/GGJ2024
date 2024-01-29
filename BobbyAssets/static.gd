@@ -14,7 +14,9 @@ func _process(delta):
 	
 func do_static(time):
 	self.visible = true
+	$AudioStreamPlayer2D.play()
 	await get_tree().create_timer(time).timeout
+	$AudioStreamPlayer2D.stop()
 	self.visible = false
 
 func toggleVisibility():

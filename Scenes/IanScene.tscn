@@ -60,7 +60,7 @@ speed = 1
 backgroundMusic = NodePath("AudioStreamPlayer2D")
 
 [node name="Jumpldorf" type="CharacterBody2D" parent="."]
-position = Vector2(565.459, 808)
+position = Vector2(1833.7, 784)
 platform_on_leave = 2
 script = ExtResource("1_mg3jw")
 gravity = 1200

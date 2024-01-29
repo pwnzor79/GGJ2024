@@ -1,21 +1,47 @@
-[gd_scene load_steps=9 format=3 uid="uid://cidtxf0vokhlc"]
+[gd_scene load_steps=14 format=3 uid="uid://cidtxf0vokhlc"]
 
 [ext_resource type="Script" path="res://Contol.gd" id="1_5o16l"]
 [ext_resource type="PackedScene" uid="uid://swgkg14gq8e" path="res://Scenes/IanScene.tscn" id="1_cfjdr"]
-[ext_resource type="PackedScene" path="res://Scenes/ShortCircus.tscn" id="2_6wsjn"]
 [ext_resource type="PackedScene" uid="uid://chty6t2k54gkv" path="res://Scenes/MaddieScene.tscn" id="2_33dnh"]
 [ext_resource type="PackedScene" uid="uid://i0nh88nisff0" path="res://Scenes/AlexScene.tscn" id="4_ol2f5"]
 [ext_resource type="PackedScene" uid="uid://dbatpp77e1vqi" path="res://Scenes/BobbyScene.tscn" id="5_auayh"]
-[ext_resource type="PackedScene" uid="uid://t2lchx5y7d5a" path="res://Scenes/DoriScene/Scenes/DoriScene.tscn" id="6_o50rg"]
 [ext_resource type="PackedScene" uid="uid://0om1dcte4gao" path="res://Scenes/CadeScene.tscn" id="6_yb3qv"]
+[ext_resource type="Texture2D" uid="uid://cb6n11u5vs188" path="res://BobbyAssets/Sprites/static.png" id="7_xaang"]
+[ext_resource type="Script" path="res://BobbyAssets/static.gd" id="8_u1lxa"]
+[ext_resource type="AudioStream" uid="uid://dtqeg11je737m" path="res://game_tuning_sound.mp3" id="9_ud0bc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fheh"]
+atlas = ExtResource("7_xaang")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osmux"]
+atlas = ExtResource("7_xaang")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkww8"]
+atlas = ExtResource("7_xaang")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfnsq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fheh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osmux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkww8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_5o16l")
 scenes = {
 ExtResource("2_33dnh"): 0.0,
@@ -23,7 +49,20 @@ ExtResource("1_cfjdr"): 0.0,
 ExtResource("4_ol2f5"): 0.0,
 ExtResource("5_auayh"): 0.0
 }
-scenesArray = [ExtResource("2_33dnh"), ExtResource("1_cfjdr"), ExtResource("4_ol2f5"), ExtResource("5_auayh"), ExtResource("6_o50rg")]
+scenesArray = [ExtResource("2_33dnh"), ExtResource("1_cfjdr"), ExtResource("4_ol2f5"), ExtResource("5_auayh")]
 finalScene = [ExtResource("6_yb3qv")]
 
-[node name="ShortCircus" parent="." instance=ExtResource("2_6wsjn")]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 3
+texture_repeat = 2
+position = Vector2(960, 544)
+scale = Vector2(1.17927, 1.17927)
+sprite_frames = SubResource("SpriteFrames_hfnsq")
+autoplay = "default"
+script = ExtResource("8_u1lxa")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+editor_description = "Static goes here
+"
+stream = ExtResource("9_ud0bc")
+volume_db = -8.0

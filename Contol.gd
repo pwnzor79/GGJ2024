@@ -10,7 +10,9 @@ var numScenesVisited = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	scenesArray.shuffle()
 	for sceneTree in scenesArray:
+		await $AnimatedSprite2D.do_static(0.5)
 		print(sceneTree)
 		var scene = sceneTree.instantiate()
 		print(scene)
@@ -24,8 +26,9 @@ func _ready():
 		await get_tree().create_timer(time).timeout
 		scenes[scene] = scene.backgroundMusic.get_playback_position()
 		scene.queue_free()
-		#$ShortCircus.do
 	
+	self.PRESET_CENTER
+	await $AnimatedSprite2D.do_static(2)
 	add_child(finalScene[0].instantiate())
 
 
