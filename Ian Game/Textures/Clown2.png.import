@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:Ian Game/Textures/Clown2.png.import
-uid="uid://gw837ifmqv4r"
+uid="uid://bf4r8ar26ac5l"
 path="res://.godot/imported/Clown2.png-eb97f0131c315b4a4d45145d3d6b7f68.ctex"
-========
-uid="uid://cewlq1g8y1bgt"
-path="res://.godot/imported/oven_top.png-856f815c3118fcae45de9ad60790e5e1.ctex"
->>>>>>>> DoriBranch:Scenes/DoriScene/Sprites/DoriUI/oven_top.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:Ian Game/Textures/Clown2.png.import
 source_file="res://Ian Game/Textures/Clown2.png"
 dest_files=["res://.godot/imported/Clown2.png-eb97f0131c315b4a4d45145d3d6b7f68.ctex"]
-========
-source_file="res://Scenes/DoriScene/Sprites/DoriUI/oven_top.png"
-dest_files=["res://.godot/imported/oven_top.png-856f815c3118fcae45de9ad60790e5e1.ctex"]
->>>>>>>> DoriBranch:Scenes/DoriScene/Sprites/DoriUI/oven_top.png.import
 
 [params]
 

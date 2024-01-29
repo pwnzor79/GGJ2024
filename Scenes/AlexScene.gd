@@ -2,6 +2,7 @@ extends Node2D
 
 @export var bat_scene: PackedScene
 @export var crook_scene: PackedScene
+@export var backgroundMusic: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

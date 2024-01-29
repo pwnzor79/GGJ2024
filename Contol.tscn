@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cidtxf0vokhlc"]
+[gd_scene load_steps=8 format=3 uid="uid://cidtxf0vokhlc"]
 
 [ext_resource type="Script" path="res://Contol.gd" id="1_5o16l"]
+[ext_resource type="PackedScene" uid="uid://swgkg14gq8e" path="res://Scenes/IanScene.tscn" id="1_cfjdr"]
+[ext_resource type="PackedScene" path="res://Scenes/ShortCircus.tscn" id="2_6wsjn"]
+[ext_resource type="PackedScene" uid="uid://chty6t2k54gkv" path="res://Scenes/MaddieScene.tscn" id="2_33dnh"]
+[ext_resource type="PackedScene" uid="uid://i0nh88nisff0" path="res://Scenes/AlexScene.tscn" id="4_ol2f5"]
+[ext_resource type="PackedScene" uid="uid://dbatpp77e1vqi" path="res://Scenes/BobbyScene.tscn" id="5_auayh"]
+[ext_resource type="PackedScene" uid="uid://0om1dcte4gao" path="res://Scenes/CadeScene.tscn" id="6_yb3qv"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,3 +16,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5o16l")
+scenes = {
+ExtResource("2_33dnh"): 0.0,
+ExtResource("1_cfjdr"): 0.0,
+ExtResource("4_ol2f5"): 0.0,
+ExtResource("5_auayh"): 0.0
+}
+scenesArray = [ExtResource("2_33dnh"), ExtResource("1_cfjdr"), ExtResource("4_ol2f5"), ExtResource("5_auayh")]
+finalScene = [ExtResource("6_yb3qv")]
+
+[node name="ShortCircus" parent="." instance=ExtResource("2_6wsjn")]

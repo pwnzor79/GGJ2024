@@ -39,10 +39,11 @@ point_count = 2
 
 [sub_resource type="SystemFont" id="SystemFont_ktv6t"]
 
-[node name="AlexScene" type="Node2D"]
+[node name="AlexScene" type="Node2D" node_paths=PackedStringArray("backgroundMusic")]
 script = ExtResource("1_omb53")
 bat_scene = ExtResource("2_1l7hs")
 crook_scene = ExtResource("3_qillp")
+backgroundMusic = NodePath("Music")
 
 [node name="Curtains" type="CanvasLayer" parent="."]
 

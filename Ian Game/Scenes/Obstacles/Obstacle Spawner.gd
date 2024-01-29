@@ -10,7 +10,9 @@ func _ready():
 		spawnObstacle()
 		var nextDistance = distanceBetweenObstacles + randf_range(distanceVariation.x, distanceVariation.y)
 		var time = nextDistance / IanGameManager.speed
-		await get_tree().create_timer(time).timeout
+		if get_tree() != null:
+			var timer = get_tree().create_timer(time)
+			await timer.timeout
 
 func spawnObstacle():
 	var obstacle = scenes[randi_range(0, scenes.size()-1)]
