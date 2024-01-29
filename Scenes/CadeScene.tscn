@@ -26,8 +26,8 @@ script/source = "extends CharacterBody3D
 var player
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player = get_node(\"/root/CadeScene/player\")
-	get_node(\"/root/CadeScene/player/MusicCaveCalm\").play()
+	player = get_node(\"/root/Control/CadeScene/player\")
+	get_node(\"/root/Control/CadeScene/player/MusicCaveCalm\").play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -69,10 +69,10 @@ func check_for_teleport():
 func check_for_death():
 	if ai_get_direction().length() < 3.0:
 		print(\"u dead\")
-		get_node(\"/root/CadeScene/Control/SceneTransitionRect\").death_screen()
-		get_node(\"/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_sound\").stop()
-		get_node(\"/root/CadeScene/player/MusicCaveChase\").stop()
-		get_node(\"/root/CadeScene/enemy/CharacterBody3D/CollisionShape3D/death_boom\").play()
+		get_node(\"/root/Control/CadeScene/Control/SceneTransitionRect\").death_screen()
+		get_node(\"/root/Control/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_sound\").stop()
+		get_node(\"/root/Control/CadeScene/player/MusicCaveChase\").stop()
+		get_node(\"/root/Control/CadeScene/enemy/CharacterBody3D/CollisionShape3D/death_boom\").play()
 		self.set_process(false)
 "
 
@@ -120,8 +120,8 @@ func _on_body_entered(body):
 		exit_active = true
 		return
 	print(\"Entered Area:\" + body.name)
-	get_node(\"/root/CadeScene/player/MusicCaveChase/AnimationPlayer\").play(\"music_fade_out\")
-	get_node(\"/root/CadeScene/Control/SceneTransitionRect\").transition_to()
+	get_node(\"/root/Control/CadeScene/player/MusicCaveChase/AnimationPlayer\").play(\"music_fade_out\")
+	get_node(\"/root/Control/CadeScene/Control/SceneTransitionRect\").transition_to()
 	
 	
 "
