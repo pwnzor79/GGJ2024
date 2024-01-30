@@ -69,7 +69,7 @@ stream = ExtResource("6_0ymjg")
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_eba56")
-volume_db = -7.5
+volume_db = -1.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_spawn_timeout"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
