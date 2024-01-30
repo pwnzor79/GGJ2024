@@ -3,8 +3,8 @@ extends Area3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("/root/Control/CadeScene/enemy/CharacterBody3D").set_process(false)
-	willie_scream_stream = get_node("/root/Control/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_scream")
+	get_node("../../../../enemy/CharacterBody3D").set_process(false)
+	willie_scream_stream = get_node("../../../../enemy/CharacterBody3D/CollisionShape3D/willie_scream")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,13 +20,13 @@ func _on_body_entered(body):
 		return
 	if (!chase_active):
 		print("Setting hunt active")
-		get_node("/root/Control/CadeScene/enemy/CharacterBody3D").set_process(true)
-		var spawn_pos = get_node("/root/Control/CadeScene/enemy/spawn").position
-		get_node("/root/Control/CadeScene/enemy/CharacterBody3D").position = spawn_pos
+		get_node("../../../../enemy/CharacterBody3D").set_process(true)
+		var spawn_pos = get_node("../../../../enemy/spawn").position
+		get_node("../../../../enemy/CharacterBody3D").position = spawn_pos
 		chase_active = true
-		get_node("/root/Control/CadeScene/player/ChaseStart").play()
-		get_node("/root/Control/CadeScene/enemy/CharacterBody3D/CollisionShape3D/willie_sound").play()
+		get_node("../../../../player/ChaseStart").play()
+		get_node("../../../../enemy/CharacterBody3D/CollisionShape3D/willie_sound").play()
 		willie_scream_stream.play()
 		await(willie_scream_stream.finished)
-		get_node("/root/Control/CadeScene/player/MusicCaveCalm").stop()
-		get_node("/root/Control/CadeScene/player/MusicCaveChase").play()
+		get_node("../../../../player/MusicCaveCalm").stop()
+		get_node("../../../../player/MusicCaveChase").play()
