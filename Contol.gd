@@ -6,7 +6,6 @@ extends Control
 @export var finalScene = []
 @export var sceneCodes = {}
 @export var cadeSceneCodes = {}
-@export var doriSceneCodes = {}
 @export var timeBetweenScenes = Vector2(25,30)
 #var minScenesToVisit = 6
 #var numScenesVisited = 0
@@ -16,8 +15,8 @@ var currentScene = null
 func _ready():
 	scenesArray.shuffle()
 	for sceneTree in scenesArray:
-		await $AnimatedSprite2D.do_static(0.5)
 		var scene = sceneTree.instantiate()
+		await $AnimatedSprite2D.do_static(0.5)
 		self.add_child(scene)
 		currentScene = scene
 		# if visited set music to last position (doesnt work lol)
@@ -66,20 +65,6 @@ func _input(event):
 			await $AnimatedSprite2D.do_static(2)
 			var scene = cadeSceneCodes[code].instantiate()
 			add_child(scene)
-
-	for code in doriSceneCodes:
-		if event.as_text().to_lower() == "ctrl+" + code:
-			var i = 1
-			while(is_instance_valid(self.get_child(i))):
-				get_child(i).queue_free()
-				i+=1
-			Input.set_custom_mouse_cursor(null)
-			self.PRESET_TOP_LEFT
-			await $AnimatedSprite2D.do_static(0.5)
-			var scene = doriSceneCodes[code].instantiate()
-			add_child(scene)
-		
-	#if Input.is_key_pressed(KEY_CTRL):
 		
 
 

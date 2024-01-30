@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://38oe8rlfcele" path="res://Scenes/DoriScene/Scenes/conductor.tscn" id="3_31jnp"]
 [ext_resource type="Texture2D" uid="uid://bysnw8mfwx1r8" path="res://Scenes/DoriScene/Sprites/DoriUI/vecteezy_seamless-pattern-background-with-pizza-shape_7357130-1.jpg" id="6_2rj47"]
 
-[node name="DoriScene" type="Node2D"]
+[node name="DoriScene" type="Node2D" node_paths=PackedStringArray("backgroundMusic")]
 script = ExtResource("1_oo1aj")
+backgroundMusic = NodePath("ignore me")
 
 [node name="OvenTop" type="Sprite2D" parent="."]
 z_index = 1
@@ -54,6 +55,8 @@ z_index = -1
 position = Vector2(964, 534.5)
 scale = Vector2(1.00104, 0.904167)
 texture = ExtResource("6_2rj47")
+
+[node name="ignore me" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="beat" from="Conductor" to="." method="_on_conductor_beat"]
 [connection signal="measure" from="Conductor" to="." method="_on_conductor_measure"]

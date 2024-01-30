@@ -26,6 +26,7 @@ var rand = 0
 var note = load("res://Scenes/DoriScene/Scenes/note.tscn")
 var instance
 
+@export var backgroundMusic: AudioStreamPlayer2D
 
 func _ready():
 	randomize()

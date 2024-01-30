@@ -48,22 +48,28 @@ scenes = {
 ExtResource("2_33dnh"): 0.0,
 ExtResource("1_cfjdr"): 0.0,
 ExtResource("4_ol2f5"): 0.0,
-ExtResource("5_auayh"): 0.0
+ExtResource("5_auayh"): 0.0,
+ExtResource("7_od717"): 0.0
 }
-scenesArray = [ExtResource("2_33dnh"), ExtResource("1_cfjdr"), ExtResource("4_ol2f5"), ExtResource("5_auayh")]
+scenesArray = [ExtResource("2_33dnh"), ExtResource("1_cfjdr"), ExtResource("4_ol2f5"), ExtResource("5_auayh"), ExtResource("7_od717")]
 finalScene = [ExtResource("6_yb3qv")]
 sceneCodes = {
+"1": ExtResource("2_33dnh"),
+"2": ExtResource("1_cfjdr"),
+"3": ExtResource("4_ol2f5"),
+"4": ExtResource("5_auayh"),
+"5": ExtResource("7_od717"),
 "a": ExtResource("4_ol2f5"),
 "b": ExtResource("5_auayh"),
+"d": ExtResource("7_od717"),
 "i": ExtResource("1_cfjdr"),
 "j": ExtResource("2_33dnh"),
 "m": ExtResource("2_33dnh")
 }
 cadeSceneCodes = {
+"0": ExtResource("6_yb3qv"),
+"6": ExtResource("6_yb3qv"),
 "c": ExtResource("6_yb3qv")
-}
-doriSceneCodes = {
-"d": ExtResource("7_od717")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
